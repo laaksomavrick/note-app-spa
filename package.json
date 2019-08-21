@@ -1,13 +1,17 @@
 {
   "name": "notes-app-spa",
   "version": "0.0.0",
+  "engines": {
+    "node": "10"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "format": "prettier --write \"src/**/*.ts\" \"e2e/**/*.ts\""
   },
   "private": true,
   "dependencies": {
@@ -29,7 +33,7 @@
     "@angular/cli": "~6.1.5",
     "@angular/compiler-cli": "^6.1.0",
     "@angular/language-service": "^6.1.0",
-    "@types/jasmine": "~2.8.6",
+    "@types/jasmine": "^2.5.41",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
@@ -40,6 +44,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "prettier": "^1.18.2",
     "protractor": "~5.4.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
