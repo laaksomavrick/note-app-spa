@@ -1,11 +1,13 @@
+import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
 // TODO: temporary function, should be derived from authService whenever that exists
 function isAuthenticated(): Observable<boolean> {
-    return of(false);
+    const token = localStorage.getItem('token');
+    const predicate = token != null;
+    return of(predicate);
 }
 
 @Injectable()

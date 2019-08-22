@@ -1,24 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from './login.service';
+import { LoginResponse } from './loginResponse';
 
 @Component({
     selector: 'app-login-page',
-    templateUrl: './login-page.component.html',
-    styleUrls: ['./login-page.component.css'],
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
 })
-export class LoginPageComponent implements OnInit {
-    public usernameFormInput = '';
+export class LoginComponent implements OnInit {
+    public emailFormInput = '';
 
     public passwordFormInput = '';
 
-    constructor() {
+    constructor(private loginService: LoginService) {
     }
 
     public ngOnInit() {
     }
 
     public submitForm(): void {
-        console.log(this.usernameFormInput);
+        // TODO: validation
+        // TODO: error handling
+        // TODO: view model layer to abstract the above
+
+        console.log(this.emailFormInput);
         console.log(this.passwordFormInput);
+
+        const email = this.emailFormInput;
+        const password = this.passwordFormInput;
+
+        this.loginService.loginUser(email, password)
+            .subscribe((response: LoginResponse) => {
+                console.log(response);
+            });
     }
 
 }

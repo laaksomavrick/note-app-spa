@@ -3,12 +3,12 @@
         <h3 class="brand-title text-dark">Devnotes</h3>
         <form class="login-form">
             <div class="form-group">
-                <label  for="usernameFormInput">Username</label>
-                <input [(ngModel)]="usernameFormInput" name="usernameFormInput" type="text" class="form-control" id="usernameFormInput" placeholder="Username">
+                <label  for="emailFormInput">Email</label>
+                <input [(ngModel)]="emailFormInput" name="emailFormInput" type="text" class="form-control" id="emailFormInput" placeholder="Enter your email">
             </div>
             <div class="form-group">
                 <label for="passwordFormInput">Password</label>
-                <input [(ngModel)]="passwordFormInput" name="passwordFormInput" type="text" class="form-control" id="passwordFormInput" placeholder="Password">
+                <input [(ngModel)]="passwordFormInput" name="passwordFormInput" type="text" class="form-control" id="passwordFormInput" placeholder="Enter your password">
             </div>
             <button (click)="submitForm()" type="button" class="login-form-btn btn btn-primary">Login</button>
         </form>

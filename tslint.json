@@ -128,6 +128,7 @@
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "typedef": [true],
-    "no-any": true
+    "no-any": true,
+    "ordered-imports": true
   }
 }
