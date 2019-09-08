@@ -1,4 +1,6 @@
 <div class="login-page">
+
+    <!-- Login form -->
     <div class="login-form-container list-group-item list-group-item-light">
         <h3 class="brand-title text-dark">Devnotes</h3>
         <form class="login-form">
@@ -12,5 +14,15 @@
             </div>
             <button (click)="submitForm()" type="button" class="login-form-btn btn btn-primary">Login</button>
         </form>
+
+        <!-- Loading animation -->
+        <div *ngIf="(loading$ | async) as loading" class="alert-container">
+            <p><ngb-progressbar type="info" [value]="100" [striped]="true" [animated]="true"></ngb-progressbar></p>
+        </div>
+
+       <!-- Error alert -->
+        <div *ngIf="(error$ | async) as error" class="alert-container">
+            <ngb-alert type="danger" (close)="closeError()">{{ error }}</ngb-alert>
+        </div>
     </div>
 </div>

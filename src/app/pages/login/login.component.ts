@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './login.service';
-import { LoginResponse } from './loginResponse';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppStore } from '../../app.module';
+import { loginAttempt } from './login.actions';
 
 @Component({
     selector: 'app-login-page',
@@ -8,31 +10,43 @@ import { LoginResponse } from './loginResponse';
     styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-    public emailFormInput = '';
+    public loading$: Observable<boolean> = this.store.select(
+        ({ loginState }: AppStore) => loginState.loading,
+    );
 
+    public error$: Observable<string | undefined> = this.store.select(
+        ({ loginState }: AppStore) => loginState.error,
+    );
+
+    public emailFormInput = '';
     public passwordFormInput = '';
 
-    constructor(private loginService: LoginService) {
-    }
+    constructor(private store: Store<AppStore>) {}
 
     public ngOnInit() {
+        this.loading$.subscribe((loading: boolean) => {
+            console.log(`loading ${loading}`);
+        });
+
+        this.error$.subscribe(error => {
+            console.log(`error ${error}`);
+        });
     }
 
     public submitForm(): void {
         // TODO: validation
-        // TODO: error handling
-        // TODO: view model layer to abstract the above
+        // TODO: auth guard should dispatch action if token in localStorage
+        //       so that in memory store 1 - 1 with real state
 
-        console.log(this.emailFormInput);
-        console.log(this.passwordFormInput);
+        // TODO test component, reducer, effect
 
         const email = this.emailFormInput;
         const password = this.passwordFormInput;
 
-        this.loginService.loginUser(email, password)
-            .subscribe((response: LoginResponse) => {
-                console.log(response);
-            });
+        this.store.dispatch(loginAttempt({ email, password }));
     }
 
+    public closeError(): void {
+        // TODO dispatch event to toggle error state
+    }
 }

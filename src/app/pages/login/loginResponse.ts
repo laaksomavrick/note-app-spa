@@ -3,4 +3,7 @@ export interface LoginResponse {
     resource?: {
         token: string;
     };
+    error?: {
+        msg: string;
+    };
 }
