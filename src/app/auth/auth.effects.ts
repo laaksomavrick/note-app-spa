@@ -13,14 +13,14 @@ export class AuthEffects {
         this.actions$.pipe(
             ofType(authAttempt.type),
             exhaustMap((action: AuthAttempt) =>
-                this.loginService.loginUser(action.email, action.password).pipe(
-                    map((loginResponse: AuthResponse) => {
-                        if (loginResponse.resource) {
-                            const token = loginResponse.resource.token;
+                this.authService.authenticateUser(action.email, action.password).pipe(
+                    map((authResponse: AuthResponse) => {
+                        if (authResponse.resource) {
+                            const token = authResponse.resource.token;
                             localStorage.setItem('token', token);
                             this.router.navigate(['/']);
                         }
-                        return authSuccess(loginResponse);
+                        return authSuccess(authResponse);
                     }),
                     catchError(({ error }) => {
                         return of(authFailure(error));
@@ -32,7 +32,7 @@ export class AuthEffects {
 
     constructor(
         private readonly actions$: Actions,
-        private readonly loginService: AuthService,
+        private readonly authService: AuthService,
         private readonly router: Router,
     ) {
     }
