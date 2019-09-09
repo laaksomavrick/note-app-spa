@@ -8,9 +8,10 @@ import { AuthRequest, AuthResponse } from './auth.interfaces';
 })
 export class AuthService {
     // TODO injectable config
-    private url = 'http://localhost:3000';
+    // TODO injectable localStorage ???
+    public url = 'http://localhost:3000';
 
-    private httpOptions = {
+    public httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
 
