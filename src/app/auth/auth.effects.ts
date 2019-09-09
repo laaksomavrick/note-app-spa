@@ -34,6 +34,5 @@ export class AuthEffects {
         private readonly actions$: Actions,
         private readonly authService: AuthService,
         private readonly router: Router,
-    ) {
-    }
+    ) {}
 }

@@ -1,4 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StoreModule } from '@ngrx/store';
+import { AppStore } from '../../app.module';
+import { authReducer } from '../../auth/auth.reducer';
 
 import { LoginComponent } from './login.component';
 
@@ -9,6 +14,11 @@ describe('LoginPageComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [LoginComponent],
+            imports: [
+                FormsModule,
+                NgbModule,
+                StoreModule.forRoot<AppStore>({ authState: authReducer }),
+            ],
         }).compileComponents();
     }));
 

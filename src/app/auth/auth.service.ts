@@ -14,8 +14,7 @@ export class AuthService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) {}
 
     public authenticateUser(email: string, password: string): Observable<AuthResponse> {
         const loginRequest: AuthRequest = { auth: { email, password } };
