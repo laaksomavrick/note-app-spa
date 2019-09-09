@@ -1,24 +1,24 @@
 import { createReducer, on } from '@ngrx/store';
-import { loginAttempt, loginFailure, loginSuccess } from './login.actions';
-import { LoginResponse } from './loginResponse';
+import { authAttempt, authFailure, authSuccess } from './auth.actions';
+import { AuthResponse } from './auth.interfaces';
 
-export interface LoginState {
+export interface AuthState {
     token: string | undefined;
     loading: boolean;
     error: string | undefined;
 }
 
-export const initialState: LoginState = {
+export const initialState: AuthState = {
     token: undefined,
     loading: false,
     error: undefined,
 };
 
-export const loginReducer = createReducer(
+export const authReducer = createReducer(
     initialState,
     on(
-        loginSuccess,
-        (state: LoginState, props: LoginResponse): LoginState => ({
+        authSuccess,
+        (state: AuthState, props: AuthResponse): AuthState => ({
             ...state,
             // tslint:disable-next-line:no-non-null-assertion
             token: props.resource!.token,
@@ -27,8 +27,8 @@ export const loginReducer = createReducer(
         }),
     ),
     on(
-        loginFailure,
-        (state: LoginState, props: LoginResponse): LoginState => ({
+        authFailure,
+        (state: AuthState, props: AuthResponse): AuthState => ({
             ...state,
             token: undefined,
             loading: false,
@@ -36,5 +36,5 @@ export const loginReducer = createReducer(
             error: props.error!.msg,
         }),
     ),
-    on(loginAttempt, (state: LoginState): LoginState => ({ ...state, loading: true })),
+    on(authAttempt, (state: AuthState): AuthState => ({ ...state, loading: true })),
 );

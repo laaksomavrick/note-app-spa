@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppStore } from '../../app.module';
-import { loginAttempt } from './login.actions';
+import { authAttempt } from '../../auth/auth.actions';
 
 @Component({
     selector: 'app-login-page',
@@ -11,11 +11,11 @@ import { loginAttempt } from './login.actions';
 })
 export class LoginComponent implements OnInit {
     public loading$: Observable<boolean> = this.store.select(
-        ({ loginState }: AppStore) => loginState.loading,
+        ({ authState }: AppStore) => authState.loading,
     );
 
     public error$: Observable<string | undefined> = this.store.select(
-        ({ loginState }: AppStore) => loginState.error,
+        ({ authState }: AppStore) => authState.error,
     );
 
     public emailFormInput = '';
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         const email = this.emailFormInput;
         const password = this.passwordFormInput;
 
-        this.store.dispatch(loginAttempt({ email, password }));
+        this.store.dispatch(authAttempt({ email, password }));
     }
 
     public closeError(): void {

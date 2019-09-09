@@ -9,15 +9,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
-import { AuthenticationGuard } from './app.guard';
 import { appRoutes } from './app.routes';
+import { AuthEffects } from './auth/auth.effects';
+import { AuthGuard } from './auth/auth.guard';
+import { authReducer, AuthState } from './auth/auth.reducer';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
-import { LoginEffects } from './pages/login/login.effects';
-import { loginReducer, LoginState } from './pages/login/login.reducer';
 
 export interface AppStore {
-    loginState: LoginState;
+    authState: AuthState;
 }
 
 @NgModule({
@@ -28,10 +28,10 @@ export interface AppStore {
         NgbModule,
         FormsModule,
         HttpClientModule,
-        StoreModule.forRoot<AppStore>({ loginState: loginReducer }),
-        EffectsModule.forRoot([LoginEffects]),
+        StoreModule.forRoot<AppStore>({ authState: authReducer }),
+        EffectsModule.forRoot([AuthEffects]),
     ],
-    providers: [AuthenticationGuard],
+    providers: [AuthGuard],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -2,30 +2,28 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
-import { loginAttempt, loginFailure, loginSuccess } from './login.actions';
-import { LoginService } from './login.service';
-import { LoginAttempt } from './loginAttempt';
-import { LoginResponse } from './loginResponse';
+import { catchError, exhaustMap, map } from 'rxjs/operators';
+import { authAttempt, authFailure, authSuccess } from './auth.actions';
+import { AuthAttempt, AuthResponse } from './auth.interfaces';
+import { AuthService } from './auth.service';
 
 @Injectable()
-export class LoginEffects {
-    public login$ = createEffect(() =>
+export class AuthEffects {
+    public authorize$ = createEffect(() =>
         this.actions$.pipe(
-            tap(() => console.log('here')),
-            ofType(loginAttempt.type),
-            exhaustMap((action: LoginAttempt) =>
+            ofType(authAttempt.type),
+            exhaustMap((action: AuthAttempt) =>
                 this.loginService.loginUser(action.email, action.password).pipe(
-                    map((loginResponse: LoginResponse) => {
+                    map((loginResponse: AuthResponse) => {
                         if (loginResponse.resource) {
                             const token = loginResponse.resource.token;
                             localStorage.setItem('token', token);
                             this.router.navigate(['/']);
                         }
-                        return loginSuccess(loginResponse);
+                        return authSuccess(loginResponse);
                     }),
                     catchError(({ error }) => {
-                        return of(loginFailure(error));
+                        return of(authFailure(error));
                     }),
                 ),
             ),
@@ -34,7 +32,8 @@ export class LoginEffects {
 
     constructor(
         private readonly actions$: Actions,
-        private readonly loginService: LoginService,
+        private readonly loginService: AuthService,
         private readonly router: Router,
-    ) {}
+    ) {
+    }
 }

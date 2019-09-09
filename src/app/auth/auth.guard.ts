@@ -7,23 +7,17 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
-// TODO: temporary function, should be derived from authService whenever that exists
-function isAuthenticated(): Observable<boolean> {
-    const token = localStorage.getItem('token');
-    const predicate = token != null;
-    return of(predicate);
-}
+import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthenticationGuard implements CanActivate {
-    constructor(private router: Router) {}
+export class AuthGuard implements CanActivate {
+    constructor(private router: Router, private authService: AuthService) {}
 
     public canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
     ): Observable<boolean> | Promise<boolean> | boolean {
-        return isAuthenticated().pipe(
+        return this.authService.isAuthenticated().pipe(
             tap((authenticated: boolean): void => {
                 if (!authenticated) {
                     this.router.navigate(['/login']);
