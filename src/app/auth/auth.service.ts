@@ -11,6 +11,9 @@ export class AuthService {
     // TODO injectable localStorage ???
     public url = 'http://localhost:3000';
 
+    private readonly TOKEN_KEY = 'token';
+
+    // TODO abstract class HttpService
     public httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
@@ -27,7 +30,7 @@ export class AuthService {
     }
 
     public isAuthenticated(): Observable<boolean> {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem(this.TOKEN_KEY);
         const predicate = token != null;
         return of(predicate);
     }

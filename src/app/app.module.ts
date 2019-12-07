@@ -10,15 +10,11 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
-import { AuthEffects } from './auth/auth.effects';
+import { AppActions, appStore, AppStore } from './app.store';
 import { AuthGuard } from './auth/auth.guard';
-import { authReducer, AuthState } from './auth/auth.reducer';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
-
-export interface AppStore {
-    authState: AuthState;
-}
+import { AuthEffects } from './store/auth/auth.effects';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, DashboardComponent],
@@ -28,7 +24,7 @@ export interface AppStore {
         NgbModule,
         FormsModule,
         HttpClientModule,
-        StoreModule.forRoot<AppStore>({ authState: authReducer }),
+        StoreModule.forRoot<AppStore, AppActions>(appStore),
         EffectsModule.forRoot([AuthEffects]),
     ],
     providers: [AuthGuard],

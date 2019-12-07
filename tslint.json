@@ -127,7 +127,7 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "typedef": [true],
+    "typedef": [true, "arrow-call-signature", "arrow-parameter", "call-signature"],
     "no-any": true,
     "ordered-imports": true
   }

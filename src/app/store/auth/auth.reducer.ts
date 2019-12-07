@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import { authAttempt, authFailure, authSuccess } from './auth.actions';
-import { AuthResponse } from './auth.interfaces';
+import { ActionReducer, createReducer, on } from '@ngrx/store';
+import { AuthResponse } from '../../auth/auth.interfaces';
+import { AuthActions, authAttempt, authDismissError, authFailure, authSuccess } from './auth.actions';
 
 export interface AuthState {
     token: string | undefined;
@@ -14,7 +14,7 @@ export const initialState: AuthState = {
     error: undefined,
 };
 
-export const authReducer = createReducer(
+export const _authReducer = createReducer<AuthState, AuthActions>(
     initialState,
     on(
         authSuccess,
@@ -37,4 +37,10 @@ export const authReducer = createReducer(
         }),
     ),
     on(authAttempt, (state: AuthState): AuthState => ({ ...state, loading: true })),
+    on(authDismissError, (state: AuthState): AuthState => ({ ...state, error: undefined })),
 );
+
+// tslint:disable-next-line:typedef
+export function authReducer(state: AuthState | undefined, actions: AuthActions) {
+    return _authReducer(state, actions);
+}

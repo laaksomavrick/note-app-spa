@@ -1,7 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { AppModule } from '../app.module';
 import { AuthRequest, AuthResponse } from './auth.interfaces';
 
 import { AuthService } from './auth.service';
@@ -14,7 +13,7 @@ describe('AuthService', () => {
         const _httpSpy = jasmine.createSpyObj('HttpClient', ['post']);
 
         TestBed.configureTestingModule({
-            imports: [HttpClientModule, AppModule],
+            imports: [HttpClientModule],
             providers: [
                 {
                     provide: HttpClient,

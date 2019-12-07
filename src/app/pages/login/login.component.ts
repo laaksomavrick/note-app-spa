@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppStore } from '../../app.module';
-import { authAttempt } from '../../auth/auth.actions';
+import { AppStore } from '../../app.store';
+import { authAttempt, authDismissError } from '../../store/auth/auth.actions';
 
 @Component({
     selector: 'app-login-page',
@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
 
     constructor(private store: Store<AppStore>) {}
 
-    public ngOnInit() {
-        this.loading$.subscribe((loading: boolean) => {
+    public ngOnInit(): void {
+        this.loading$.subscribe((loading: boolean): void => {
             console.log(`loading ${loading}`);
         });
 
-        this.error$.subscribe(error => {
+        this.error$.subscribe((error: string | undefined): void => {
             console.log(`error ${error}`);
         });
     }
@@ -37,8 +37,9 @@ export class LoginComponent implements OnInit {
         // TODO: validation
         // TODO: auth guard should dispatch action if token in localStorage
         //       so that in memory store 1 - 1 with real state
-
+        //       ie, when the token is in local storage, user shouldn't be able to see login page
         // TODO test component, reducer, effect
+        // TODO error text function scaffolding (status code => human readable message)
 
         const email = this.emailFormInput;
         const password = this.passwordFormInput;
@@ -47,6 +48,6 @@ export class LoginComponent implements OnInit {
     }
 
     public closeError(): void {
-        // TODO dispatch event to toggle error state
+        this.store.dispatch(authDismissError());
     }
 }
