@@ -29,6 +29,18 @@ export class AuthService {
         );
     }
 
+    public setToken(token: string): void {
+        localStorage.setItem(this.TOKEN_KEY, token);
+    }
+
+    public getToken(): string | undefined {
+        const token = localStorage.getItem(this.TOKEN_KEY);
+        if (token) {
+            return token;
+        }
+        return undefined;
+    }
+
     public isAuthenticated(): Observable<boolean> {
         const token = localStorage.getItem(this.TOKEN_KEY);
         const predicate = token != null;

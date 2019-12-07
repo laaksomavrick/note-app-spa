@@ -3,16 +3,16 @@
     <!-- Login form -->
     <div class="login-form-container list-group-item list-group-item-light">
         <h3 class="brand-title text-dark">Devnotes</h3>
-        <form class="login-form">
+        <form class="login-form" #loginForm="ngForm">
             <div class="form-group">
                 <label  for="emailFormInput">Email</label>
-                <input [(ngModel)]="emailFormInput" name="emailFormInput" type="text" class="form-control" id="emailFormInput" placeholder="Enter your email">
+                <input [(ngModel)]="emailFormInput" name="emailFormInput" type="text" class="form-control" id="emailFormInput" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
                 <label for="passwordFormInput">Password</label>
-                <input [(ngModel)]="passwordFormInput" name="passwordFormInput" type="text" class="form-control" id="passwordFormInput" placeholder="Enter your password">
+                <input [(ngModel)]="passwordFormInput" name="passwordFormInput" type="password" class="form-control" id="passwordFormInput" placeholder="Enter your password" required>
             </div>
-            <button (click)="submitForm()" type="button" class="login-form-btn btn btn-primary">Login</button>
+            <button (click)="submitForm()" [disabled]="!loginForm.form.valid" type="button" class="login-form-btn btn btn-primary">Login</button>
         </form>
 
         <!-- Loading animation -->

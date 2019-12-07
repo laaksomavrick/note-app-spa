@@ -17,7 +17,7 @@ export class AuthEffects {
                     map((authResponse: AuthResponse) => {
                         if (authResponse.resource) {
                             const token = authResponse.resource.token;
-                            localStorage.setItem('token', token);
+                            this.authService.setToken(token);
                             // TODO fix dangling promise
                             this.router.navigate(['/']);
                         }

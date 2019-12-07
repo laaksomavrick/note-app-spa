@@ -1,5 +1,6 @@
-import { ActionReducer, createReducer, on } from '@ngrx/store';
-import { AuthResponse } from '../../auth/auth.interfaces';
+import { createReducer, on } from '@ngrx/store';
+import { AuthFailureResponse, AuthSuccessResponse } from '../../auth/auth.interfaces';
+import { getHumanReadableApiError } from '../../http/http.helpers';
 import { AuthActions, authAttempt, authDismissError, authFailure, authSuccess } from './auth.actions';
 
 export interface AuthState {
@@ -18,22 +19,22 @@ export const _authReducer = createReducer<AuthState, AuthActions>(
     initialState,
     on(
         authSuccess,
-        (state: AuthState, props: AuthResponse): AuthState => ({
-            ...state,
-            // tslint:disable-next-line:no-non-null-assertion
-            token: props.resource!.token,
-            loading: false,
-            error: undefined,
-        }),
+        (state: AuthState, props: AuthSuccessResponse): AuthState => {
+            return {
+                ...state,
+                token: props.resource.token,
+                loading: false,
+                error: undefined,
+            };
+        },
     ),
     on(
         authFailure,
-        (state: AuthState, props: AuthResponse): AuthState => ({
+        (state: AuthState, props: AuthFailureResponse): AuthState => ({
             ...state,
             token: undefined,
             loading: false,
-            // tslint:disable-next-line:no-non-null-assertion
-            error: props.error!.msg,
+            error: getHumanReadableApiError(props),
         }),
     ),
     on(authAttempt, (state: AuthState): AuthState => ({ ...state, loading: true })),

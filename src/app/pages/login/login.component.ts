@@ -23,23 +23,13 @@ export class LoginComponent implements OnInit {
 
     constructor(private store: Store<AppStore>) {}
 
-    public ngOnInit(): void {
-        this.loading$.subscribe((loading: boolean): void => {
-            console.log(`loading ${loading}`);
-        });
-
-        this.error$.subscribe((error: string | undefined): void => {
-            console.log(`error ${error}`);
-        });
-    }
+    public ngOnInit(): void {}
 
     public submitForm(): void {
-        // TODO: validation
         // TODO: auth guard should dispatch action if token in localStorage
         //       so that in memory store 1 - 1 with real state
         //       ie, when the token is in local storage, user shouldn't be able to see login page
         // TODO test component, reducer, effect
-        // TODO error text function scaffolding (status code => human readable message)
 
         const email = this.emailFormInput;
         const password = this.passwordFormInput;
