@@ -20,3 +20,9 @@ export interface AuthSuccessResponse extends ApiResponse {
 
 // tslint:disable-next-line:no-empty-interface
 export interface AuthFailureResponse extends ApiErrorResponse {}
+
+
+// tslint:disable-next-line:no-any
+export function isAuthSuccessResponse(maybe: any): maybe is AuthSuccessResponse {
+    return maybe.resource != null;
+}
