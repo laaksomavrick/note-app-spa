@@ -20,5 +20,3 @@ export interface AuthSuccessResponse extends ApiResponse {
 
 // tslint:disable-next-line:no-empty-interface
 export interface AuthFailureResponse extends ApiErrorResponse {}
-
-export type AuthResponse = AuthSuccessResponse & AuthFailureResponse;

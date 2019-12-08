@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { AuthRequest, AuthResponse } from './auth.interfaces';
+import { AuthFailureResponse, AuthRequest, AuthSuccessResponse } from './auth.interfaces';
 
 @Injectable({
     providedIn: 'root',
@@ -20,9 +20,9 @@ export class AuthService {
 
     constructor(private http: HttpClient) {}
 
-    public authenticateUser(email: string, password: string): Observable<AuthResponse> {
+    public authenticateUser(email: string, password: string): Observable<AuthSuccessResponse | AuthFailureResponse> {
         const loginRequest: AuthRequest = { auth: { email, password } };
-        return this.http.post<AuthResponse>(
+        return this.http.post<AuthSuccessResponse | AuthFailureResponse>(
             `${this.url}/auth`,
             loginRequest,
             this.httpOptions,

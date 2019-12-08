@@ -26,9 +26,6 @@ export class LoginComponent implements OnInit {
     public ngOnInit(): void {}
 
     public submitForm(): void {
-        // TODO: auth guard should dispatch action if token in localStorage
-        //       so that in memory store 1 - 1 with real state
-        //       ie, when the token is in local storage, user shouldn't be able to see login page
         // TODO test component, reducer, effect
 
         const email = this.emailFormInput;

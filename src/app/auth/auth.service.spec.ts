@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { AuthRequest, AuthResponse } from './auth.interfaces';
+import { AuthRequest, AuthSuccessResponse } from './auth.interfaces';
 
 import { AuthService } from './auth.service';
 
@@ -38,7 +38,7 @@ describe('AuthService', () => {
         const token = 'foo';
 
         const expectedAuthRequest: AuthRequest = { auth: { email, password } };
-        const expectedAuthResponse: AuthResponse = { status: 200, resource: { token } };
+        const expectedAuthResponse: AuthSuccessResponse = { status: 200, resource: { token } };
 
         httpSpy.post.and.returnValue(of(expectedAuthResponse));
 
