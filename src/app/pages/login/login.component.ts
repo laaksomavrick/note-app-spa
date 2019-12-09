@@ -26,8 +26,6 @@ export class LoginComponent implements OnInit {
     public ngOnInit(): void {}
 
     public submitForm(): void {
-        // TODO test component, reducer, effect
-
         const email = this.emailFormInput;
         const password = this.passwordFormInput;
 

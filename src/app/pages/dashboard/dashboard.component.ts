@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppStore } from '../../app.store';
+import { getFoldersAttempt } from '../../store/folders/folders.actions';
+import { Folder } from './folders/folders.interfaces';
 
 @Component({
     selector: 'app-dashboard-page',
@@ -6,7 +11,14 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-    constructor() {}
 
-    public ngOnInit() {}
+    public folders$: Observable<Folder[]> = this.store.select(
+        ({ foldersState }: AppStore) => foldersState.folders,
+    );
+
+    constructor(private store: Store<AppStore>) {}
+
+    public ngOnInit(): void {
+        this.store.dispatch(getFoldersAttempt());
+    }
 }

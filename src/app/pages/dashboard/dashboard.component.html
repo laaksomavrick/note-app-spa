@@ -1,3 +1,11 @@
 <p>
   dashboard-page works!
 </p>
+
+<!-- Folders list component -->
+<!-- folders, error, loading inputs -->
+<div class="dashboard-page">
+    <div *ngFor="let folder of folders$ | async">
+     {{ folder.name }}
+    </div>
+</div>

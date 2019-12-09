@@ -1,24 +1,19 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpService } from '../http/http.service';
 import { AuthFailureResponse, AuthRequest, AuthSuccessResponse } from './auth.interfaces';
 
 @Injectable({
     providedIn: 'root',
 })
-export class AuthService {
-    // TODO injectable config
-    // TODO injectable localStorage ???
-    public url = 'http://localhost:3000';
+export class AuthService extends HttpService {
 
     private readonly TOKEN_KEY = 'token';
 
-    // TODO abstract class HttpService
-    public httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    };
-
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+        super();
+    }
 
     public authenticateUser(email: string, password: string): Observable<AuthSuccessResponse | AuthFailureResponse> {
         const loginRequest: AuthRequest = { auth: { email, password } };

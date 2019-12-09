@@ -11,3 +11,8 @@ export function getHumanReadableApiError(err: ApiErrorResponse): string {
     // TODO
     return err.error.msg;
 }
+
+// tslint:disable-next-line:no-any
+export function isApiErrorResponse(maybe: any): maybe is ApiErrorResponse {
+    return maybe.error != null;
+}

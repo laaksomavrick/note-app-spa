@@ -5,12 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { appRoutes } from '../../app.routes';
 import { AppActions, appStore, AppStore } from '../../app.store';
 import { AuthGuard } from '../../auth/auth.guard';
-import { AuthEffects } from '../../store/auth/auth.effects';
 import { LoginComponent } from './login.component';
 
 @NgModule({
@@ -22,7 +20,6 @@ import { LoginComponent } from './login.component';
         FormsModule,
         HttpClientModule,
         StoreModule.forRoot<AppStore, AppActions>(appStore),
-        EffectsModule.forRoot([AuthEffects]),
     ],
     providers: [AuthGuard],
     bootstrap: [LoginComponent],
