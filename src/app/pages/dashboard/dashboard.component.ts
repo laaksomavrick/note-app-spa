@@ -16,6 +16,14 @@ export class DashboardComponent implements OnInit {
         ({ foldersState }: AppStore) => foldersState.folders,
     );
 
+    public foldersError$: Observable<string | undefined> = this.store.select(
+        ({ foldersState }: AppStore) => foldersState.error,
+    );
+
+    public foldersLoading$: Observable<boolean> = this.store.select(
+        ({ foldersState }: AppStore) => foldersState.loading,
+    );
+
     constructor(private store: Store<AppStore>) {}
 
     public ngOnInit(): void {

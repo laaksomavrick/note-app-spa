@@ -11,12 +11,14 @@ import { appRoutes } from '../../app.routes';
 import { AppActions, appStore, AppStore } from '../../app.store';
 import { AuthGuard } from '../../auth/auth.guard';
 import { AuthInterceptor } from '../../auth/auth.interceptor';
+import { SharedModule } from '../../shared/shared.module';
 import { FoldersEffects } from '../../store/folders/folders.effects';
 import { DashboardComponent } from './dashboard.component';
+import { FolderListComponent } from './folders/folder-list/folder-list.component';
 import { FoldersService } from './folders/folders.service';
 
 @NgModule({
-    declarations: [DashboardComponent],
+    declarations: [DashboardComponent, FolderListComponent],
     imports: [
         BrowserModule,
         RouterModule.forRoot(appRoutes),
@@ -25,6 +27,7 @@ import { FoldersService } from './folders/folders.service';
         HttpClientModule,
         StoreModule.forRoot<AppStore, AppActions>(appStore),
         EffectsModule.forFeature([FoldersEffects]),
+        SharedModule,
     ],
     providers: [AuthGuard, FoldersService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
     bootstrap: [DashboardComponent],

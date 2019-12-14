@@ -1,0 +1,21 @@
+<div class="{{ containerClassName }}">
+    <!-- loading -->
+    <div *ngIf="(loading$ | async) === true; else maybeData">
+       loading..
+    </div>
+
+    <ng-template #maybeData>
+        <!-- error -->
+        <div *ngIf="error$ | async as error; else data">
+            {{ error }}
+        </div>
+
+        <ng-template #data>
+
+            <ng-content></ng-content>
+
+        </ng-template>
+
+    </ng-template>
+
+</div>

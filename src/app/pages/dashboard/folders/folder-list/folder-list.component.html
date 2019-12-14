@@ -1,0 +1,5 @@
+<app-loadable-errorable [loading$]="loading$" [error$]="error$" containerClassName="folder-list">
+    <div *ngFor="let folder of folders$ | async">
+        {{ folder.name }}
+    </div>
+</app-loadable-errorable>

@@ -14,6 +14,7 @@ import { AppActions, appStore, AppStore } from './app.store';
 import { AuthGuard } from './auth/auth.guard';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { LoginModule } from './pages/login/login.module';
+import { SharedModule } from './shared/shared.module';
 import { AuthEffects } from './store/auth/auth.effects';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AuthEffects } from './store/auth/auth.effects';
     imports: [
         LoginModule,
         DashboardModule,
+        SharedModule,
         BrowserModule,
         RouterModule.forRoot(appRoutes),
         NgbModule,
