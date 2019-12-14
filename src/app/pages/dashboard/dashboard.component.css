@@ -1,0 +1,14 @@
+.dashboard-page {
+}
+
+.dashboard-page__toolbar {
+    margin-bottom: 10px;
+}
+
+.dashboard-page__main {
+   display: flex;
+}
+
+.dashboard-page__nav {
+   min-width: 150px;
+}

@@ -24,4 +24,8 @@ export class FolderListComponent implements OnInit {
   public ngOnInit(): void {
   }
 
+  public onClickFolder(folder: Folder): void {
+      console.log(folder.name);
+  }
+
 }

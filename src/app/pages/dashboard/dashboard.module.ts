@@ -1,10 +1,10 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatListModule, MatToolbarModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { appRoutes } from '../../app.routes';
@@ -22,12 +22,13 @@ import { FoldersService } from './folders/folders.service';
     imports: [
         BrowserModule,
         RouterModule.forRoot(appRoutes),
-        NgbModule,
         FormsModule,
         HttpClientModule,
         StoreModule.forRoot<AppStore, AppActions>(appStore),
         EffectsModule.forFeature([FoldersEffects]),
         SharedModule,
+        MatListModule,
+        MatToolbarModule,
     ],
     providers: [AuthGuard, FoldersService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
     bootstrap: [DashboardComponent],

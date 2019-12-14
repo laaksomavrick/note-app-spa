@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { AppActions, appStore, AppStore } from '../../app.store';
 
@@ -15,7 +14,6 @@ describe('LoginPageComponent', () => {
             declarations: [LoginComponent],
             imports: [
                 FormsModule,
-                NgbModule,
                 StoreModule.forRoot<AppStore, AppActions>(appStore),
             ],
         }).compileComponents();
