@@ -8,14 +8,16 @@ import { AuthFailureResponse, AuthRequest, AuthSuccessResponse } from './auth.in
     providedIn: 'root',
 })
 export class AuthService extends HttpService {
-
     private readonly TOKEN_KEY = 'token';
 
     constructor(private http: HttpClient) {
         super();
     }
 
-    public authenticateUser(email: string, password: string): Observable<AuthSuccessResponse | AuthFailureResponse> {
+    public authenticateUser(
+        email: string,
+        password: string,
+    ): Observable<AuthSuccessResponse | AuthFailureResponse> {
         const loginRequest: AuthRequest = { auth: { email, password } };
         return this.http.post<AuthSuccessResponse | AuthFailureResponse>(
             `${this.url}/auth`,

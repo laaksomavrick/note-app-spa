@@ -15,9 +15,11 @@ describe('Auth effects', () => {
     let actions: ReplaySubject<Action>;
 
     beforeEach(() => {
-
         routerMock = jasmine.createSpyObj('Router', ['navigate']);
-        authServiceMock = jasmine.createSpyObj('AuthService', ['authenticateUser', 'setToken']);
+        authServiceMock = jasmine.createSpyObj('AuthService', [
+            'authenticateUser',
+            'setToken',
+        ]);
         actions = new ReplaySubject<Action>();
 
         TestBed.configureTestingModule({
@@ -25,26 +27,25 @@ describe('Auth effects', () => {
                 provideMockActions(() => actions),
                 { provide: Router, useValue: routerMock },
                 { provide: AuthService, useValue: authServiceMock },
-                AuthEffects
+                AuthEffects,
             ],
         });
 
         authEffects = TestBed.get(AuthEffects);
     });
 
-
     describe('authorize', () => {
         const authSuccessResponse: AuthSuccessResponse = {
             status: 200,
             resource: {
-                token: 'token'
-            }
+                token: 'token',
+            },
         };
         const authFailureResponse: AuthFailureResponse = {
             status: 500,
             error: {
-                msg: 'msg'
-            }
+                msg: 'msg',
+            },
         };
 
         beforeEach(() => {
@@ -54,17 +55,19 @@ describe('Auth effects', () => {
         });
 
         // tslint:disable-next-line:typedef
-        it('stores the token in localStorage for a good login', (done) => {
+        it('stores the token in localStorage for a good login', done => {
             authServiceMock.authenticateUser.and.returnValue(of(authSuccessResponse));
 
             authEffects.authorize$.subscribe(() => {
-                expect(authServiceMock.setToken).toHaveBeenCalledWith(authSuccessResponse.resource.token);
+                expect(authServiceMock.setToken).toHaveBeenCalledWith(
+                    authSuccessResponse.resource.token,
+                );
                 done();
             });
         });
 
         // tslint:disable-next-line:typedef
-        it('navigates to / for a good login', (done) => {
+        it('navigates to / for a good login', done => {
             authServiceMock.authenticateUser.and.returnValue(of(authSuccessResponse));
 
             authEffects.authorize$.subscribe(() => {
@@ -74,7 +77,7 @@ describe('Auth effects', () => {
         });
 
         // tslint:disable-next-line:typedef
-        it('returns authSuccess for a good login', (done) => {
+        it('returns authSuccess for a good login', done => {
             authServiceMock.authenticateUser.and.returnValue(of(authSuccessResponse));
 
             authEffects.authorize$.subscribe((action: Action) => {
@@ -84,7 +87,7 @@ describe('Auth effects', () => {
         });
 
         // tslint:disable-next-line:typedef
-        it('returns authFailure for a bad login', (done) => {
+        it('returns authFailure for a bad login', done => {
             authServiceMock.authenticateUser.and.returnValue(of(authFailureResponse));
 
             authEffects.authorize$.subscribe((action: Action) => {
@@ -92,6 +95,5 @@ describe('Auth effects', () => {
                 done();
             });
         });
-
     });
 });

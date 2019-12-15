@@ -5,9 +5,13 @@ import { of } from 'rxjs';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { isApiErrorResponse } from '../../http/http.helpers';
 import { ApiErrorResponse } from '../../http/http.interfaces';
-import { GetFoldersSuccessResponse } from '../../pages/dashboard/folders/folders.interfaces';
 import { FoldersService } from '../../pages/dashboard/folders/folders.service';
-import { getFoldersAttempt, getFoldersFailure, getFoldersSuccess } from './folders.actions';
+import {
+    getFoldersAttempt,
+    getFoldersFailure,
+    getFoldersSuccess,
+} from './folders.actions';
+import { GetFoldersSuccessResponse } from './folders.interfaces';
 
 @Injectable()
 export class FoldersEffects {
@@ -16,12 +20,18 @@ export class FoldersEffects {
             ofType(getFoldersAttempt.type),
             exhaustMap(() =>
                 this.folderService.getFolders().pipe(
-                    map((getFoldersResponse: GetFoldersSuccessResponse | ApiErrorResponse) => {
-                        if (isApiErrorResponse(getFoldersResponse)) {
-                            return getFoldersFailure(getFoldersResponse);
-                        }
-                        return getFoldersSuccess(getFoldersResponse);
-                    }),
+                    map(
+                        (
+                            getFoldersResponse:
+                                | GetFoldersSuccessResponse
+                                | ApiErrorResponse,
+                        ) => {
+                            if (isApiErrorResponse(getFoldersResponse)) {
+                                return getFoldersFailure(getFoldersResponse);
+                            }
+                            return getFoldersSuccess(getFoldersResponse);
+                        },
+                    ),
                     // tslint:disable-next-line:typedef
                     catchError(({ error }) => {
                         return of(getFoldersFailure(error));

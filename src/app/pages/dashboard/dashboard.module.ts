@@ -13,9 +13,11 @@ import { AuthGuard } from '../../auth/auth.guard';
 import { AuthInterceptor } from '../../auth/auth.interceptor';
 import { SharedModule } from '../../shared/shared.module';
 import { FoldersEffects } from '../../store/folders/folders.effects';
+import { NotesEffects } from '../../store/notes/notes.effects';
 import { DashboardComponent } from './dashboard.component';
 import { FolderListComponent } from './folders/folder-list/folder-list.component';
 import { FoldersService } from './folders/folders.service';
+import { NotesService } from './notes/notes.service';
 
 @NgModule({
     declarations: [DashboardComponent, FolderListComponent],
@@ -25,12 +27,17 @@ import { FoldersService } from './folders/folders.service';
         FormsModule,
         HttpClientModule,
         StoreModule.forRoot<AppStore, AppActions>(appStore),
-        EffectsModule.forFeature([FoldersEffects]),
+        EffectsModule.forFeature([FoldersEffects, NotesEffects]),
         SharedModule,
         MatListModule,
         MatToolbarModule,
     ],
-    providers: [AuthGuard, FoldersService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+    providers: [
+        AuthGuard,
+        FoldersService,
+        NotesService,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ],
     bootstrap: [DashboardComponent],
 })
 export class DashboardModule {}

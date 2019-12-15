@@ -12,10 +12,7 @@ describe('LoginPageComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [LoginComponent],
-            imports: [
-                FormsModule,
-                StoreModule.forRoot<AppStore, AppActions>(appStore),
-            ],
+            imports: [FormsModule, StoreModule.forRoot<AppStore, AppActions>(appStore)],
         }).compileComponents();
     });
 

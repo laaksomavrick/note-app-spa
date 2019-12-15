@@ -38,7 +38,10 @@ describe('AuthService', () => {
         const token = 'foo';
 
         const expectedAuthRequest: AuthRequest = { auth: { email, password } };
-        const expectedAuthResponse: AuthSuccessResponse = { status: 200, resource: { token } };
+        const expectedAuthResponse: AuthSuccessResponse = {
+            status: 200,
+            resource: { token },
+        };
 
         httpSpy.post.and.returnValue(of(expectedAuthResponse));
 

@@ -8,18 +8,15 @@ describe('Auth reducer', () => {
         const successResponse: AuthSuccessResponse = {
             status: 200,
             resource: {
-                token
-            }
+                token,
+            },
         };
 
-        const newState = authReducer(
-            initialState,
-            authSuccess(successResponse),
-        );
+        const newState = authReducer(initialState, authSuccess(successResponse));
 
         expect(newState).toEqual({
             ...initialState,
-            token
+            token,
         });
     });
 
@@ -28,27 +25,24 @@ describe('Auth reducer', () => {
         const failureResponse: AuthFailureResponse = {
             status: 500,
             error: {
-                msg
-            }
+                msg,
+            },
         };
 
-        const newState = authReducer(
-            initialState,
-            authFailure(failureResponse),
-        );
+        const newState = authReducer(initialState, authFailure(failureResponse));
 
         expect(newState).toEqual({
             ...initialState,
             token: undefined,
             loading: false,
-            error: msg
+            error: msg,
         });
     });
 
     it('sets loading on authAttempt', () => {
         const newState = authReducer(
             initialState,
-            authAttempt({ email: 'foo', password: 'bar'}),
+            authAttempt({ email: 'foo', password: 'bar' }),
         );
 
         expect(newState).toEqual({
@@ -58,14 +52,11 @@ describe('Auth reducer', () => {
     });
 
     it('sets error on authDismissError', () => {
-        const newState = authReducer(
-            initialState,
-            authDismissError(),
-        );
+        const newState = authReducer(initialState, authDismissError());
 
         expect(newState).toEqual({
             ...initialState,
-            error: undefined
+            error: undefined,
         });
     });
 });

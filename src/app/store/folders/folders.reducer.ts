@@ -1,9 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthFailureResponse, AuthSuccessResponse } from '../../auth/auth.interfaces';
 import { getHumanReadableApiError } from '../../http/http.helpers';
 import { ApiErrorResponse } from '../../http/http.interfaces';
-import { Folder, GetFoldersSuccessResponse } from '../../pages/dashboard/folders/folders.interfaces';
-import { FolderActions, getFoldersAttempt, getFoldersFailure, getFoldersSuccess } from './folders.actions';
+import {
+    FolderActions,
+    getFoldersAttempt,
+    getFoldersFailure,
+    getFoldersSuccess,
+} from './folders.actions';
+import { Folder, GetFoldersSuccessResponse } from './folders.interfaces';
 
 export interface FoldersState {
     folders: Folder[];
@@ -38,7 +42,10 @@ export const _folderReducer = createReducer<FoldersState, FolderActions>(
             error: getHumanReadableApiError(props),
         }),
     ),
-    on(getFoldersAttempt, (state: FoldersState): FoldersState => ({ ...state, loading: true })),
+    on(
+        getFoldersAttempt,
+        (state: FoldersState): FoldersState => ({ ...state, loading: true }),
+    ),
 );
 
 // tslint:disable-next-line:typedef

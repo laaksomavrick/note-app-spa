@@ -1,4 +1,4 @@
-import { ApiResponse } from '../../../http/http.interfaces';
+import { ApiResponse } from '../../http/http.interfaces';
 
 export interface Folder {
     id: number;

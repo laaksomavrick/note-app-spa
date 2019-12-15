@@ -6,15 +6,9 @@ import { LoadableErrorableComponent } from './loadable-errorable-data/loadable-e
 
 @NgModule({
     declarations: [LoadableErrorableComponent],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-    ],
+    imports: [BrowserModule, FormsModule, HttpClientModule],
     providers: [],
     bootstrap: [LoadableErrorableComponent],
-    exports: [
-        LoadableErrorableComponent,
-    ],
+    exports: [LoadableErrorableComponent],
 })
 export class SharedModule {}

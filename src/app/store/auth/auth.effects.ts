@@ -3,7 +3,12 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-import { AuthAttempt, AuthFailureResponse, AuthSuccessResponse, isAuthSuccessResponse } from '../../auth/auth.interfaces';
+import {
+    AuthAttempt,
+    AuthFailureResponse,
+    AuthSuccessResponse,
+    isAuthSuccessResponse,
+} from '../../auth/auth.interfaces';
 import { AuthService } from '../../auth/auth.service';
 import { authAttempt, authFailure, authSuccess } from './auth.actions';
 

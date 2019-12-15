@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppStore } from '../../app.store';
 import { getFoldersAttempt } from '../../store/folders/folders.actions';
-import { Folder } from './folders/folders.interfaces';
+import { Folder } from '../../store/folders/folders.interfaces';
 
 @Component({
     selector: 'app-dashboard-page',
@@ -11,7 +11,6 @@ import { Folder } from './folders/folders.interfaces';
     styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-
     public folders$: Observable<Folder[]> = this.store.select(
         ({ foldersState }: AppStore) => foldersState.folders,
     );

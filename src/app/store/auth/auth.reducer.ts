@@ -1,7 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 import { AuthFailureResponse, AuthSuccessResponse } from '../../auth/auth.interfaces';
 import { getHumanReadableApiError } from '../../http/http.helpers';
-import { AuthActions, authAttempt, authDismissError, authFailure, authSuccess } from './auth.actions';
+import {
+    AuthActions,
+    authAttempt,
+    authDismissError,
+    authFailure,
+    authSuccess,
+} from './auth.actions';
 
 export interface AuthState {
     token: string | undefined;
@@ -38,7 +44,10 @@ export const _authReducer = createReducer<AuthState, AuthActions>(
         }),
     ),
     on(authAttempt, (state: AuthState): AuthState => ({ ...state, loading: true })),
-    on(authDismissError, (state: AuthState): AuthState => ({ ...state, error: undefined })),
+    on(
+        authDismissError,
+        (state: AuthState): AuthState => ({ ...state, error: undefined }),
+    ),
 );
 
 // tslint:disable-next-line:typedef

@@ -9,5 +9,4 @@ export abstract class HttpService {
     public httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
-
 }
