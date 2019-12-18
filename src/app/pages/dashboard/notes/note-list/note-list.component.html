@@ -1,0 +1,7 @@
+<app-loadable-errorable [loading$]="loading$" [error$]="error$" containerClassName="note-list">
+    <mat-action-list *ngFor="let note of notes$ | async">
+        <button mat-list-item (click)="onClickNote(note)">
+            {{ note.name }}
+        </button>
+    </mat-action-list>
+</app-loadable-errorable>

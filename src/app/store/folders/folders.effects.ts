@@ -1,43 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, exhaustMap, map } from 'rxjs/operators';
+import { exhaustMap } from 'rxjs/operators';
 import { isApiErrorResponse } from '../../http/http.helpers';
-import { ApiErrorResponse } from '../../http/http.interfaces';
 import { FoldersService } from '../../pages/dashboard/folders/folders.service';
 import {
     getFoldersAttempt,
     getFoldersFailure,
     getFoldersSuccess,
 } from './folders.actions';
-import { GetFoldersSuccessResponse } from './folders.interfaces';
 
 @Injectable()
 export class FoldersEffects {
     public getFolders$ = createEffect(() =>
+        // TODO address ts-ignore
         this.actions$.pipe(
             ofType(getFoldersAttempt.type),
-            exhaustMap(() =>
-                this.folderService.getFolders().pipe(
-                    map(
-                        (
-                            getFoldersResponse:
-                                | GetFoldersSuccessResponse
-                                | ApiErrorResponse,
-                        ) => {
-                            if (isApiErrorResponse(getFoldersResponse)) {
-                                return getFoldersFailure(getFoldersResponse);
-                            }
-                            return getFoldersSuccess(getFoldersResponse);
-                        },
-                    ),
-                    // tslint:disable-next-line:typedef
-                    catchError(({ error }) => {
-                        return of(getFoldersFailure(error));
-                    }),
-                ),
-            ),
+            exhaustMap(async () => {
+                try {
+                    const response = await this.folderService.getFolders();
+                    if (isApiErrorResponse(response)) {
+                        return getFoldersFailure(response);
+                    }
+                    // TODO handle this better
+                    // TODO guarantee always one folder from backend
+                    const [firstFolder] = response.resource.folders;
+                    const folderId = firstFolder.id;
+                    await this.router.navigate(['/folder', folderId]);
+                    return getFoldersSuccess(response);
+                } catch (e) {
+                    return getFoldersFailure(e);
+                }
+            }),
         ),
     );
 

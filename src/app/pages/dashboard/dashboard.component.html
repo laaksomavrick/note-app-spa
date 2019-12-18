@@ -6,6 +6,8 @@
     </div>
     <div class="dashboard-page__main">
         <app-folder-list class="dashboard-page__nav" [folders$]="folders$" [error$]="foldersError$" [loading$]="foldersLoading$"></app-folder-list>
-        <div class="dashboard-page__content">main</div>
+        <div class="dashboard-page__content">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
