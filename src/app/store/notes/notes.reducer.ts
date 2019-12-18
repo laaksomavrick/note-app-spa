@@ -14,13 +14,15 @@ export interface NotesToFolderMapping {
 }
 
 export interface NotesState {
-    notesToFolderMapping: NotesToFolderMapping;
+    // notesToFolderMapping: NotesToFolderMapping;
+    notes: Note[];
     loading: boolean;
     error?: string;
 }
 
 export const initialState: NotesState = {
-    notesToFolderMapping: {},
+    // notesToFolderMapping: {},
+    notes: [],
     loading: false,
     error: undefined,
 };
@@ -32,19 +34,20 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
         (state: NotesState, props: GetNotesSuccessResponse): NotesState => {
             // TODO: needs to change if ?folderId= is not specified for whatever reason
             // in the future (i.e. all notes view)
-            let folderId;
-            const [note] = props.resource.notes;
-
-            if (note) {
-                folderId = note.folderId;
-            }
+            // let folderId;
+            // const [note] = props.resource.notes;
+            //
+            // if (note) {
+            //     folderId = note.folderId;
+            // }
 
             return {
                 ...state,
-                notesToFolderMapping: {
-                    ...state.notesToFolderMapping,
-                    [`${folderId}`]: props.resource.notes,
-                },
+                // notesToFolderMapping: {
+                //     ...state.notesToFolderMapping,
+                //     [`${folderId}`]: props.resource.notes,
+                // },
+                notes: props.resource.notes,
                 loading: false,
                 error: undefined,
             };

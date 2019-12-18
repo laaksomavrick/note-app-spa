@@ -13,13 +13,12 @@ import { appRoutes } from './app.routes';
 import { AppActions, appStore, AppStore } from './app.store';
 import { AuthGuard } from './auth/auth.guard';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
-import { NoteRoutingComponent } from './pages/dashboard/notes/note-routing/note-routing.component';
 import { LoginModule } from './pages/login/login.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthEffects } from './store/auth/auth.effects';
 
 @NgModule({
-    declarations: [AppComponent, NoteRoutingComponent],
+    declarations: [AppComponent],
     imports: [
         LoginModule,
         DashboardModule,

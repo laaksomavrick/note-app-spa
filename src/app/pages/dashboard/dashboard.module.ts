@@ -17,10 +17,16 @@ import { DashboardComponent } from './dashboard.component';
 import { FolderListComponent } from './folders/folder-list/folder-list.component';
 import { FoldersService } from './folders/folders.service';
 import { NoteListComponent } from './notes/note-list/note-list.component';
+import { NoteRoutingComponent } from './notes/note-routing/note-routing.component';
 import { NotesService } from './notes/notes.service';
 
 @NgModule({
-    declarations: [DashboardComponent, FolderListComponent, NoteListComponent],
+    declarations: [
+        DashboardComponent,
+        FolderListComponent,
+        NoteListComponent,
+        NoteRoutingComponent,
+    ],
     imports: [
         CommonModule,
         FormsModule,
@@ -39,5 +45,6 @@ import { NotesService } from './notes/notes.service';
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     ],
     bootstrap: [DashboardComponent],
+    exports: [NoteListComponent],
 })
 export class DashboardModule {}
