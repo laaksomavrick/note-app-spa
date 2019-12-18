@@ -1,6 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 import { ApiErrorResponse } from '../../http/http.interfaces';
-import { GetNotesAttemptProps, GetNotesSuccessResponse } from './notes.interfaces';
+import {
+    GetNotesAttemptProps,
+    GetNotesSuccessResponse,
+    SetSelectedNoteProps,
+} from './notes.interfaces';
 
 export const getNotesSuccess = createAction(
     '[Notes] Get notes success',
@@ -15,7 +19,13 @@ export const getNotesAttempt = createAction(
     props<GetNotesAttemptProps>(),
 );
 
+export const setSelectedNote = createAction(
+    '[Notes] Set selected note',
+    props<SetSelectedNoteProps>(),
+);
+
 export type NoteActions =
     | ReturnType<typeof getNotesSuccess>
     | ReturnType<typeof getNotesFailure>
-    | ReturnType<typeof getNotesAttempt>;
+    | ReturnType<typeof getNotesAttempt>
+    | ReturnType<typeof setSelectedNote>;

@@ -30,8 +30,6 @@ export class NoteRoutingComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        // on init, need to get folderId from route
-        // need to dispatch getNotesAttempt
         this.route.paramMap.subscribe((params: ParamMap) => {
             const maybeFolderId = params.get('folderId');
             if (maybeFolderId) {

@@ -1,1 +1,5 @@
-<app-note-list class="" [notes$]="notes$" [error$]="notesError$" [loading$]="notesLoading$"></app-note-list>
+<div class="note-routing">
+    <app-note-list class="note-routing__nav" [notes$]="notes$" [error$]="notesError$" [loading$]="notesLoading$"></app-note-list>
+    <router-outlet></router-outlet>
+</div>
+

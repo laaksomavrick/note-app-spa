@@ -6,8 +6,9 @@ import {
     getNotesFailure,
     getNotesSuccess,
     NoteActions,
+    setSelectedNote,
 } from './notes.actions';
-import { GetNotesSuccessResponse, Note } from './notes.interfaces';
+import { GetNotesSuccessResponse, Note, SetSelectedNoteProps } from './notes.interfaces';
 
 export interface NotesToFolderMapping {
     [noteId: string]: Note[];
@@ -16,6 +17,7 @@ export interface NotesToFolderMapping {
 export interface NotesState {
     // notesToFolderMapping: NotesToFolderMapping;
     notes: Note[];
+    selectedNote?: Note;
     loading: boolean;
     error?: string;
 }
@@ -23,12 +25,20 @@ export interface NotesState {
 export const initialState: NotesState = {
     // notesToFolderMapping: {},
     notes: [],
+    selectedNote: undefined,
     loading: false,
     error: undefined,
 };
 
 const _noteReducer = createReducer<NotesState, NoteActions>(
     initialState,
+    on(
+        setSelectedNote,
+        (state: NotesState, props: SetSelectedNoteProps): NotesState => ({
+            ...state,
+            selectedNote: state.notes.find((note: Note) => note.id === props.noteId),
+        }),
+    ),
     on(
         getNotesSuccess,
         (state: NotesState, props: GetNotesSuccessResponse): NotesState => {

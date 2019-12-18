@@ -1,4 +1,5 @@
 .dashboard-page {
+    height: 100%;
 }
 
 .dashboard-page__toolbar {
@@ -6,9 +7,14 @@
 }
 
 .dashboard-page__main {
-   display: flex;
+    display: flex;
+    height: 100%;
+}
+
+.dashboard-page__content {
 }
 
 .dashboard-page__nav {
-   min-width: 150px;
+    min-width: 150px;
+    height: 100%;
 }

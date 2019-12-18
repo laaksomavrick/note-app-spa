@@ -1,0 +1,11 @@
+<div class="note-editor">
+   <div *ngIf="selectedNote$ | async as selectedNote;">
+      <div class="note-editor__title">
+         {{ selectedNote.name }}
+      </div>
+      <div class="note-editor__body">
+         {{ selectedNote.content }}
+      </div>
+   </div>
+</div>
+

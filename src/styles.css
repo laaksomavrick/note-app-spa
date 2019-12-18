@@ -8,7 +8,6 @@ html, body {
 
 app-root {
     display: block;
-    height: 100vh;
 }
 
 html, body { height: 100%; }
