@@ -13,10 +13,12 @@ export class NotesService extends HttpService {
 
     public getNotes(
         folderId: number,
-    ): Observable<GetNotesSuccessResponse | ApiErrorResponse> {
-        return this.http.get<GetNotesSuccessResponse | ApiErrorResponse>(
-            `${this.url}/notes`,
-            { ...this.httpOptions, params: { folderId: `${folderId}` } },
-        );
+    ): Promise<GetNotesSuccessResponse | ApiErrorResponse> {
+        return this.http
+            .get<GetNotesSuccessResponse | ApiErrorResponse>(`${this.url}/notes`, {
+                ...this.httpOptions,
+                params: { folderId: `${folderId}` },
+            })
+            .toPromise();
     }
 }

@@ -18,6 +18,7 @@ export interface GetNotesSuccessResponse extends ApiResponse {
 
 export interface GetNotesAttemptProps {
     folderId: number;
+    noteId?: number;
 }
 
 export interface SetSelectedNoteProps {

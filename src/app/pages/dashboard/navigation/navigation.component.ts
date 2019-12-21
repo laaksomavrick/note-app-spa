@@ -45,9 +45,11 @@ export class NavigationComponent implements OnInit {
     public ngOnInit(): void {
         this.route.paramMap.subscribe((params: ParamMap) => {
             const maybeFolderId = params.get('folderId');
+            const maybeNoteId = params.get('noteId');
+            const noteId = maybeNoteId ? parseInt(maybeNoteId, 10) : undefined;
             if (maybeFolderId) {
                 const folderId = parseInt(maybeFolderId, 10);
-                this.store.dispatch(getNotesAttempt({ folderId }));
+                this.store.dispatch(getNotesAttempt({ folderId, noteId }));
             }
         });
     }

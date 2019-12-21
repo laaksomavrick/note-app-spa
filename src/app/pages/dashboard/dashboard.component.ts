@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
     public ngOnInit(): void {
         // TODO: this.store.dispatch(appBoot)
+        // TODO: handle note as well
         const maybeFolderId = this.parseUrlForFolderId(this.router.url);
         this.store.dispatch(getFoldersAttempt({ folderId: maybeFolderId }));
     }

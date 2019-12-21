@@ -1,8 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --foreground-primary: #171717;
+    --background-primary: #f7f7f7;
+}
+
 html, body {
     height: auto;
     margin: 0;
     overflow: auto;
+    color: var(--foreground-primary);
+    background: var(--background-primary);
 }
 
 app-root {

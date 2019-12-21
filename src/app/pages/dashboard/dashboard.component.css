@@ -6,7 +6,7 @@
 
 .dashboard-page__toolbar {
     padding: 0 10px 10px 10px;
-    border-bottom: 1px black solid;
+    border-bottom: 1px var(--foreground-primary) solid;
 }
 
 .dashboard-page__main {

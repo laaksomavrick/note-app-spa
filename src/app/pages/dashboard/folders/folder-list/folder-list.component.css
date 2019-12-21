@@ -1,6 +1,6 @@
 .folder-list {
     height: 100%;
-    border-right: 1px black solid;
+    border-right: 1px var(--foreground-primary) solid;
 }
 
 .folder-list__item {
