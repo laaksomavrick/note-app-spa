@@ -8,7 +8,7 @@
 }
 
 .folder-list__item--selected {
-    background: lightgray;
+    background: var(--foreground-primary-hover);
 }
 
 .folder-list__button {

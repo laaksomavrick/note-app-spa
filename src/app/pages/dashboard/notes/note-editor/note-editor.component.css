@@ -1,11 +1,43 @@
 .note-editor {
     padding: 0 20px 0 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .note-editor__title {
     font-weight: 600;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
+    border: 1px transparent solid;
+    margin: 10px 0 0 0;
+    width: 100%;
+}
+
+.note-editor__title:hover {
+    border: 1px var(--foreground-primary) solid;
+}
+
+.note-editor__title:focus {
+    border: 1px var(--foreground-primary) solid;
 }
 
 .note-editor__body {
-    
+    flex: 1;
+    border: 1px transparent solid;
+    width: 100%;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
+    resize: none;
+    margin: 10px 0 10px 0;
+}
+
+.note-editor__body:hover {
+    border: 1px var(--foreground-primary) solid;
+}
+
+.note-editor__body:focus {
+    border: 1px var(--foreground-primary) solid;
 }

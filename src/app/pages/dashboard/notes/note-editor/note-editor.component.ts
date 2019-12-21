@@ -30,4 +30,12 @@ export class NoteEditorComponent implements OnInit {
             }
         });
     }
+
+    public handleNoteTitleChange(event: KeyboardEvent): void {
+        if (event.target) {
+            // tslint:disable-next-line:no-any
+            const newTitle = (event.target as any).value;
+            console.log(newTitle);
+        }
+    }
 }
