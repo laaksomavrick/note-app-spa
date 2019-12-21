@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatListModule, MatToolbarModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppActions, appStore, AppStore } from '../../app.store';
@@ -34,9 +33,8 @@ import { NotesService } from './notes/notes.service';
         StoreModule.forRoot<AppStore, AppActions>(appStore),
         EffectsModule.forFeature([FoldersEffects, NotesEffects]),
         SharedModule,
-        MatListModule,
-        MatToolbarModule,
         RouterModule,
+        NgbModule,
     ],
     providers: [
         AuthGuard,

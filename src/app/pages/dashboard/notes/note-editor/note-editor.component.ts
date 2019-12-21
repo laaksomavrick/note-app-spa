@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppStore } from '../../../../app.store';
-import { getNotesAttempt, setSelectedNote } from '../../../../store/notes/notes.actions';
+import { setSelectedNote } from '../../../../store/notes/notes.actions';
 import { Note } from '../../../../store/notes/notes.interfaces';
 
 @Component({
