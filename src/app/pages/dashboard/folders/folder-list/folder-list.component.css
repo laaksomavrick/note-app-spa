@@ -6,12 +6,13 @@
 
 }
 
+.folder-list__item--selected {
+    background: lightgray;
+}
+
 .folder-list__button {
     border: none;
     outline: none;
     background: transparent;
 }
 
-.folder-list__button--selected {
-    background: lightgray;
-}

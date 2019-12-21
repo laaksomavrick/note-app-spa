@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Folder } from '../../../../store/folders/folders.interfaces';
 
@@ -29,7 +29,16 @@ export class FolderListComponent implements OnInit {
         this.route = route;
     }
 
-    public ngOnInit(): void {}
+    public ngOnInit(): void {
+        this.route.paramMap.subscribe((params: ParamMap) => {
+            const maybeFolderId = params.get('folderId');
+            if (maybeFolderId) {
+                const folderId = parseInt(maybeFolderId, 10);
+                this.selectedFolderId = folderId;
+                console.log(this.selectedFolderId);
+            }
+        });
+    }
 
     public async onClickFolder(folder: Folder): Promise<void> {
         const folderId = folder.id;
