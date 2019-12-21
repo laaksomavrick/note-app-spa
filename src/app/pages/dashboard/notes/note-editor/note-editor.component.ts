@@ -23,7 +23,6 @@ export class NoteEditorComponent implements OnInit {
 
     public ngOnInit(): void {
         this.route.paramMap.subscribe((params: ParamMap) => {
-            console.log('here');
             const maybeNoteId = params.get('noteId');
             if (maybeNoteId) {
                 const noteId = parseInt(maybeNoteId, 10);
