@@ -2,9 +2,15 @@
     <div class="dashboard-page__toolbar">
         <div>Toolbar goes here</div>
     </div>
-    <div class="dashboard-page__main">
+    <div class="dashboard-page__main" *ngIf="(loading$ | async) === false; else loadingMask">
         <div class="dashboard-page__content">
             <router-outlet></router-outlet>
         </div>
     </div>
+
+    <ng-template #loadingMask>
+        <div>
+            Loading...
+        </div>
+    </ng-template>
 </div>

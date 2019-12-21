@@ -1,6 +1,6 @@
 <div class="note-list">
     <app-loadable-errorable [loading$]="loading$" [error$]="error$">
-        <div *ngFor="let note of notes$ | async" class="note-list__item">
+        <div *ngFor="let note of notes$ | async" class="note-list__item" [ngClass]="{'note-list__item--selected': note.id === selectedNoteId }">
             <button class="note-list__button" (click)="onClickNote(note)">
                 {{ note.name }}
             </button>

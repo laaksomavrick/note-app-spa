@@ -14,7 +14,6 @@ import { GetFolderAttemptProps } from './folders.interfaces';
 @Injectable()
 export class FoldersEffects {
     public getFolders$ = createEffect(() =>
-        // TODO address ts-ignore
         this.actions$.pipe(
             ofType(getFoldersAttempt.type),
             exhaustMap(async (props: GetFolderAttemptProps) => {
@@ -34,9 +33,9 @@ export class FoldersEffects {
                     } else {
                         const [firstFolder] = response.resource.folders;
                         folderId = firstFolder.id;
+                        await this.router.navigate(['/folder', folderId]);
                     }
 
-                    await this.router.navigate(['/folder', folderId]);
                     return getFoldersSuccess(response);
                 } catch (e) {
                     return getFoldersFailure(e);

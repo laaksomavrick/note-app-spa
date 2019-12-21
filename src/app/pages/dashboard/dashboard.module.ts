@@ -10,6 +10,7 @@ import { AppActions, appStore, AppStore } from '../../app.store';
 import { AuthGuard } from '../../auth/auth.guard';
 import { AuthInterceptor } from '../../auth/auth.interceptor';
 import { SharedModule } from '../../shared/shared.module';
+import { DashboardEffects } from '../../store/dashboard/dashboard.effects';
 import { FoldersEffects } from '../../store/folders/folders.effects';
 import { NotesEffects } from '../../store/notes/notes.effects';
 import { DashboardComponent } from './dashboard.component';
@@ -31,7 +32,7 @@ import { NotesService } from './notes/notes.service';
         FormsModule,
         HttpClientModule,
         StoreModule.forRoot<AppStore, AppActions>(appStore),
-        EffectsModule.forFeature([FoldersEffects, NotesEffects]),
+        EffectsModule.forFeature([FoldersEffects, NotesEffects, DashboardEffects]),
         SharedModule,
         RouterModule,
         NgbModule,

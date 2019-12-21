@@ -8,6 +8,10 @@
     padding: 0 10px 0 0;
 }
 
+.note-list__item--selected {
+    background: var(--foreground-primary-hover);
+}
+
 .note-list__button {
     font-weight: 600;
     border: none;

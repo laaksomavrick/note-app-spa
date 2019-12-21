@@ -19,10 +19,6 @@
     border: 1px var(--foreground-primary) solid;
 }
 
-.note-editor__title:focus {
-    border: 1px var(--foreground-primary) solid;
-}
-
 .note-editor__body {
     flex: 1;
     border: 1px transparent solid;
@@ -35,9 +31,5 @@
 }
 
 .note-editor__body:hover {
-    border: 1px var(--foreground-primary) solid;
-}
-
-.note-editor__body:focus {
     border: 1px var(--foreground-primary) solid;
 }

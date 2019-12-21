@@ -22,8 +22,7 @@ export class NotesEffects {
                     if (props.noteId) {
                         const folderId = props.folderId;
                         const noteId = props.noteId;
-                        console.log('here');
-                        await this.router.navigate(['folder', folderId, 'note', noteId]);
+                        // await this.router.navigate(['folder', folderId, 'note', noteId]);
                     }
 
                     return getNotesSuccess(response);

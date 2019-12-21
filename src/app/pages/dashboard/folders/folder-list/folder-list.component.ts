@@ -35,7 +35,6 @@ export class FolderListComponent implements OnInit {
             if (maybeFolderId) {
                 const folderId = parseInt(maybeFolderId, 10);
                 this.selectedFolderId = folderId;
-                console.log(this.selectedFolderId);
             }
         });
     }
