@@ -24,6 +24,7 @@ export class FoldersEffects {
                     }
                     // TODO handle this better
                     // TODO guarantee always one folder from backend
+                    // TODO only do this if the route is blank (i.e., getFoldersAttempt has no prop)
                     const [firstFolder] = response.resource.folders;
                     const folderId = firstFolder.id;
                     await this.router.navigate(['/folder', folderId]);

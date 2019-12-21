@@ -1,5 +1,7 @@
 .dashboard-page {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .dashboard-page__toolbar {
@@ -8,7 +10,7 @@
 
 .dashboard-page__main {
     display: flex;
-    height: 100%;
+    flex: 1
 }
 
 .dashboard-page__content {

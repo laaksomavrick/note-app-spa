@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Folder } from '../../../../store/folders/folders.interfaces';
 
@@ -15,13 +15,18 @@ export class FolderListComponent implements OnInit {
 
     @Input() public loading$: Observable<boolean>;
 
+    private selectedFolderId?: number;
+
     private readonly router: Router;
 
-    constructor(router: Router) {
+    private readonly route: ActivatedRoute;
+
+    constructor(router: Router, route: ActivatedRoute) {
         this.folders$ = of([]);
         this.error$ = of(undefined);
         this.loading$ = of(false);
         this.router = router;
+        this.route = route;
     }
 
     public ngOnInit(): void {}

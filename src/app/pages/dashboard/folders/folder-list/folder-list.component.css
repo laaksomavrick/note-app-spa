@@ -1,0 +1,17 @@
+.folder-list {
+    height: 100%;
+}
+
+.folder-list__item {
+
+}
+
+.folder-list__button {
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.folder-list__button--selected {
+    background: lightgray;
+}
