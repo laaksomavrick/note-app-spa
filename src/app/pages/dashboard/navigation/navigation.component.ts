@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppStore } from '../../../../app.store';
-import { Folder } from '../../../../store/folders/folders.interfaces';
-import { getNotesAttempt } from '../../../../store/notes/notes.actions';
-import { Note } from '../../../../store/notes/notes.interfaces';
+import { AppStore } from '../../../app.store';
+import { Folder } from '../../../store/folders/folders.interfaces';
+import { getNotesAttempt } from '../../../store/notes/notes.actions';
+import { Note } from '../../../store/notes/notes.interfaces';
 
 @Component({
     selector: 'app-note-routing',
-    templateUrl: './note-routing.component.html',
-    styleUrls: ['./note-routing.component.css'],
+    templateUrl: './navigation.component.html',
+    styleUrls: ['./navigation.component.css'],
 })
-export class NoteRoutingComponent implements OnInit {
+export class NavigationComponent implements OnInit {
     public notes$: Observable<Note[]> = this.store.select(
         ({ notesState }: AppStore) => notesState.notes,
     );

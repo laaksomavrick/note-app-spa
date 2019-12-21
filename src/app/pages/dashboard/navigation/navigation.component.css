@@ -1,9 +1,13 @@
-.note-routing {
+.navigation {
     height: 100%;
     display: flex;
 }
 
-.note-routing__nav {
+.navigation__nav {
     min-width: 150px;
     height: 100%;
+}
+
+.navigation__content {
+    flex: 1;
 }

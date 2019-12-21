@@ -1,7 +1,9 @@
-<app-loadable-errorable [loading$]="loading$" [error$]="error$" containerClassName="note-list">
-    <div *ngFor="let note of notes$ | async">
-        <button (click)="onClickNote(note)">
-            {{ note.name }}
-        </button>
-    </div>
-</app-loadable-errorable>
+<div class="note-list">
+    <app-loadable-errorable [loading$]="loading$" [error$]="error$">
+        <div *ngFor="let note of notes$ | async" class="note-list__item">
+            <button class="note-list__button" (click)="onClickNote(note)">
+                {{ note.name }}
+            </button>
+        </div>
+    </app-loadable-errorable>
+</div>

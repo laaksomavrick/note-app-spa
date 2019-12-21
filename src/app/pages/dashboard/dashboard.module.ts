@@ -15,8 +15,8 @@ import { NotesEffects } from '../../store/notes/notes.effects';
 import { DashboardComponent } from './dashboard.component';
 import { FolderListComponent } from './folders/folder-list/folder-list.component';
 import { FoldersService } from './folders/folders.service';
+import { NavigationComponent } from './navigation/navigation.component';
 import { NoteListComponent } from './notes/note-list/note-list.component';
-import { NoteRoutingComponent } from './notes/note-routing/note-routing.component';
 import { NotesService } from './notes/notes.service';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { NotesService } from './notes/notes.service';
         DashboardComponent,
         FolderListComponent,
         NoteListComponent,
-        NoteRoutingComponent,
+        NavigationComponent,
     ],
     imports: [
         CommonModule,

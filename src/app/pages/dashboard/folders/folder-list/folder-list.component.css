@@ -1,9 +1,10 @@
 .folder-list {
     height: 100%;
+    border-right: 1px black solid;
 }
 
 .folder-list__item {
-
+    padding: 0 10px 0 10px;
 }
 
 .folder-list__item--selected {

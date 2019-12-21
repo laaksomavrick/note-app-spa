@@ -1,8 +1,10 @@
-<app-loadable-errorable [loading$]="loading$" [error$]="error$" containerClassName="folder-list">
-    <div *ngFor="let folder of folders$ | async" class="folder-list__item" [ngClass]="{'folder-list__item--selected': folder.id === selectedFolderId }"
-    >
-        <button class="folder-list__button" (click)="onClickFolder(folder)">
-            {{ folder.name }}
-        </button>
-    </div>
-</app-loadable-errorable>
+<div class="folder-list">
+    <app-loadable-errorable [loading$]="loading$" [error$]="error$">
+        <div *ngFor="let folder of folders$ | async" class="folder-list__item" [ngClass]="{'folder-list__item--selected': folder.id === selectedFolderId }"
+        >
+            <button class="folder-list__button" (click)="onClickFolder(folder)">
+                {{ folder.name }}
+            </button>
+        </div>
+    </app-loadable-errorable>
+</div>

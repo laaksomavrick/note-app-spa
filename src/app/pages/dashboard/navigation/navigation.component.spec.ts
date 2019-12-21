@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NoteRoutingComponent } from './note-routing.component';
+import { NavigationComponent } from './navigation.component';
 
 describe('NoteRoutingComponent', () => {
-    let component: NoteRoutingComponent;
-    let fixture: ComponentFixture<NoteRoutingComponent>;
+    let component: NavigationComponent;
+    let fixture: ComponentFixture<NavigationComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [NoteRoutingComponent],
+            declarations: [NavigationComponent],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(NoteRoutingComponent);
+        fixture = TestBed.createComponent(NavigationComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
