@@ -12,3 +12,7 @@ export interface GetFoldersSuccessResponse extends ApiResponse {
         folders: Folder[];
     };
 }
+
+export interface GetFolderAttemptProps {
+    folderId?: number;
+}

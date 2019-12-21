@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { ApiErrorResponse } from '../../http/http.interfaces';
-import { GetFoldersSuccessResponse } from './folders.interfaces';
+import { GetFolderAttemptProps, GetFoldersSuccessResponse } from './folders.interfaces';
 
 export const getFoldersSuccess = createAction(
     '[Folders] Get folders success',
@@ -10,7 +10,10 @@ export const getFoldersFailure = createAction(
     '[Folders] Get folders failure',
     props<ApiErrorResponse>(),
 );
-export const getFoldersAttempt = createAction('[Folders] Get folders attempt');
+export const getFoldersAttempt = createAction(
+    '[Folders] Get folders attempt',
+    props<GetFolderAttemptProps>(),
+);
 
 export type FolderActions =
     | ReturnType<typeof getFoldersSuccess>

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { AppStore } from '../../app.store';
 import { getFoldersAttempt } from '../../store/folders/folders.actions';
-import { Folder } from '../../store/folders/folders.interfaces';
 
 @Component({
     selector: 'app-dashboard-page',
@@ -11,21 +10,27 @@ import { Folder } from '../../store/folders/folders.interfaces';
     styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-    public folders$: Observable<Folder[]> = this.store.select(
-        ({ foldersState }: AppStore) => foldersState.folders,
-    );
-
-    public foldersError$: Observable<string | undefined> = this.store.select(
-        ({ foldersState }: AppStore) => foldersState.error,
-    );
-
-    public foldersLoading$: Observable<boolean> = this.store.select(
-        ({ foldersState }: AppStore) => foldersState.loading,
-    );
-
-    constructor(private store: Store<AppStore>) {}
+    constructor(private store: Store<AppStore>, private readonly router: Router) {}
 
     public ngOnInit(): void {
-        this.store.dispatch(getFoldersAttempt());
+        // TODO: this.store.dispatch(appBoot)
+        const maybeFolderId = this.parseUrlForFolderId(this.router.url);
+        this.store.dispatch(getFoldersAttempt({ folderId: maybeFolderId }));
+    }
+
+    // TODO: hack!!
+    private parseUrlForFolderId(url: string): number | undefined {
+        const [_, firstSplit] = url.split('/folder/');
+
+        if (!firstSplit) {
+            return undefined;
+        }
+
+        const [maybeFolderId] = firstSplit.split('/');
+
+        if (maybeFolderId) {
+            return parseInt(maybeFolderId, 10);
+        }
+        return undefined;
     }
 }

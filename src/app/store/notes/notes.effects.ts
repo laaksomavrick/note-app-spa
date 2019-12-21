@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, exhaustMap, map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { isApiErrorResponse } from '../../http/http.helpers';
 import { ApiErrorResponse } from '../../http/http.interfaces';
 import { NotesService } from '../../pages/dashboard/notes/notes.service';
@@ -13,7 +13,7 @@ export class NotesEffects {
     public getNotes$ = createEffect(() =>
         this.actions$.pipe(
             ofType(getNotesAttempt.type),
-            exhaustMap((props: GetNotesAttemptProps) =>
+            switchMap((props: GetNotesAttemptProps) =>
                 this.notesService.getNotes(props.folderId).pipe(
                     map(
                         (

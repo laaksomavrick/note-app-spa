@@ -9,6 +9,7 @@ import {
     getFoldersFailure,
     getFoldersSuccess,
 } from './folders.actions';
+import { GetFolderAttemptProps } from './folders.interfaces';
 
 @Injectable()
 export class FoldersEffects {
@@ -16,7 +17,7 @@ export class FoldersEffects {
         // TODO address ts-ignore
         this.actions$.pipe(
             ofType(getFoldersAttempt.type),
-            exhaustMap(async () => {
+            exhaustMap(async (props: GetFolderAttemptProps) => {
                 try {
                     const response = await this.folderService.getFolders();
                     if (isApiErrorResponse(response)) {
@@ -24,9 +25,17 @@ export class FoldersEffects {
                     }
                     // TODO handle this better
                     // TODO guarantee always one folder from backend
-                    // TODO only do this if the route is blank (i.e., getFoldersAttempt has no prop)
-                    const [firstFolder] = response.resource.folders;
-                    const folderId = firstFolder.id;
+
+                    let folderId;
+
+                    if (props.folderId) {
+                        // Assumption: all folders for a user are being loaded
+                        folderId = props.folderId;
+                    } else {
+                        const [firstFolder] = response.resource.folders;
+                        folderId = firstFolder.id;
+                    }
+
                     await this.router.navigate(['/folder', folderId]);
                     return getFoldersSuccess(response);
                 } catch (e) {

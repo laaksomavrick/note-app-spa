@@ -1,4 +1,5 @@
 <div class="note-routing">
+    <app-folder-list class="dashboard-page__nav" [folders$]="folders$" [error$]="foldersError$" [loading$]="foldersLoading$"></app-folder-list>
     <app-note-list class="note-routing__nav" [notes$]="notes$" [error$]="notesError$" [loading$]="notesLoading$"></app-note-list>
     <router-outlet></router-outlet>
 </div>
