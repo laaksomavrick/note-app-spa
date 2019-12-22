@@ -26,8 +26,6 @@ export class DashboardEffects {
     public appBoot$ = this.actions$.pipe(
         ofType(appBootAttempt.type),
         exhaustMap(async (props: AppBootProps) => {
-            // folderService and noteService.get both here, dispatch success actions
-
             const folderId = props.folderId;
             const noteId = props.noteId;
             const dispatches = [];
@@ -59,7 +57,11 @@ export class DashboardEffects {
 
                 // tslint:disable-next-line:typedef
                 dispatches.forEach(dispatch => this.store.dispatch(dispatch));
-                await this.router.navigate(['folder', folderId, 'note', noteId]);
+
+                if (folderId && noteId) {
+                    await this.router.navigate(['folder', folderId, 'note', noteId]);
+                }
+
                 return appBootSuccess();
             } else if (folderId) {
                 // tslint:disable-next-line:no-shadowed-variable
@@ -97,7 +99,11 @@ export class DashboardEffects {
 
                 // tslint:disable-next-line:typedef
                 dispatches.forEach(dispatch => this.store.dispatch(dispatch));
-                await this.router.navigate(['folder', folderId, 'note', noteId]);
+
+                if (folderId && noteId) {
+                    await this.router.navigate(['folder', folderId, 'note', noteId]);
+                }
+
                 return appBootSuccess();
             } else {
                 // tslint:disable-next-line:no-shadowed-variable
@@ -143,7 +149,11 @@ export class DashboardEffects {
 
                 // tslint:disable-next-line:typedef
                 dispatches.forEach(dispatch => this.store.dispatch(dispatch));
-                await this.router.navigate(['folder', folderId, 'note', noteId]);
+
+                if (folderId && noteId) {
+                    await this.router.navigate(['folder', folderId, 'note', noteId]);
+                }
+
                 return appBootSuccess();
             }
         }),
