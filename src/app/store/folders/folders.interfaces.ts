@@ -16,3 +16,13 @@ export interface GetFoldersSuccessResponse extends ApiResponse {
 export interface GetFolderAttemptProps {
     folderId?: number;
 }
+
+export interface CreateFolderAttemptProps {
+    name: string;
+}
+
+export interface CreateFolderSuccessResponse extends ApiResponse {
+    resource: {
+        folder: Folder;
+    };
+}

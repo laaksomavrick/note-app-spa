@@ -5,11 +5,14 @@ import { exhaustMap } from 'rxjs/operators';
 import { isApiErrorResponse } from '../../http/http.helpers';
 import { FoldersService } from '../../pages/dashboard/folders/folders.service';
 import {
+    createFoldersAttempt,
+    createFoldersFailure,
+    createFoldersSuccess,
     getFoldersAttempt,
     getFoldersFailure,
     getFoldersSuccess,
 } from './folders.actions';
-import { GetFolderAttemptProps } from './folders.interfaces';
+import { CreateFolderAttemptProps, GetFolderAttemptProps } from './folders.interfaces';
 
 @Injectable()
 export class FoldersEffects {
@@ -39,6 +42,25 @@ export class FoldersEffects {
                     return getFoldersSuccess(response);
                 } catch (e) {
                     return getFoldersFailure(e);
+                }
+            }),
+        ),
+    );
+
+    public createFolder$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(createFoldersAttempt),
+            exhaustMap(async (props: CreateFolderAttemptProps) => {
+                try {
+                    const response = await this.folderService.createFolder(props.name);
+
+                    if (isApiErrorResponse(response)) {
+                        return createFoldersFailure(response);
+                    }
+
+                    return createFoldersSuccess(response);
+                } catch (e) {
+                    return createFoldersFailure(e);
                 }
             }),
         ),

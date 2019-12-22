@@ -14,6 +14,7 @@ import { DashboardEffects } from '../../store/dashboard/dashboard.effects';
 import { FoldersEffects } from '../../store/folders/folders.effects';
 import { NotesEffects } from '../../store/notes/notes.effects';
 import { DashboardComponent } from './dashboard.component';
+import { CreateFolderComponent } from './folders/create-folder/create-folder.component';
 import { FolderListComponent } from './folders/folder-list/folder-list.component';
 import { FoldersService } from './folders/folders.service';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -26,6 +27,7 @@ import { NotesService } from './notes/notes.service';
         FolderListComponent,
         NoteListComponent,
         NavigationComponent,
+        CreateFolderComponent,
     ],
     imports: [
         CommonModule,

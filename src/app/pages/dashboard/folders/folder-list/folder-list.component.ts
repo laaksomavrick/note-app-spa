@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
+import { AppStore } from '../../../../app.store';
+import { toggleCreateFolderVisible } from '../../../../store/folders/folders.actions';
 import { Folder } from '../../../../store/folders/folders.interfaces';
 
 @Component({
@@ -21,12 +24,15 @@ export class FolderListComponent implements OnInit {
 
     private readonly route: ActivatedRoute;
 
-    constructor(router: Router, route: ActivatedRoute) {
+    private readonly store: Store<AppStore>;
+
+    constructor(router: Router, route: ActivatedRoute, store: Store<AppStore>) {
         this.folders$ = of([]);
         this.error$ = of(undefined);
         this.loading$ = of(false);
         this.router = router;
         this.route = route;
+        this.store = store;
     }
 
     public ngOnInit(): void {
@@ -42,5 +48,9 @@ export class FolderListComponent implements OnInit {
     public async onClickFolder(folder: Folder): Promise<void> {
         const folderId = folder.id;
         await this.router.navigate(['/folder', folderId]);
+    }
+
+    public onClickNewFolder(): void {
+        this.store.dispatch(toggleCreateFolderVisible());
     }
 }

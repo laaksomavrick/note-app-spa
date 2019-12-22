@@ -150,8 +150,12 @@ export class DashboardEffects {
                 // tslint:disable-next-line:typedef
                 dispatches.forEach(dispatch => this.store.dispatch(dispatch));
 
-                if (folderId && noteId) {
-                    await this.router.navigate(['folder', folderId, 'note', noteId]);
+                if (folderId) {
+                    let route = ['folder', folderId];
+                    if (noteId) {
+                        route = [...route, 'note', 'note'];
+                    }
+                    await this.router.navigate(route);
                 }
 
                 return appBootSuccess();

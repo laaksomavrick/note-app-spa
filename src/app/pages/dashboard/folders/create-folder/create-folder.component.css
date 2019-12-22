@@ -1,0 +1,10 @@
+.create-folder__button {
+    border-top: 1px var(--foreground-primary) solid;
+    border-bottom: 1px var(--foreground-primary) solid;
+    border-left: 1px transparent solid;
+    border-right: 1px transparent solid;
+    outline: none;
+    background: transparent;
+    max-width: 149px;
+    padding-left: 15px;
+}
