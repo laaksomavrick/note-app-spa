@@ -1,0 +1,15 @@
+<div *ngIf="(visible$ | async) === true">
+    <div *ngIf="(loading$ | async) === true; else input">
+        loading...
+    </div>
+    <ng-template #input>
+        <input
+                class="{{inputClass}}"
+                type="text"
+                [(ngModel)]="newItemNameInput"
+                appAutoFocus
+                (focus)="$event.target.select()"
+                (keydown)="onEnterKeydown($event)"
+                (focusout)="onClickAway()"/>
+    </ng-template>
+</div>

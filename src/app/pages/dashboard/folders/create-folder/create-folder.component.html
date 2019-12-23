@@ -1,15 +1,23 @@
-<div *ngIf="(visible$ | async) === true">
-    <div *ngIf="(loading$ | async) === true; else input">
-        loading...
-    </div>
-    <ng-template #input>
-        <input
-                class="create-folder__button"
-                type="text"
-                [(ngModel)]="newFolderInput"
-                appAutoFocus
-                (focus)="$event.target.select()"
-                (keydown)="onEnterKeydownNewFolder($event)"
-                (focusout)="onClickAwayNewFolder()"/>
-    </ng-template>
-</div>
+<!--<div *ngIf="(visible$ | async) === true">-->
+<!--    <div *ngIf="(loading$ | async) === true; else input">-->
+<!--        loading...-->
+<!--    </div>-->
+<!--    <ng-template #input>-->
+<!--        <input-->
+<!--                class="create-folder__button"-->
+<!--                type="text"-->
+<!--                [(ngModel)]="newFolderInput"-->
+<!--                appAutoFocus-->
+<!--                (focus)="$event.target.select()"-->
+<!--                (keydown)="onEnterKeydownNewFolder($event)"-->
+<!--                (focusout)="onClickAwayNewFolder()"/>-->
+<!--    </ng-template>-->
+<!--</div>-->
+
+<app-list-item-create-button
+    [visible$]="visible$"
+    [loading$]="loading$"
+    [handler]="handleCreateFolder"
+    inputClass="create-folder__button"
+>
+</app-list-item-create-button>
