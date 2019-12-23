@@ -37,6 +37,8 @@ export class NavigationComponent implements OnInit {
         ({ foldersState }: AppStore) => foldersState.loading,
     );
 
+    public selectedFolderId?: number;
+
     constructor(
         private readonly route: ActivatedRoute,
         private readonly store: Store<AppStore>,
@@ -49,6 +51,7 @@ export class NavigationComponent implements OnInit {
             const noteId = maybeNoteId ? parseInt(maybeNoteId, 10) : undefined;
             if (maybeFolderId) {
                 const folderId = parseInt(maybeFolderId, 10);
+                this.selectedFolderId = folderId;
                 this.store.dispatch(getNotesAttempt({ folderId, noteId }));
             }
         });

@@ -38,3 +38,15 @@ export interface UpdateNoteSuccessResponse extends ApiResponse {
         note: Note;
     };
 }
+
+export interface CreateNoteAttemptProps {
+    name: string;
+    content?: string;
+    folderId: number;
+}
+
+export interface CreateNoteSuccessResponse extends ApiResponse {
+    resource: {
+        note: Note;
+    };
+}

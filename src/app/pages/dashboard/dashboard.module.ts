@@ -18,6 +18,7 @@ import { CreateFolderComponent } from './folders/create-folder/create-folder.com
 import { FolderListComponent } from './folders/folder-list/folder-list.component';
 import { FoldersService } from './folders/folders.service';
 import { NavigationComponent } from './navigation/navigation.component';
+import { CreateNoteComponent } from './notes/create-note/create-note.component';
 import { NoteListComponent } from './notes/note-list/note-list.component';
 import { NotesService } from './notes/notes.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -29,6 +30,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
         NoteListComponent,
         NavigationComponent,
         CreateFolderComponent,
+        CreateNoteComponent,
         ToolbarComponent,
     ],
     imports: [

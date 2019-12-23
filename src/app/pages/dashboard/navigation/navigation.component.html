@@ -1,6 +1,6 @@
 <div class="navigation">
     <app-folder-list class="navigation__nav" [folders$]="folders$" [error$]="foldersError$" [loading$]="foldersLoading$"></app-folder-list>
-    <app-note-list class="navigation__nav" [notes$]="notes$" [error$]="notesError$" [loading$]="notesLoading$"></app-note-list>
+    <app-note-list class="navigation__nav" [notes$]="notes$" [error$]="notesError$" [loading$]="notesLoading$" [selectedFolderId]="selectedFolderId"></app-note-list>
     <div class="navigation__content">
         <router-outlet></router-outlet>
     </div>

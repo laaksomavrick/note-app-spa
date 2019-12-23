@@ -1,6 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { ApiErrorResponse } from '../../http/http.interfaces';
 import {
+    CreateNoteAttemptProps,
+    CreateNoteSuccessResponse,
     GetNotesAttemptProps,
     GetNotesSuccessResponse,
     SetSelectedNoteProps,
@@ -39,6 +41,21 @@ export const updateNoteAttempt = createAction(
     props<UpdateNoteAttemptProps>(),
 );
 
+export const toggleCreateNoteVisible = createAction('[Notes] Toogle create note visible');
+
+export const createNoteSuccess = createAction(
+    '[Notes] Create note success',
+    props<CreateNoteSuccessResponse>(),
+);
+export const createNoteFailure = createAction(
+    '[Notes] Create note failure',
+    props<ApiErrorResponse>(),
+);
+export const createNoteAttempt = createAction(
+    '[Notes] Create note attempt',
+    props<CreateNoteAttemptProps>(),
+);
+
 export type NoteActions =
     | ReturnType<typeof getNotesSuccess>
     | ReturnType<typeof getNotesFailure>
@@ -46,4 +63,8 @@ export type NoteActions =
     | ReturnType<typeof setSelectedNote>
     | ReturnType<typeof updateNoteSuccess>
     | ReturnType<typeof updateNoteFailure>
-    | ReturnType<typeof updateNoteAttempt>;
+    | ReturnType<typeof updateNoteAttempt>
+    | ReturnType<typeof toggleCreateNoteVisible>
+    | ReturnType<typeof createNoteSuccess>
+    | ReturnType<typeof createNoteFailure>
+    | ReturnType<typeof createNoteAttempt>;

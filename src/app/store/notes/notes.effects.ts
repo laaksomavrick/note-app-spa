@@ -4,6 +4,9 @@ import { exhaustMap, switchMap } from 'rxjs/operators';
 import { isApiErrorResponse } from '../../http/http.helpers';
 import { NotesService } from '../../pages/dashboard/notes/notes.service';
 import {
+    createNoteAttempt,
+    createNoteFailure,
+    createNoteSuccess,
     getNotesAttempt,
     getNotesFailure,
     getNotesSuccess,
@@ -11,7 +14,11 @@ import {
     updateNoteFailure,
     updateNoteSuccess,
 } from './notes.actions';
-import { GetNotesAttemptProps, UpdateNoteAttemptProps } from './notes.interfaces';
+import {
+    CreateNoteAttemptProps,
+    GetNotesAttemptProps,
+    UpdateNoteAttemptProps,
+} from './notes.interfaces';
 
 @Injectable()
 export class NotesEffects {
@@ -47,6 +54,25 @@ export class NotesEffects {
                     return updateNoteSuccess(response);
                 } catch (e) {
                     return updateNoteFailure(e);
+                }
+            }),
+        ),
+    );
+
+    public createNote$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(createNoteAttempt),
+            exhaustMap(async (props: CreateNoteAttemptProps) => {
+                try {
+                    const response = await this.notesService.createNote(props);
+
+                    if (isApiErrorResponse(response)) {
+                        return createNoteFailure(response);
+                    }
+
+                    return createNoteSuccess(response);
+                } catch (e) {
+                    return createNoteFailure(e);
                 }
             }),
         ),

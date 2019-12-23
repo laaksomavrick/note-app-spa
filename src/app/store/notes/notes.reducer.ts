@@ -2,16 +2,22 @@ import { createReducer, on } from '@ngrx/store';
 import { getHumanReadableApiError } from '../../http/http.helpers';
 import { ApiErrorResponse } from '../../http/http.interfaces';
 import {
+    createNoteAttempt,
+    createNoteFailure,
+    createNoteSuccess,
     getNotesAttempt,
     getNotesFailure,
     getNotesSuccess,
     NoteActions,
     setSelectedNote,
+    toggleCreateNoteVisible,
     updateNoteAttempt,
     updateNoteFailure,
     updateNoteSuccess,
 } from './notes.actions';
 import {
+    CreateNoteAttemptProps,
+    CreateNoteSuccessResponse,
     GetNotesSuccessResponse,
     Note,
     SetSelectedNoteProps,
@@ -19,12 +25,7 @@ import {
     UpdateNoteSuccessResponse,
 } from './notes.interfaces';
 
-export interface NotesToFolderMapping {
-    [noteId: string]: Note[];
-}
-
 export interface NotesState {
-    // notesToFolderMapping: NotesToFolderMapping;
     notes: Note[];
     selectedNote?: Note;
     loading: boolean;
@@ -32,10 +33,13 @@ export interface NotesState {
 
     updateNoteLoading: boolean;
     updateNoteError?: string;
+
+    createNoteVisible: boolean;
+    createNoteLoading: boolean;
+    createNoteError?: string;
 }
 
 export const initialState: NotesState = {
-    // notesToFolderMapping: {},
     notes: [],
     selectedNote: undefined,
     loading: false,
@@ -43,6 +47,10 @@ export const initialState: NotesState = {
 
     updateNoteLoading: false,
     updateNoteError: undefined,
+
+    createNoteVisible: false,
+    createNoteLoading: false,
+    createNoteError: undefined,
 };
 
 const _noteReducer = createReducer<NotesState, NoteActions>(
@@ -60,21 +68,8 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
     on(
         getNotesSuccess,
         (state: NotesState, props: GetNotesSuccessResponse): NotesState => {
-            // TODO: needs to change if ?folderId= is not specified for whatever reason
-            // in the future (i.e. all notes view)
-            // let folderId;
-            // const [note] = props.resource.notes;
-            //
-            // if (note) {
-            //     folderId = note.folderId;
-            // }
-
             return {
                 ...state,
-                // notesToFolderMapping: {
-                //     ...state.notesToFolderMapping,
-                //     [`${folderId}`]: props.resource.notes,
-                // },
                 notes: props.resource.notes,
                 loading: false,
                 error: undefined,
@@ -121,6 +116,42 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
         (state: NotesState, props: UpdateNoteAttemptProps): NotesState => ({
             ...state,
             updateNoteLoading: true,
+        }),
+    ),
+
+    on(
+        toggleCreateNoteVisible,
+        (state: NotesState): NotesState => ({
+            ...state,
+            createNoteVisible: !state.createNoteVisible,
+        }),
+    ),
+
+    on(
+        createNoteSuccess,
+        (state: NotesState, props: CreateNoteSuccessResponse): NotesState => {
+            const notes = [...state.notes, props.resource.note];
+            return {
+                ...state,
+                createNoteError: undefined,
+                createNoteLoading: false,
+                createNoteVisible: false,
+                notes,
+            };
+        },
+    ),
+    on(
+        createNoteFailure,
+        (state: NotesState, props: ApiErrorResponse): NotesState => ({
+            ...state,
+            createNoteError: getHumanReadableApiError(props),
+        }),
+    ),
+    on(
+        createNoteAttempt,
+        (state: NotesState, props: CreateNoteAttemptProps): NotesState => ({
+            ...state,
+            createNoteLoading: true,
         }),
     ),
 );

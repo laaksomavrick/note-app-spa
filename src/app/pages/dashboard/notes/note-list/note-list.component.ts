@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { AppStore } from '../../../../app.store';
-import { Folder } from '../../../../store/folders/folders.interfaces';
 import { Note } from '../../../../store/notes/notes.interfaces';
 
 @Component({
@@ -17,6 +16,8 @@ export class NoteListComponent implements OnInit {
     @Input() public error$: Observable<string | undefined>;
 
     @Input() public loading$: Observable<boolean>;
+
+    @Input() public selectedFolderId?: number;
 
     public selectedNote$: Observable<Note | undefined> = this.store.select(
         ({ notesState }: AppStore) =>
@@ -38,7 +39,6 @@ export class NoteListComponent implements OnInit {
 
     public ngOnInit(): void {
         this.selectedNote$.subscribe((selectedNote: Note | undefined): void => {
-            console.log(selectedNote);
             this.selectedNoteId = selectedNote ? selectedNote.id : undefined;
         });
     }

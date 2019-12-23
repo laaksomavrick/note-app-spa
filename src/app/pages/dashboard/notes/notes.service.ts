@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { ApiErrorResponse } from '../../../http/http.interfaces';
 import { HttpService } from '../../../http/http.service';
 import {
+    CreateNoteAttemptProps,
+    CreateNoteSuccessResponse,
     GetNotesSuccessResponse,
     UpdateNoteAttemptProps,
     UpdateNoteSuccessResponse,
@@ -26,14 +28,28 @@ export class NotesService extends HttpService {
     }
 
     public updateNote(
-        note: UpdateNoteAttemptProps,
+        props: UpdateNoteAttemptProps,
     ): Promise<UpdateNoteSuccessResponse | ApiErrorResponse> {
-        const { name, content, folderId } = note;
+        const { name, content, folderId } = props;
         const updateNoteRequest = { note: { name, content, folderId } };
         return this.http
             .patch<UpdateNoteSuccessResponse | ApiErrorResponse>(
-                `${this.url}/notes/${note.id}`,
+                `${this.url}/notes/${props.id}`,
                 updateNoteRequest,
+                this.httpOptions,
+            )
+            .toPromise();
+    }
+
+    public createNote(
+        props: CreateNoteAttemptProps,
+    ): Promise<CreateNoteSuccessResponse | ApiErrorResponse> {
+        const { name, content, folderId } = props;
+        const createNoteBody = { note: { name, content, folderId } };
+        return this.http
+            .post<CreateNoteSuccessResponse | ApiErrorResponse>(
+                `${this.url}/notes`,
+                createNoteBody,
                 this.httpOptions,
             )
             .toPromise();
