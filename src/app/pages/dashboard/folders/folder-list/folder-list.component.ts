@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { AppStore } from '../../../../app.store';
 import { toggleCreateFolderVisible } from '../../../../store/folders/folders.actions';
 import { Folder } from '../../../../store/folders/folders.interfaces';
+import { setSelectedNote } from '../../../../store/notes/notes.actions';
 
 @Component({
     selector: 'app-folder-list',
@@ -47,6 +48,8 @@ export class FolderListComponent implements OnInit {
 
     public async onClickFolder(folder: Folder): Promise<void> {
         const folderId = folder.id;
+        // TODO: select first note if exists
+        this.store.dispatch(setSelectedNote({ noteId: undefined }));
         await this.router.navigate(['/folder', folderId]);
     }
 

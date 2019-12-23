@@ -22,7 +22,7 @@ export interface GetNotesAttemptProps {
 }
 
 export interface SetSelectedNoteProps {
-    noteId: number;
+    noteId?: number;
 }
 
 // tslint:disable-next-line:no-empty-interface

@@ -51,7 +51,9 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
         setSelectedNote,
         (state: NotesState, props: SetSelectedNoteProps): NotesState => ({
             ...state,
-            selectedNote: state.notes.find((note: Note) => note.id === props.noteId),
+            selectedNote: props.noteId
+                ? state.notes.find((note: Note) => note.id === props.noteId)
+                : undefined,
         }),
     ),
 

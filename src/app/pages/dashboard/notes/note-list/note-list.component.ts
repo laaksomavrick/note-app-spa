@@ -38,6 +38,7 @@ export class NoteListComponent implements OnInit {
 
     public ngOnInit(): void {
         this.selectedNote$.subscribe((selectedNote: Note | undefined): void => {
+            console.log(selectedNote);
             this.selectedNoteId = selectedNote ? selectedNote.id : undefined;
         });
     }
