@@ -1,0 +1,19 @@
+<div class="toolbar">
+    <div class="toolbar__folder-list-header">
+        devnotes
+    </div>
+    <div class="toolbar__note-list-header">
+        <button class="toolbar__button">
+            x
+        </button>
+
+        <button class="toolbar__button">
+            +
+        </button>
+    </div>
+    <div class="toolbar__note-editor-header">
+        <div *ngIf="(noteSaving$ | async) === true" class="toolbar__saving">
+            saving note...
+        </div>
+    </div>
+</div>

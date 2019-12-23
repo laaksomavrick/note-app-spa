@@ -20,6 +20,7 @@ import { FoldersService } from './folders/folders.service';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NoteListComponent } from './notes/note-list/note-list.component';
 import { NotesService } from './notes/notes.service';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { NotesService } from './notes/notes.service';
         NoteListComponent,
         NavigationComponent,
         CreateFolderComponent,
+        ToolbarComponent,
     ],
     imports: [
         CommonModule,

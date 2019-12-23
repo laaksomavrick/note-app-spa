@@ -15,18 +15,11 @@ export class DashboardComponent implements OnInit {
         ({ dashboardState }: AppStore) => dashboardState.loading,
     );
 
-    public noteSaving$: Observable<boolean> = this.store.select(
-        ({ notesState }: AppStore) => notesState.updateNoteLoading,
-    );
-
     constructor(private store: Store<AppStore>, private readonly router: Router) {}
 
     public ngOnInit(): void {
-        // TODO: this.store.dispatch(appBoot)
-        // TODO: handle note as well
         const maybeFolderId = this.parseUrlForFolderId(this.router.url);
         const maybeNoteId = this.parseUrlForNoteId(this.router.url);
-        // this.store.dispatch(getFoldersAttempt({ folderId: maybeFolderId }));
         this.store.dispatch(
             appBootAttempt({ folderId: maybeFolderId, noteId: maybeNoteId }),
         );

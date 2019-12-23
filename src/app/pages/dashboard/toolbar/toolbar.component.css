@@ -1,0 +1,27 @@
+.toolbar {
+   padding: 10px 0 10px 0;
+   border-bottom: 1px var(--foreground-primary) solid;
+   display: flex;
+}
+
+.toolbar__folder-list-header {
+    padding-left: 17px;
+    width: 150px;
+}
+
+.toolbar__note-list-header {
+    width: 150px;
+    padding-left: 7px;
+}
+
+.toolbar__note-editor-header {
+    margin-left: auto;
+}
+
+.toolbar__button {
+    border: 1px var(--foreground-primary) solid;
+    outline: none;
+    background: transparent;
+    border-radius: 2px;
+    margin-right: 7px;
+}
