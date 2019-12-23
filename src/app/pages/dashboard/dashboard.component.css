@@ -5,8 +5,13 @@
 }
 
 .dashboard-page__toolbar {
-    padding: 0 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
     border-bottom: 1px var(--foreground-primary) solid;
+    display: flex;
+}
+
+.dashboard-page__toolbar-saving {
+    margin-left: auto;
 }
 
 .dashboard-page__main {

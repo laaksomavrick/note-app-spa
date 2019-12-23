@@ -15,6 +15,10 @@ export class DashboardComponent implements OnInit {
         ({ dashboardState }: AppStore) => dashboardState.loading,
     );
 
+    public noteSaving$: Observable<boolean> = this.store.select(
+        ({ notesState }: AppStore) => notesState.updateNoteLoading,
+    );
+
     constructor(private store: Store<AppStore>, private readonly router: Router) {}
 
     public ngOnInit(): void {

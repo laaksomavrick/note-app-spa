@@ -1,6 +1,11 @@
 <div class="dashboard-page">
     <div class="dashboard-page__toolbar">
-        <div>Toolbar goes here</div>
+        <div>
+            devnotes
+        </div>
+        <div *ngIf="(noteSaving$ | async) === true" class="dashboard-page__toolbar-saving">
+            saving note...
+        </div>
     </div>
     <div class="dashboard-page__main" *ngIf="(loading$ | async) === false; else loadingMask">
         <div class="dashboard-page__content">

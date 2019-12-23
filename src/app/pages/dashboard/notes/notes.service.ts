@@ -4,7 +4,7 @@ import { ApiErrorResponse } from '../../../http/http.interfaces';
 import { HttpService } from '../../../http/http.service';
 import {
     GetNotesSuccessResponse,
-    Note,
+    UpdateNoteAttemptProps,
     UpdateNoteSuccessResponse,
 } from '../../../store/notes/notes.interfaces';
 
@@ -25,7 +25,9 @@ export class NotesService extends HttpService {
             .toPromise();
     }
 
-    public updateNote(note: Note): Promise<UpdateNoteSuccessResponse | ApiErrorResponse> {
+    public updateNote(
+        note: UpdateNoteAttemptProps,
+    ): Promise<UpdateNoteSuccessResponse | ApiErrorResponse> {
         const { name, content, folderId } = note;
         const updateNoteRequest = { note: { name, content, folderId } };
         return this.http
