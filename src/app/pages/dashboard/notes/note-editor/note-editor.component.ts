@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+    AfterContentInit,
+    AfterViewChecked,
+    AfterViewInit,
+    Component,
+    OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -49,8 +55,12 @@ export class NoteEditorComponent implements OnInit {
 
         this.selectedNote$.subscribe((selectedNote: Note | undefined): void => {
             if (selectedNote) {
-                this.noteForm.controls['name'].setValue(selectedNote.name);
-                this.noteForm.controls['content'].setValue(selectedNote.content);
+                this.noteForm.controls['name'].setValue(selectedNote.name, {
+                    emitEvent: false,
+                });
+                this.noteForm.controls['content'].setValue(selectedNote.content, {
+                    emitEvent: false,
+                });
             }
         });
 
