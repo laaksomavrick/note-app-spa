@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -31,6 +31,7 @@ import { AuthEffects } from './store/auth/auth.effects';
         StoreModule.forRoot<AppStore, AppActions>(appStore),
         EffectsModule.forRoot([AuthEffects]),
         BrowserModule,
+        ReactiveFormsModule,
     ],
     providers: [AuthGuard],
     bootstrap: [AppComponent],

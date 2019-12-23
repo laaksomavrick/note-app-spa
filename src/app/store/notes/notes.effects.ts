@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { switchMap } from 'rxjs/operators';
+import { exhaustMap, switchMap } from 'rxjs/operators';
 import { isApiErrorResponse } from '../../http/http.helpers';
 import { NotesService } from '../../pages/dashboard/notes/notes.service';
-import { getNotesAttempt, getNotesFailure, getNotesSuccess } from './notes.actions';
-import { GetNotesAttemptProps } from './notes.interfaces';
+import {
+    getNotesAttempt,
+    getNotesFailure,
+    getNotesSuccess,
+    updateNoteAttempt,
+    updateNoteFailure,
+    updateNoteSuccess,
+} from './notes.actions';
+import { GetNotesAttemptProps, UpdateNoteAttemptProps } from './notes.interfaces';
 
 @Injectable()
 export class NotesEffects {
@@ -19,12 +25,6 @@ export class NotesEffects {
                         return getNotesFailure(response);
                     }
 
-                    if (props.noteId) {
-                        const folderId = props.folderId;
-                        const noteId = props.noteId;
-                        // await this.router.navigate(['folder', folderId, 'note', noteId]);
-                    }
-
                     return getNotesSuccess(response);
                 } catch (e) {
                     return getNotesFailure(e);
@@ -33,9 +33,27 @@ export class NotesEffects {
         ),
     );
 
+    public updateNote$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(updateNoteAttempt),
+            exhaustMap(async (props: UpdateNoteAttemptProps) => {
+                try {
+                    const response = await this.notesService.updateNote(props);
+
+                    if (isApiErrorResponse(response)) {
+                        return updateNoteFailure(response);
+                    }
+
+                    return updateNoteSuccess(response);
+                } catch (e) {
+                    return updateNoteFailure(e);
+                }
+            }),
+        ),
+    );
+
     constructor(
         private readonly actions$: Actions,
         private readonly notesService: NotesService,
-        private readonly router: Router,
     ) {}
 }

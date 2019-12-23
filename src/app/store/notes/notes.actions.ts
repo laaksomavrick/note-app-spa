@@ -4,6 +4,8 @@ import {
     GetNotesAttemptProps,
     GetNotesSuccessResponse,
     SetSelectedNoteProps,
+    UpdateNoteAttemptProps,
+    UpdateNoteSuccessResponse,
 } from './notes.interfaces';
 
 export const getNotesSuccess = createAction(
@@ -24,8 +26,24 @@ export const setSelectedNote = createAction(
     props<SetSelectedNoteProps>(),
 );
 
+export const updateNoteSuccess = createAction(
+    '[Notes] Update note success',
+    props<UpdateNoteSuccessResponse>(),
+);
+export const updateNoteFailure = createAction(
+    '[Notes] Update note failure',
+    props<ApiErrorResponse>(),
+);
+export const updateNoteAttempt = createAction(
+    '[Notes] Update note attempt',
+    props<UpdateNoteAttemptProps>(),
+);
+
 export type NoteActions =
     | ReturnType<typeof getNotesSuccess>
     | ReturnType<typeof getNotesFailure>
     | ReturnType<typeof getNotesAttempt>
-    | ReturnType<typeof setSelectedNote>;
+    | ReturnType<typeof setSelectedNote>
+    | ReturnType<typeof updateNoteSuccess>
+    | ReturnType<typeof updateNoteFailure>
+    | ReturnType<typeof updateNoteAttempt>;

@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ApiErrorResponse } from '../../../http/http.interfaces';
 import { HttpService } from '../../../http/http.service';
-import { GetNotesSuccessResponse } from '../../../store/notes/notes.interfaces';
+import {
+    GetNotesSuccessResponse,
+    Note,
+    UpdateNoteSuccessResponse,
+} from '../../../store/notes/notes.interfaces';
 
 @Injectable()
 export class NotesService extends HttpService {
@@ -19,6 +22,18 @@ export class NotesService extends HttpService {
                 ...this.httpOptions,
                 params: { folderId: `${folderId}` },
             })
+            .toPromise();
+    }
+
+    public updateNote(note: Note): Promise<UpdateNoteSuccessResponse | ApiErrorResponse> {
+        const { name, content, folderId } = note;
+        const updateNoteRequest = { note: { name, content, folderId } };
+        return this.http
+            .patch<UpdateNoteSuccessResponse | ApiErrorResponse>(
+                `${this.url}/notes/${note.id}`,
+                updateNoteRequest,
+                this.httpOptions,
+            )
             .toPromise();
     }
 }

@@ -1,5 +1,11 @@
-<div class="note-editor" *ngIf="selectedNote$ | async as selectedNote;">
-   <input (keydown)="handleNoteTitleChange($event)" class="note-editor__title" [value]="selectedNote.name"/>
-   <textarea class="note-editor__body" [value]="selectedNote.content"></textarea>
+<div class="note-editor" *ngIf="selectedNote$ | async;" [formGroup]="noteForm">
+   <input
+        class="note-editor__title"
+        formControlName="name"/>
+
+   <textarea
+           class="note-editor__body"
+           formControlName="content">
+   </textarea>
 </div>
 

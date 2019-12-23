@@ -7,8 +7,17 @@ import {
     getNotesSuccess,
     NoteActions,
     setSelectedNote,
+    updateNoteAttempt,
+    updateNoteFailure,
+    updateNoteSuccess,
 } from './notes.actions';
-import { GetNotesSuccessResponse, Note, SetSelectedNoteProps } from './notes.interfaces';
+import {
+    GetNotesSuccessResponse,
+    Note,
+    SetSelectedNoteProps,
+    UpdateNoteAttemptProps,
+    UpdateNoteSuccessResponse,
+} from './notes.interfaces';
 
 export interface NotesToFolderMapping {
     [noteId: string]: Note[];
@@ -20,6 +29,9 @@ export interface NotesState {
     selectedNote?: Note;
     loading: boolean;
     error?: string;
+
+    updateNoteLoading: boolean;
+    updateNoteError?: string;
 }
 
 export const initialState: NotesState = {
@@ -28,6 +40,9 @@ export const initialState: NotesState = {
     selectedNote: undefined,
     loading: false,
     error: undefined,
+
+    updateNoteLoading: false,
+    updateNoteError: undefined,
 };
 
 const _noteReducer = createReducer<NotesState, NoteActions>(
@@ -39,6 +54,7 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
             selectedNote: state.notes.find((note: Note) => note.id === props.noteId),
         }),
     ),
+
     on(
         getNotesSuccess,
         (state: NotesState, props: GetNotesSuccessResponse): NotesState => {
@@ -72,6 +88,39 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
         }),
     ),
     on(getNotesAttempt, (state: NotesState): NotesState => ({ ...state, loading: true })),
+
+    on(
+        updateNoteSuccess,
+        (state: NotesState, props: UpdateNoteSuccessResponse): NotesState => {
+            const notes = state.notes.map((note: Note) => {
+                if (note.id === props.resource.note.id) {
+                    return props.resource.note;
+                } else {
+                    return note;
+                }
+            });
+            return {
+                ...state,
+                updateNoteError: undefined,
+                updateNoteLoading: false,
+                notes,
+            };
+        },
+    ),
+    on(
+        updateNoteFailure,
+        (state: NotesState, props: ApiErrorResponse): NotesState => ({
+            ...state,
+            updateNoteError: getHumanReadableApiError(props),
+        }),
+    ),
+    on(
+        updateNoteAttempt,
+        (state: NotesState, props: UpdateNoteAttemptProps): NotesState => ({
+            ...state,
+            updateNoteLoading: true,
+        }),
+    ),
 );
 
 // tslint:disable-next-line:typedef
