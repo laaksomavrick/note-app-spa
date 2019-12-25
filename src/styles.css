@@ -26,6 +26,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100
     border-right: 1px transparent solid;
     outline: none;
     background: transparent;
+    width: 100%;
     max-width: 149px;
     padding-left: 15px;
 }
@@ -37,6 +38,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100
     border-right: 1px transparent solid;
     outline: none;
     background: transparent;
-    max-width: 149px;
+    width: 100%;
+    max-width: 199px;
     padding-left: 15px;
 }
