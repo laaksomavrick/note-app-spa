@@ -21,6 +21,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { CreateNoteComponent } from './notes/create-note/create-note.component';
 import { NoteListComponent } from './notes/note-list/note-list.component';
 import { NotesService } from './notes/notes.service';
+import { RouterService } from './router.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
         AuthGuard,
         FoldersService,
         NotesService,
+        RouterService,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     ],
     bootstrap: [DashboardComponent],

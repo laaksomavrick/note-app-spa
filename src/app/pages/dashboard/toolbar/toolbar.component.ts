@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppStore } from '../../../app.store';
 import { toggleCreateNoteVisible } from '../../../store/notes/notes.actions';
+import { RouterService } from '../router.service';
 
 @Component({
     selector: 'app-toolbar',
@@ -14,14 +15,18 @@ export class ToolbarComponent implements OnInit {
         ({ notesState }: AppStore) => notesState.updateNoteLoading,
     );
 
-    constructor(private store: Store<AppStore>) {}
+    constructor(
+        private readonly store: Store<AppStore>,
+        private readonly routerService: RouterService,
+    ) {}
 
     public ngOnInit(): void {}
 
     public onClickNew(): void {
-        // TODO: if in folder, new folder
-        // if none, nothing
-        // if folder/note, new note
-        this.store.dispatch(toggleCreateNoteVisible());
+        const maybeFolderId = this.routerService.getFolderIdFromRoute();
+
+        if (maybeFolderId) {
+            this.store.dispatch(toggleCreateNoteVisible());
+        }
     }
 }
