@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppStore } from '../../../app.store';
+import { deleteFoldersAttempt } from '../../../store/folders/folders.actions';
 import { toggleCreateNoteVisible } from '../../../store/notes/notes.actions';
 import { RouterService } from '../router.service';
 
@@ -9,6 +10,10 @@ enum DeleteButtonIds {
     DeleteButton = 'deleteButton',
     DeleteButtonAreYouSure = 'deleteButtonAreYouSure',
 }
+
+// TODO: inactive/active toggle state
+// e.g., if only 1 folder exists, can't delete it
+// if nothing selected, can't delete nothing
 
 @Component({
     selector: 'app-toolbar',
@@ -81,7 +86,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         if (maybeNoteId) {
             console.log('TODO: delete note');
         } else if (maybeFolderId) {
-            console.log('TODO: delete folder');
+            this.store.dispatch(deleteFoldersAttempt({ folderId: maybeFolderId }));
         }
 
         this.toggleDeleteAreYouSureOff();

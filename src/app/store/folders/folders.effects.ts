@@ -8,11 +8,18 @@ import {
     createFoldersAttempt,
     createFoldersFailure,
     createFoldersSuccess,
+    deleteFoldersAttempt,
+    deleteFoldersFailure,
+    deleteFoldersSuccess,
     getFoldersAttempt,
     getFoldersFailure,
     getFoldersSuccess,
 } from './folders.actions';
-import { CreateFolderAttemptProps, GetFolderAttemptProps } from './folders.interfaces';
+import {
+    CreateFolderAttemptProps,
+    DeleteFolderAttemptProps,
+    GetFolderAttemptProps,
+} from './folders.interfaces';
 
 @Injectable()
 export class FoldersEffects {
@@ -61,6 +68,27 @@ export class FoldersEffects {
                     return createFoldersSuccess(response);
                 } catch (e) {
                     return createFoldersFailure(e);
+                }
+            }),
+        ),
+    );
+
+    public deleteFolder$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(deleteFoldersAttempt),
+            exhaustMap(async (props: DeleteFolderAttemptProps) => {
+                try {
+                    const response = await this.folderService.deleteFolder(
+                        props.folderId,
+                    );
+
+                    if (isApiErrorResponse(response)) {
+                        return deleteFoldersFailure(response);
+                    }
+
+                    return deleteFoldersSuccess({ folderId: props.folderId });
+                } catch (e) {
+                    return deleteFoldersFailure(e);
                 }
             }),
         ),

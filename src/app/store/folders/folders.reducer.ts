@@ -5,6 +5,9 @@ import {
     createFoldersAttempt,
     createFoldersFailure,
     createFoldersSuccess,
+    deleteFoldersAttempt,
+    deleteFoldersFailure,
+    deleteFoldersSuccess,
     FolderActions,
     getFoldersAttempt,
     getFoldersFailure,
@@ -13,6 +16,7 @@ import {
 } from './folders.actions';
 import {
     CreateFolderSuccessResponse,
+    DeleteFolderSuccessResponse,
     Folder,
     GetFoldersSuccessResponse,
 } from './folders.interfaces';
@@ -25,6 +29,9 @@ export interface FoldersState {
     createFolderVisible: boolean;
     createFolderLoading: boolean;
     createFolderError: string | undefined;
+
+    deleteFolderLoading: boolean;
+    deleteFolderError: string | undefined;
 }
 
 export const initialState: FoldersState = {
@@ -35,6 +42,9 @@ export const initialState: FoldersState = {
     createFolderVisible: false,
     createFolderLoading: false,
     createFolderError: undefined,
+
+    deleteFolderLoading: false,
+    deleteFolderError: undefined,
 };
 
 export const _folderReducer = createReducer<FoldersState, FolderActions>(
@@ -95,6 +105,33 @@ export const _folderReducer = createReducer<FoldersState, FolderActions>(
     on(
         createFoldersAttempt,
         (state: FoldersState): FoldersState => ({ ...state, createFolderLoading: true }),
+    ),
+
+    on(
+        deleteFoldersSuccess,
+        (state: FoldersState, props: DeleteFolderSuccessResponse): FoldersState => {
+            const folders = state.folders.filter(
+                (folder: Folder) => folder.id !== props.folderId,
+            );
+            return {
+                ...state,
+                folders,
+                deleteFolderError: undefined,
+                deleteFolderLoading: false,
+            };
+        },
+    ),
+    on(
+        deleteFoldersFailure,
+        (state: FoldersState, props: ApiErrorResponse): FoldersState => ({
+            ...state,
+            deleteFolderLoading: false,
+            deleteFolderError: getHumanReadableApiError(props),
+        }),
+    ),
+    on(
+        deleteFoldersAttempt,
+        (state: FoldersState): FoldersState => ({ ...state, deleteFolderLoading: true }),
     ),
 );
 

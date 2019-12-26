@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiErrorResponse } from '../../../http/http.interfaces';
+import { ApiErrorResponse, ApiResponse } from '../../../http/http.interfaces';
 import { HttpService } from '../../../http/http.service';
 import {
     CreateFolderSuccessResponse,
@@ -30,6 +30,15 @@ export class FoldersService extends HttpService {
             .post<CreateFolderSuccessResponse | ApiErrorResponse>(
                 `${this.url}/folders`,
                 createFolderRequest,
+                this.httpOptions,
+            )
+            .toPromise();
+    }
+
+    public deleteFolder(folderId: number): Promise<ApiResponse | ApiErrorResponse> {
+        return this.http
+            .delete<CreateFolderSuccessResponse | ApiErrorResponse>(
+                `${this.url}/folders/${folderId}`,
                 this.httpOptions,
             )
             .toPromise();

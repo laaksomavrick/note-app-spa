@@ -1,8 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { ApiErrorResponse } from '../../http/http.interfaces';
+import { ApiErrorResponse, ApiResponse } from '../../http/http.interfaces';
 import {
     CreateFolderAttemptProps,
     CreateFolderSuccessResponse,
+    DeleteFolderAttemptProps,
+    DeleteFolderSuccessResponse,
     GetFolderAttemptProps,
     GetFoldersSuccessResponse,
 } from './folders.interfaces';
@@ -36,6 +38,20 @@ export const createFoldersAttempt = createAction(
     '[Folders] Create folders attempt',
     props<CreateFolderAttemptProps>(),
 );
+
+export const deleteFoldersSuccess = createAction(
+    '[Folders] Delete folders success',
+    props<DeleteFolderSuccessResponse>(),
+);
+export const deleteFoldersFailure = createAction(
+    '[Folders] Delete folders failure',
+    props<ApiErrorResponse>(),
+);
+export const deleteFoldersAttempt = createAction(
+    '[Folders] Delete folders attempt',
+    props<DeleteFolderAttemptProps>(),
+);
+
 export type FolderActions =
     | ReturnType<typeof getFoldersSuccess>
     | ReturnType<typeof getFoldersFailure>
@@ -43,4 +59,7 @@ export type FolderActions =
     | ReturnType<typeof toggleCreateFolderVisible>
     | ReturnType<typeof createFoldersSuccess>
     | ReturnType<typeof createFoldersFailure>
-    | ReturnType<typeof createFoldersAttempt>;
+    | ReturnType<typeof createFoldersAttempt>
+    | ReturnType<typeof deleteFoldersSuccess>
+    | ReturnType<typeof deleteFoldersFailure>
+    | ReturnType<typeof deleteFoldersAttempt>;

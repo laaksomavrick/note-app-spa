@@ -21,6 +21,14 @@ export interface CreateFolderAttemptProps {
     name: string;
 }
 
+export interface DeleteFolderAttemptProps {
+    folderId: number;
+}
+
+export interface DeleteFolderSuccessResponse {
+    folderId: number;
+}
+
 export interface CreateFolderSuccessResponse extends ApiResponse {
     resource: {
         folder: Folder;
