@@ -3,7 +3,10 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppStore } from '../../../app.store';
 import { deleteFoldersAttempt } from '../../../store/folders/folders.actions';
-import { toggleCreateNoteVisible } from '../../../store/notes/notes.actions';
+import {
+    deleteNoteAttempt,
+    toggleCreateNoteVisible,
+} from '../../../store/notes/notes.actions';
 import { RouterService } from '../router.service';
 
 enum DeleteButtonIds {
@@ -14,6 +17,8 @@ enum DeleteButtonIds {
 // TODO: inactive/active toggle state
 // e.g., if only 1 folder exists, can't delete it
 // if nothing selected, can't delete nothing
+
+// TODO: deletion folder/note state during attempt (ie opacity: 50% or something)
 
 @Component({
     selector: 'app-toolbar',
@@ -84,7 +89,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         const maybeNoteId = this.routerService.getNoteIdFromRoute();
 
         if (maybeNoteId) {
-            console.log('TODO: delete note');
+            this.store.dispatch(deleteNoteAttempt({ noteId: maybeNoteId }));
         } else if (maybeFolderId) {
             this.store.dispatch(deleteFoldersAttempt({ folderId: maybeFolderId }));
         }

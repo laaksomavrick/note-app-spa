@@ -4,9 +4,18 @@ import { exhaustMap, switchMap } from 'rxjs/operators';
 import { isApiErrorResponse } from '../../http/http.helpers';
 import { NotesService } from '../../pages/dashboard/notes/notes.service';
 import {
+    deleteFoldersAttempt,
+    deleteFoldersFailure,
+    deleteFoldersSuccess,
+} from '../folders/folders.actions';
+import { DeleteFolderAttemptProps } from '../folders/folders.interfaces';
+import {
     createNoteAttempt,
     createNoteFailure,
     createNoteSuccess,
+    deleteNoteAttempt,
+    deleteNoteFailure,
+    deleteNoteSuccess,
     getNotesAttempt,
     getNotesFailure,
     getNotesSuccess,
@@ -16,6 +25,7 @@ import {
 } from './notes.actions';
 import {
     CreateNoteAttemptProps,
+    DeleteNoteAttemptProps,
     GetNotesAttemptProps,
     UpdateNoteAttemptProps,
 } from './notes.interfaces';
@@ -73,6 +83,25 @@ export class NotesEffects {
                     return createNoteSuccess(response);
                 } catch (e) {
                     return createNoteFailure(e);
+                }
+            }),
+        ),
+    );
+
+    public deleteNote$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(deleteNoteAttempt),
+            exhaustMap(async (props: DeleteNoteAttemptProps) => {
+                try {
+                    const response = await this.notesService.deleteNote(props.noteId);
+
+                    if (isApiErrorResponse(response)) {
+                        return deleteNoteFailure(response);
+                    }
+
+                    return deleteNoteSuccess({ noteId: props.noteId });
+                } catch (e) {
+                    return deleteNoteFailure(e);
                 }
             }),
         ),

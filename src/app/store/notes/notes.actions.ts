@@ -3,6 +3,8 @@ import { ApiErrorResponse } from '../../http/http.interfaces';
 import {
     CreateNoteAttemptProps,
     CreateNoteSuccessResponse,
+    DeleteNoteAttemptProps,
+    DeleteNoteSuccessResponse,
     GetNotesAttemptProps,
     GetNotesSuccessResponse,
     SetSelectedNoteProps,
@@ -56,6 +58,19 @@ export const createNoteAttempt = createAction(
     props<CreateNoteAttemptProps>(),
 );
 
+export const deleteNoteSuccess = createAction(
+    '[Notes] Delete note success',
+    props<DeleteNoteSuccessResponse>(),
+);
+export const deleteNoteFailure = createAction(
+    '[Notes] Delete note failure',
+    props<ApiErrorResponse>(),
+);
+export const deleteNoteAttempt = createAction(
+    '[Notes] Delete note attempt',
+    props<DeleteNoteAttemptProps>(),
+);
+
 export type NoteActions =
     | ReturnType<typeof getNotesSuccess>
     | ReturnType<typeof getNotesFailure>
@@ -67,4 +82,7 @@ export type NoteActions =
     | ReturnType<typeof toggleCreateNoteVisible>
     | ReturnType<typeof createNoteSuccess>
     | ReturnType<typeof createNoteFailure>
-    | ReturnType<typeof createNoteAttempt>;
+    | ReturnType<typeof createNoteAttempt>
+    | ReturnType<typeof deleteNoteSuccess>
+    | ReturnType<typeof deleteNoteFailure>
+    | ReturnType<typeof deleteNoteAttempt>;

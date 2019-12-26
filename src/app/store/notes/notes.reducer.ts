@@ -5,6 +5,9 @@ import {
     createNoteAttempt,
     createNoteFailure,
     createNoteSuccess,
+    deleteNoteAttempt,
+    deleteNoteFailure,
+    deleteNoteSuccess,
     getNotesAttempt,
     getNotesFailure,
     getNotesSuccess,
@@ -18,6 +21,8 @@ import {
 import {
     CreateNoteAttemptProps,
     CreateNoteSuccessResponse,
+    DeleteNoteAttemptProps,
+    DeleteNoteSuccessResponse,
     GetNotesSuccessResponse,
     Note,
     SetSelectedNoteProps,
@@ -37,6 +42,9 @@ export interface NotesState {
     createNoteVisible: boolean;
     createNoteLoading: boolean;
     createNoteError?: string;
+
+    deleteNoteLoading: boolean;
+    deleteNoteError?: string;
 }
 
 export const initialState: NotesState = {
@@ -51,6 +59,9 @@ export const initialState: NotesState = {
     createNoteVisible: false,
     createNoteLoading: false,
     createNoteError: undefined,
+
+    deleteNoteLoading: false,
+    deleteNoteError: undefined,
 };
 
 const _noteReducer = createReducer<NotesState, NoteActions>(
@@ -144,6 +155,7 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
         createNoteFailure,
         (state: NotesState, props: ApiErrorResponse): NotesState => ({
             ...state,
+            createNoteLoading: false,
             createNoteError: getHumanReadableApiError(props),
         }),
     ),
@@ -152,6 +164,35 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
         (state: NotesState, props: CreateNoteAttemptProps): NotesState => ({
             ...state,
             createNoteLoading: true,
+        }),
+    ),
+
+    on(
+        deleteNoteSuccess,
+        (state: NotesState, props: DeleteNoteSuccessResponse): NotesState => {
+            const notes = state.notes.filter((note: Note) => note.id !== props.noteId);
+            return {
+                ...state,
+                notes,
+                deleteNoteError: undefined,
+                deleteNoteLoading: false,
+            };
+        },
+    ),
+    on(
+        deleteNoteFailure,
+        (state: NotesState, props: ApiErrorResponse): NotesState => ({
+            ...state,
+            deleteNoteLoading: false,
+            deleteNoteError: getHumanReadableApiError(props),
+        }),
+    ),
+    on(
+        deleteNoteAttempt,
+        (state: NotesState, props: DeleteNoteAttemptProps): NotesState => ({
+            ...state,
+            deleteNoteError: undefined,
+            deleteNoteLoading: true,
         }),
     ),
 );

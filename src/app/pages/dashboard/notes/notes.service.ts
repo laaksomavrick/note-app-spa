@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiErrorResponse } from '../../../http/http.interfaces';
+import { ApiErrorResponse, ApiResponse } from '../../../http/http.interfaces';
 import { HttpService } from '../../../http/http.service';
+import { CreateFolderSuccessResponse } from '../../../store/folders/folders.interfaces';
 import {
     CreateNoteAttemptProps,
     CreateNoteSuccessResponse,
@@ -50,6 +51,15 @@ export class NotesService extends HttpService {
             .post<CreateNoteSuccessResponse | ApiErrorResponse>(
                 `${this.url}/notes`,
                 createNoteBody,
+                this.httpOptions,
+            )
+            .toPromise();
+    }
+
+    public deleteNote(noteId: number): Promise<ApiResponse | ApiErrorResponse> {
+        return this.http
+            .delete<CreateFolderSuccessResponse | ApiErrorResponse>(
+                `${this.url}/notes/${noteId}`,
                 this.httpOptions,
             )
             .toPromise();

@@ -50,3 +50,11 @@ export interface CreateNoteSuccessResponse extends ApiResponse {
         note: Note;
     };
 }
+
+export interface DeleteNoteSuccessResponse {
+    noteId: number;
+}
+
+export interface DeleteNoteAttemptProps {
+    noteId: number;
+}
