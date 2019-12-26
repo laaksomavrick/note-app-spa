@@ -3,8 +3,21 @@
         devnotes
     </div>
     <div class="toolbar__note-list-header">
-        <button class="toolbar__button">
+        <button
+                *ngIf="deleteAreYouSure === false"
+                id="deleteButton"
+                class="toolbar__button"
+                (click)="toggleDeleteAreYouSureOn()">
             x
+        </button>
+
+        <button
+                *ngIf="deleteAreYouSure === true"
+                id="deleteButtonAreYouSure"
+                class="toolbar__button toolbar__button--destroy"
+                (click)="onClickDelete()"
+                (cancel)="toggleDeleteAreYouSureOff()">
+           ?
         </button>
 
         <button class="toolbar__button" (click)="onClickNew()">

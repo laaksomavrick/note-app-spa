@@ -1,26 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppStore } from '../../../app.store';
 import { toggleCreateNoteVisible } from '../../../store/notes/notes.actions';
 import { RouterService } from '../router.service';
 
+enum DeleteButtonIds {
+    DeleteButton = 'deleteButton',
+    DeleteButtonAreYouSure = 'deleteButtonAreYouSure',
+}
+
 @Component({
     selector: 'app-toolbar',
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.css'],
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent implements OnInit, OnDestroy {
     public noteSaving$: Observable<boolean> = this.store.select(
         ({ notesState }: AppStore) => notesState.updateNoteLoading,
     );
 
+    public deleteAreYouSure = false;
+
+    private deleteClickAwayFn?: () => void;
+
     constructor(
         private readonly store: Store<AppStore>,
         private readonly routerService: RouterService,
+        private readonly renderer: Renderer2,
     ) {}
 
     public ngOnInit(): void {}
+
+    public ngOnDestroy(): void {
+        if (this.deleteClickAwayFn) {
+            this.deleteClickAwayFn();
+        }
+    }
 
     public onClickNew(): void {
         const maybeFolderId = this.routerService.getFolderIdFromRoute();
@@ -28,5 +44,46 @@ export class ToolbarComponent implements OnInit {
         if (maybeFolderId) {
             this.store.dispatch(toggleCreateNoteVisible());
         }
+    }
+
+    public toggleDeleteAreYouSureOn(): void {
+        this.deleteAreYouSure = true;
+        this.deleteClickAwayFn = this.renderer.listen('document', 'click', (e: Event) => {
+            if (!e.target) {
+                return;
+            }
+
+            // TODO hack
+            // tslint:disable-next-line:no-any
+            const id = (e.target as any).id;
+
+            if (
+                id !== DeleteButtonIds.DeleteButton &&
+                id !== DeleteButtonIds.DeleteButtonAreYouSure
+            ) {
+                this.toggleDeleteAreYouSureOff();
+            }
+        });
+    }
+
+    public toggleDeleteAreYouSureOff(): void {
+        if (this.deleteClickAwayFn) {
+            this.deleteClickAwayFn();
+        }
+
+        this.deleteAreYouSure = false;
+    }
+
+    public onClickDelete(): void {
+        const maybeFolderId = this.routerService.getFolderIdFromRoute();
+        const maybeNoteId = this.routerService.getNoteIdFromRoute();
+
+        if (maybeNoteId) {
+            console.log('TODO: delete note');
+        } else if (maybeFolderId) {
+            console.log('TODO: delete folder');
+        }
+
+        this.toggleDeleteAreYouSureOff();
     }
 }
