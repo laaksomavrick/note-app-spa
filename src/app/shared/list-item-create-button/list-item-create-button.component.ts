@@ -31,6 +31,7 @@ export class ListItemCreateButtonComponent implements OnInit {
 
         if (event.keyCode === 13) {
             await this.handler(this.newItemNameInput);
+            this.newItemNameInput = undefined;
         }
     }
 
@@ -40,5 +41,6 @@ export class ListItemCreateButtonComponent implements OnInit {
         }
 
         await this.handler(this.newItemNameInput);
+        this.newItemNameInput = undefined;
     }
 }

@@ -4,10 +4,6 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { AppStore } from '../../../../app.store';
 import {
-    createFoldersAttempt,
-    toggleCreateFolderVisible,
-} from '../../../../store/folders/folders.actions';
-import {
     createNoteAttempt,
     toggleCreateNoteVisible,
 } from '../../../../store/notes/notes.actions';
