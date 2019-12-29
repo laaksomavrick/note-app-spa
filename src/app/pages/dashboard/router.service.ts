@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class RouterService {
@@ -17,13 +17,13 @@ export class RouterService {
 
     // TODO: hack!!
     private parseUrlForFolderId(url: string): number | undefined {
-        const [_, firstSplit] = url.split('/folder/');
+        const [_, firstSplit] = url.split("/folder/");
 
         if (!firstSplit) {
             return undefined;
         }
 
-        const [maybeFolderId] = firstSplit.split('/');
+        const [maybeFolderId] = firstSplit.split("/");
 
         if (maybeFolderId) {
             return parseInt(maybeFolderId, 10);
@@ -33,13 +33,13 @@ export class RouterService {
 
     // TODO: hack!!
     private parseUrlForNoteId(url: string): number | undefined {
-        const [_, firstSplit] = url.split('/note/');
+        const [_, firstSplit] = url.split("/note/");
 
         if (!firstSplit) {
             return undefined;
         }
 
-        const [maybeFolderId] = firstSplit.split('/');
+        const [maybeFolderId] = firstSplit.split("/");
 
         if (maybeFolderId) {
             return parseInt(maybeFolderId, 10);

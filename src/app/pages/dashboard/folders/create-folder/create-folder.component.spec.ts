@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CreateFolderComponent } from './create-folder.component';
+import { CreateFolderComponent } from "./create-folder.component";
 
-describe('CreateFolderComponent', () => {
+describe("CreateFolderComponent", () => {
     let component: CreateFolderComponent;
     let fixture: ComponentFixture<CreateFolderComponent>;
 
@@ -18,7 +18,7 @@ describe('CreateFolderComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it("should create", () => {
         expect(component).toBeTruthy();
     });
 });

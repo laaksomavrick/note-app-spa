@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap } from 'rxjs/operators';
-import { isApiErrorResponse } from '../../http/http.helpers';
-import { FoldersService } from '../../pages/dashboard/folders/folders.service';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { exhaustMap } from "rxjs/operators";
+import { isApiErrorResponse } from "../../http/http.helpers";
+import { FoldersService } from "../../pages/dashboard/folders/folders.service";
 import {
     createFoldersAttempt,
     createFoldersFailure,
@@ -14,12 +14,12 @@ import {
     getFoldersAttempt,
     getFoldersFailure,
     getFoldersSuccess,
-} from './folders.actions';
+} from "./folders.actions";
 import {
     CreateFolderAttemptProps,
     DeleteFolderAttemptProps,
     GetFolderAttemptProps,
-} from './folders.interfaces';
+} from "./folders.interfaces";
 
 @Injectable()
 export class FoldersEffects {
@@ -43,7 +43,7 @@ export class FoldersEffects {
                     } else {
                         const [firstFolder] = response.resource.folders;
                         folderId = firstFolder.id;
-                        await this.router.navigate(['/folder', folderId]);
+                        await this.router.navigate(["/folder", folderId]);
                     }
 
                     return getFoldersSuccess(response);
@@ -78,9 +78,7 @@ export class FoldersEffects {
             ofType(deleteFoldersAttempt),
             exhaustMap(async (props: DeleteFolderAttemptProps) => {
                 try {
-                    const response = await this.folderService.deleteFolder(
-                        props.folderId,
-                    );
+                    const response = await this.folderService.deleteFolder(props.folderId);
 
                     if (isApiErrorResponse(response)) {
                         return deleteFoldersFailure(response);

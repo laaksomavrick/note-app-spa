@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CreateNoteComponent } from './create-note.component';
+import { CreateNoteComponent } from "./create-note.component";
 
-describe('CreateNoteComponent', () => {
+describe("CreateNoteComponent", () => {
     let component: CreateNoteComponent;
     let fixture: ComponentFixture<CreateNoteComponent>;
 
@@ -18,7 +18,7 @@ describe('CreateNoteComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it("should create", () => {
         expect(component).toBeTruthy();
     });
 });

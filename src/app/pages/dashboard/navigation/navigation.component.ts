@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AppStore } from '../../../app.store';
-import { Folder } from '../../../store/folders/folders.interfaces';
-import { getNotesAttempt } from '../../../store/notes/notes.actions';
-import { Note } from '../../../store/notes/notes.interfaces';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { AppStore } from "../../../app.store";
+import { Folder } from "../../../store/folders/folders.interfaces";
+import { getNotesAttempt } from "../../../store/notes/notes.actions";
+import { Note } from "../../../store/notes/notes.interfaces";
 
 @Component({
-    selector: 'app-note-routing',
-    templateUrl: './navigation.component.html',
-    styleUrls: ['./navigation.component.css'],
+    selector: "app-note-routing",
+    templateUrl: "./navigation.component.html",
+    styleUrls: ["./navigation.component.css"],
 })
 export class NavigationComponent implements OnInit {
     public notes$: Observable<Note[]> = this.store.select(
@@ -39,15 +39,12 @@ export class NavigationComponent implements OnInit {
 
     public selectedFolderId?: number;
 
-    constructor(
-        private readonly route: ActivatedRoute,
-        private readonly store: Store<AppStore>,
-    ) {}
+    constructor(private readonly route: ActivatedRoute, private readonly store: Store<AppStore>) {}
 
     public ngOnInit(): void {
         this.route.paramMap.subscribe((params: ParamMap) => {
-            const maybeFolderId = params.get('folderId');
-            const maybeNoteId = params.get('noteId');
+            const maybeFolderId = params.get("folderId");
+            const maybeNoteId = params.get("noteId");
             const noteId = maybeNoteId ? parseInt(maybeNoteId, 10) : undefined;
             if (maybeFolderId) {
                 const folderId = parseInt(maybeFolderId, 10);

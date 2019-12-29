@@ -1,16 +1,16 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-import { AuthRequest, AuthSuccessResponse } from './auth.interfaces';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { TestBed } from "@angular/core/testing";
+import { of } from "rxjs";
+import { AuthRequest, AuthSuccessResponse } from "./auth.interfaces";
 
-import { AuthService } from './auth.service';
+import { AuthService } from "./auth.service";
 
-describe('AuthService', () => {
+describe("AuthService", () => {
     let authService: AuthService;
     let httpSpy: jasmine.SpyObj<HttpClient>;
 
     beforeEach(() => {
-        const _httpSpy = jasmine.createSpyObj('HttpClient', ['post']);
+        const _httpSpy = jasmine.createSpyObj("HttpClient", ["post"]);
 
         TestBed.configureTestingModule({
             imports: [HttpClientModule],
@@ -27,15 +27,15 @@ describe('AuthService', () => {
         httpSpy = TestBed.get(HttpClient);
     });
 
-    it('should be created', () => {
+    it("should be created", () => {
         const service: AuthService = TestBed.get(AuthService);
         expect(service).toBeTruthy();
     });
 
-    it('should be able to authenticate a user', async () => {
-        const email = 'foo';
-        const password = 'bar';
-        const token = 'foo';
+    it("should be able to authenticate a user", async () => {
+        const email = "foo";
+        const password = "bar";
+        const token = "foo";
 
         const expectedAuthRequest: AuthRequest = { auth: { email, password } };
         const expectedAuthResponse: AuthSuccessResponse = {

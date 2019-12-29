@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ListItemCreateButtonComponent } from './list-item-create-button.component';
+import { ListItemCreateButtonComponent } from "./list-item-create-button.component";
 
-describe('ListItemCreateButtonComponent', () => {
+describe("ListItemCreateButtonComponent", () => {
     let component: ListItemCreateButtonComponent;
     let fixture: ComponentFixture<ListItemCreateButtonComponent>;
 
@@ -18,7 +18,7 @@ describe('ListItemCreateButtonComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it("should create", () => {
         expect(component).toBeTruthy();
     });
 });

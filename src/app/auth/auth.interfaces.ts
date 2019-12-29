@@ -1,4 +1,4 @@
-import { ApiErrorResponse, ApiResponse } from '../http/http.interfaces';
+import { ApiErrorResponse, ApiResponse } from "../http/http.interfaces";
 
 export interface AuthAttempt {
     email: string;

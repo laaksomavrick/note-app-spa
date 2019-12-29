@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, switchMap } from 'rxjs/operators';
-import { isApiErrorResponse } from '../../http/http.helpers';
-import { NotesService } from '../../pages/dashboard/notes/notes.service';
+import { Injectable } from "@angular/core";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { exhaustMap, switchMap } from "rxjs/operators";
+import { isApiErrorResponse } from "../../http/http.helpers";
+import { NotesService } from "../../pages/dashboard/notes/notes.service";
 import {
     deleteFoldersAttempt,
     deleteFoldersFailure,
     deleteFoldersSuccess,
-} from '../folders/folders.actions';
-import { DeleteFolderAttemptProps } from '../folders/folders.interfaces';
+} from "../folders/folders.actions";
+import { DeleteFolderAttemptProps } from "../folders/folders.interfaces";
 import {
     createNoteAttempt,
     createNoteFailure,
@@ -22,13 +22,13 @@ import {
     updateNoteAttempt,
     updateNoteFailure,
     updateNoteSuccess,
-} from './notes.actions';
+} from "./notes.actions";
 import {
     CreateNoteAttemptProps,
     DeleteNoteAttemptProps,
     GetNotesAttemptProps,
     UpdateNoteAttemptProps,
-} from './notes.interfaces';
+} from "./notes.interfaces";
 
 @Injectable()
 export class NotesEffects {
@@ -107,8 +107,5 @@ export class NotesEffects {
         ),
     );
 
-    constructor(
-        private readonly actions$: Actions,
-        private readonly notesService: NotesService,
-    ) {}
+    constructor(private readonly actions$: Actions, private readonly notesService: NotesService) {}
 }

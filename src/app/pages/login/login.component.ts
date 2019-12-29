@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AppStore } from '../../app.store';
-import { authAttempt, authDismissError } from '../../store/auth/auth.actions';
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { AppStore } from "../../app.store";
+import { authAttempt, authDismissError } from "../../store/auth/auth.actions";
 
 @Component({
-    selector: 'app-login-page',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
+    selector: "app-login-page",
+    templateUrl: "./login.component.html",
+    styleUrls: ["./login.component.css"],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
     public loading$: Observable<boolean> = this.store.select(
         ({ authState }: AppStore) => authState.loading,
     );
@@ -18,12 +18,10 @@ export class LoginComponent implements OnInit {
         ({ authState }: AppStore) => authState.error,
     );
 
-    public emailFormInput = '';
-    public passwordFormInput = '';
+    public emailFormInput = "";
+    public passwordFormInput = "";
 
     constructor(private store: Store<AppStore>) {}
-
-    public ngOnInit(): void {}
 
     public submitForm(): void {
         const email = this.emailFormInput;

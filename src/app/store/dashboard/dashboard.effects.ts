@@ -1,22 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { exhaustMap } from 'rxjs/operators';
-import { AppStore } from '../../app.store';
-import { isApiErrorResponse } from '../../http/http.helpers';
-import { FoldersService } from '../../pages/dashboard/folders/folders.service';
-import { NotesService } from '../../pages/dashboard/notes/notes.service';
-import { getFoldersFailure, getFoldersSuccess } from '../folders/folders.actions';
-import { GetFoldersSuccessResponse } from '../folders/folders.interfaces';
-import {
-    getNotesFailure,
-    getNotesSuccess,
-    setSelectedNote,
-} from '../notes/notes.actions';
-import { GetNotesSuccessResponse } from '../notes/notes.interfaces';
-import { appBootAttempt, appBootSuccess } from './dashboard.actions';
-import { AppBootProps } from './dashboard.interfaces';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { Actions, Effect, ofType } from "@ngrx/effects";
+import { Store } from "@ngrx/store";
+import { exhaustMap } from "rxjs/operators";
+import { AppStore } from "../../app.store";
+import { isApiErrorResponse } from "../../http/http.helpers";
+import { FoldersService } from "../../pages/dashboard/folders/folders.service";
+import { NotesService } from "../../pages/dashboard/notes/notes.service";
+import { getFoldersFailure, getFoldersSuccess } from "../folders/folders.actions";
+import { GetFoldersSuccessResponse } from "../folders/folders.interfaces";
+import { getNotesFailure, getNotesSuccess, setSelectedNote } from "../notes/notes.actions";
+import { GetNotesSuccessResponse } from "../notes/notes.interfaces";
+import { appBootAttempt, appBootSuccess } from "./dashboard.actions";
+import { AppBootProps } from "./dashboard.interfaces";
 
 // TODO dry; fixup
 
@@ -59,7 +55,7 @@ export class DashboardEffects {
                 dispatches.forEach(dispatch => this.store.dispatch(dispatch));
 
                 if (folderId && noteId) {
-                    await this.router.navigate(['folder', folderId, 'note', noteId]);
+                    await this.router.navigate(["folder", folderId, "note", noteId]);
                 }
 
                 return appBootSuccess();
@@ -101,7 +97,7 @@ export class DashboardEffects {
                 dispatches.forEach(dispatch => this.store.dispatch(dispatch));
 
                 if (folderId && noteId) {
-                    await this.router.navigate(['folder', folderId, 'note', noteId]);
+                    await this.router.navigate(["folder", folderId, "note", noteId]);
                 }
 
                 return appBootSuccess();
@@ -151,9 +147,9 @@ export class DashboardEffects {
                 dispatches.forEach(dispatch => this.store.dispatch(dispatch));
 
                 if (folderId) {
-                    let route = ['folder', folderId];
+                    let route = ["folder", folderId];
                     if (noteId) {
-                        route = [...route, 'note', 'note'];
+                        route = [...route, "note", "note"];
                     }
                     await this.router.navigate(route);
                 }

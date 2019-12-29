@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ApiErrorResponse, ApiResponse } from '../../../http/http.interfaces';
-import { HttpService } from '../../../http/http.service';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { ApiErrorResponse, ApiResponse } from "../../../http/http.interfaces";
+import { HttpService } from "../../../http/http.service";
 import {
     CreateFolderSuccessResponse,
     GetFoldersSuccessResponse,
-} from '../../../store/folders/folders.interfaces';
+} from "../../../store/folders/folders.interfaces";
 
 @Injectable()
 export class FoldersService extends HttpService {
@@ -22,9 +22,7 @@ export class FoldersService extends HttpService {
             .toPromise();
     }
 
-    public createFolder(
-        name: string,
-    ): Promise<CreateFolderSuccessResponse | ApiErrorResponse> {
+    public createFolder(name: string): Promise<CreateFolderSuccessResponse | ApiErrorResponse> {
         const createFolderRequest = { folder: { name } };
         return this.http
             .post<CreateFolderSuccessResponse | ApiErrorResponse>(

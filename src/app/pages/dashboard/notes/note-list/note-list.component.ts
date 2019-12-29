@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { AppStore } from '../../../../app.store';
-import { Note } from '../../../../store/notes/notes.interfaces';
+import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { Observable, of } from "rxjs";
+import { AppStore } from "../../../../app.store";
+import { Note } from "../../../../store/notes/notes.interfaces";
 
 @Component({
-    selector: 'app-note-list',
-    templateUrl: './note-list.component.html',
-    styleUrls: ['./note-list.component.css'],
+    selector: "app-note-list",
+    templateUrl: "./note-list.component.html",
+    styleUrls: ["./note-list.component.css"],
 })
 export class NoteListComponent implements OnInit {
     @Input() public notes$: Observable<Note[]>;
@@ -26,10 +26,7 @@ export class NoteListComponent implements OnInit {
 
     public selectedNoteId?: number = undefined;
 
-    constructor(
-        private readonly router: Router,
-        private readonly store: Store<AppStore>,
-    ) {
+    constructor(private readonly router: Router, private readonly store: Store<AppStore>) {
         this.notes$ = of([]);
         this.error$ = of(undefined);
         this.loading$ = of(false);
@@ -46,6 +43,6 @@ export class NoteListComponent implements OnInit {
     public async onClickNote(note: Note): Promise<void> {
         const noteId = note.id;
         const folderId = note.folderId;
-        await this.router.navigate(['folder', folderId, 'note', noteId]);
+        await this.router.navigate(["folder", folderId, "note", noteId]);
     }
 }

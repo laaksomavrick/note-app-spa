@@ -1,4 +1,4 @@
-import { ApiErrorResponse } from './http.interfaces';
+import { ApiErrorResponse } from "./http.interfaces";
 
 // const NOT_FOUND = 404;
 // const CONFLICT = 409;

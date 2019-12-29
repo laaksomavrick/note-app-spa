@@ -1,7 +1,7 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnInit } from "@angular/core";
 
 @Directive({
-    selector: '[appAutoSelect]',
+    selector: "[appAutoSelect]",
 })
 export class AppAutoselectDirective implements OnInit {
     constructor(private elementRef: ElementRef) {}

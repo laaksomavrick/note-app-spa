@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, exhaustMap, map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { of } from "rxjs";
+import { catchError, exhaustMap, map } from "rxjs/operators";
 import {
     AuthAttempt,
     AuthFailureResponse,
     AuthSuccessResponse,
     isAuthSuccessResponse,
-} from '../../auth/auth.interfaces';
-import { AuthService } from '../../auth/auth.service';
-import { authAttempt, authFailure, authSuccess } from './auth.actions';
+} from "../../auth/auth.interfaces";
+import { AuthService } from "../../auth/auth.service";
+import { authAttempt, authFailure, authSuccess } from "./auth.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -26,7 +26,7 @@ export class AuthEffects {
                         const token = authResponse.resource.token;
                         this.authService.setToken(token);
                         // TODO fix dangling promise
-                        this.router.navigate(['/']);
+                        this.router.navigate(["/"]);
                         return authSuccess(authResponse);
                     }),
                     // tslint:disable-next-line:typedef

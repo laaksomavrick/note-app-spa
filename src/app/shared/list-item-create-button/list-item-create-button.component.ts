@@ -1,19 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, Input, OnInit } from "@angular/core";
+import { Observable, of } from "rxjs";
 
 @Component({
-    selector: 'app-list-item-create-button',
-    templateUrl: './list-item-create-button.component.html',
-    styleUrls: ['./list-item-create-button.component.css'],
+    selector: "app-list-item-create-button",
+    templateUrl: "./list-item-create-button.component.html",
+    styleUrls: ["./list-item-create-button.component.css"],
 })
-export class ListItemCreateButtonComponent implements OnInit {
+export class ListItemCreateButtonComponent {
     @Input() public visible$: Observable<boolean>;
 
     @Input() public loading$: Observable<boolean>;
 
     @Input() public handler?: (input?: string) => Promise<void> = undefined;
 
-    @Input() public inputClass = '';
+    @Input() public inputClass = "";
 
     public newItemNameInput?: string;
 
@@ -21,8 +21,6 @@ export class ListItemCreateButtonComponent implements OnInit {
         this.visible$ = of(false);
         this.loading$ = of(false);
     }
-
-    public ngOnInit(): void {}
 
     public async onEnterKeydown(event: KeyboardEvent): Promise<void> {
         if (!this.handler) {

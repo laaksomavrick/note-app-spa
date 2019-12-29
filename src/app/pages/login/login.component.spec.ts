@@ -1,23 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { StoreModule } from '@ngrx/store';
-import { AppActions, appStore, AppStore } from '../../app.store';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { StoreModule } from "@ngrx/store";
+import { AppActions, appStore, AppStore } from "../../app.store";
 
-import { LoginComponent } from './login.component';
+import { LoginComponent } from "./login.component";
 
-describe('LoginPageComponent', () => {
+describe("LoginPageComponent", () => {
     let component: LoginComponent;
     let fixture: ComponentFixture<LoginComponent>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [LoginComponent],
-            imports: [
-                FormsModule,
-                StoreModule.forRoot<AppStore, AppActions>(appStore),
-                NgbModule,
-            ],
+            imports: [FormsModule, StoreModule.forRoot<AppStore, AppActions>(appStore), NgbModule],
         }).compileComponents();
     });
 
@@ -27,7 +23,7 @@ describe('LoginPageComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it("should create", () => {
         expect(component).toBeTruthy();
     });
 });

@@ -1,15 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ApiErrorResponse, ApiResponse } from '../../../http/http.interfaces';
-import { HttpService } from '../../../http/http.service';
-import { CreateFolderSuccessResponse } from '../../../store/folders/folders.interfaces';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { ApiErrorResponse, ApiResponse } from "../../../http/http.interfaces";
+import { HttpService } from "../../../http/http.service";
+import { CreateFolderSuccessResponse } from "../../../store/folders/folders.interfaces";
 import {
     CreateNoteAttemptProps,
     CreateNoteSuccessResponse,
     GetNotesSuccessResponse,
     UpdateNoteAttemptProps,
     UpdateNoteSuccessResponse,
-} from '../../../store/notes/notes.interfaces';
+} from "../../../store/notes/notes.interfaces";
 
 @Injectable()
 export class NotesService extends HttpService {
@@ -17,9 +17,7 @@ export class NotesService extends HttpService {
         super();
     }
 
-    public getNotes(
-        folderId: number,
-    ): Promise<GetNotesSuccessResponse | ApiErrorResponse> {
+    public getNotes(folderId: number): Promise<GetNotesSuccessResponse | ApiErrorResponse> {
         return this.http
             .get<GetNotesSuccessResponse | ApiErrorResponse>(`${this.url}/notes`, {
                 ...this.httpOptions,

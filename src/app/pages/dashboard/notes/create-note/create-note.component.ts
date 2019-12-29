@@ -1,19 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { AppStore } from '../../../../app.store';
-import {
-    createNoteAttempt,
-    toggleCreateNoteVisible,
-} from '../../../../store/notes/notes.actions';
+import { Component, Input, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { take } from "rxjs/operators";
+import { AppStore } from "../../../../app.store";
+import { createNoteAttempt, toggleCreateNoteVisible } from "../../../../store/notes/notes.actions";
 
 @Component({
-    selector: 'app-create-note',
-    templateUrl: './create-note.component.html',
-    styleUrls: ['./create-note.component.css'],
+    selector: "app-create-note",
+    templateUrl: "./create-note.component.html",
+    styleUrls: ["./create-note.component.css"],
 })
-export class CreateNoteComponent implements OnInit {
+export class CreateNoteComponent {
     public visible$: Observable<boolean> = this.store.select(
         ({ notesState }: AppStore) => notesState.createNoteVisible,
     );
@@ -26,8 +23,6 @@ export class CreateNoteComponent implements OnInit {
 
     constructor(private readonly store: Store<AppStore>) {}
 
-    public ngOnInit(): void {}
-
     private handleCreateNote = async (name: string): Promise<void> => {
         const currentlyProcessing = await this.loading$.pipe(take(1)).toPromise();
 
@@ -36,14 +31,12 @@ export class CreateNoteComponent implements OnInit {
         }
 
         if (!this.folderId) {
-            console.warn('No folderId specified for handleCreateNote');
+            console.warn("No folderId specified for handleCreateNote");
             return;
         }
 
         if (name && name.length > 0) {
-            this.store.dispatch(
-                createNoteAttempt({ name, folderId: this.folderId, content: '' }),
-            );
+            this.store.dispatch(createNoteAttempt({ name, folderId: this.folderId, content: "" }));
         } else {
             this.store.dispatch(toggleCreateNoteVisible());
         }

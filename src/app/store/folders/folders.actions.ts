@@ -1,5 +1,5 @@
-import { createAction, props } from '@ngrx/store';
-import { ApiErrorResponse, ApiResponse } from '../../http/http.interfaces';
+import { createAction, props } from "@ngrx/store";
+import { ApiErrorResponse, ApiResponse } from "../../http/http.interfaces";
 import {
     CreateFolderAttemptProps,
     CreateFolderSuccessResponse,
@@ -7,48 +7,46 @@ import {
     DeleteFolderSuccessResponse,
     GetFolderAttemptProps,
     GetFoldersSuccessResponse,
-} from './folders.interfaces';
+} from "./folders.interfaces";
 
 export const getFoldersSuccess = createAction(
-    '[Folders] Get folders success',
+    "[Folders] Get folders success",
     props<GetFoldersSuccessResponse>(),
 );
 export const getFoldersFailure = createAction(
-    '[Folders] Get folders failure',
+    "[Folders] Get folders failure",
     props<ApiErrorResponse>(),
 );
 export const getFoldersAttempt = createAction(
-    '[Folders] Get folders attempt',
+    "[Folders] Get folders attempt",
     props<GetFolderAttemptProps>(),
 );
 
-export const toggleCreateFolderVisible = createAction(
-    '[Folders] Toogle create folder visible',
-);
+export const toggleCreateFolderVisible = createAction("[Folders] Toogle create folder visible");
 
 export const createFoldersSuccess = createAction(
-    '[Folders] Create folders success',
+    "[Folders] Create folders success",
     props<CreateFolderSuccessResponse>(),
 );
 export const createFoldersFailure = createAction(
-    '[Folders] Create folders failure',
+    "[Folders] Create folders failure",
     props<ApiErrorResponse>(),
 );
 export const createFoldersAttempt = createAction(
-    '[Folders] Create folders attempt',
+    "[Folders] Create folders attempt",
     props<CreateFolderAttemptProps>(),
 );
 
 export const deleteFoldersSuccess = createAction(
-    '[Folders] Delete folders success',
+    "[Folders] Delete folders success",
     props<DeleteFolderSuccessResponse>(),
 );
 export const deleteFoldersFailure = createAction(
-    '[Folders] Delete folders failure',
+    "[Folders] Delete folders failure",
     props<ApiErrorResponse>(),
 );
 export const deleteFoldersAttempt = createAction(
-    '[Folders] Delete folders attempt',
+    "[Folders] Delete folders attempt",
     props<DeleteFolderAttemptProps>(),
 );
 

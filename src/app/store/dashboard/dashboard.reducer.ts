@@ -1,10 +1,10 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on } from "@ngrx/store";
 import {
     appBootAttempt,
     appBootFailure,
     appBootSuccess,
     DashboardActions,
-} from './dashboard.actions';
+} from "./dashboard.actions";
 
 export interface DashboardState {
     loading: boolean;
@@ -36,16 +36,10 @@ export const _dashboardReducer = createReducer<DashboardState, DashboardActions>
             error: undefined,
         }),
     ),
-    on(
-        appBootAttempt,
-        (state: DashboardState): DashboardState => ({ ...state, loading: true }),
-    ),
+    on(appBootAttempt, (state: DashboardState): DashboardState => ({ ...state, loading: true })),
 );
 
 // tslint:disable-next-line:typedef
-export function dashboardReducer(
-    state: DashboardState | undefined,
-    actions: DashboardActions,
-) {
+export function dashboardReducer(state: DashboardState | undefined, actions: DashboardActions) {
     return _dashboardReducer(state, actions);
 }

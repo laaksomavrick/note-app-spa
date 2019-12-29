@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LoadableErrorableComponent } from './loadable-errorable.component';
+import { LoadableErrorableComponent } from "./loadable-errorable.component";
 
-describe('FolderListComponent', () => {
+describe("FolderListComponent", () => {
     let component: LoadableErrorableComponent;
     let fixture: ComponentFixture<LoadableErrorableComponent>;
 
@@ -18,7 +18,7 @@ describe('FolderListComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it("should create", () => {
         expect(component).toBeTruthy();
     });
 });

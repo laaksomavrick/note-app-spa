@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import { getHumanReadableApiError } from '../../http/http.helpers';
-import { ApiErrorResponse } from '../../http/http.interfaces';
+import { createReducer, on } from "@ngrx/store";
+import { getHumanReadableApiError } from "../../http/http.helpers";
+import { ApiErrorResponse } from "../../http/http.interfaces";
 import {
     createFoldersAttempt,
     createFoldersFailure,
@@ -13,13 +13,13 @@ import {
     getFoldersFailure,
     getFoldersSuccess,
     toggleCreateFolderVisible,
-} from './folders.actions';
+} from "./folders.actions";
 import {
     CreateFolderSuccessResponse,
     DeleteFolderSuccessResponse,
     Folder,
     GetFoldersSuccessResponse,
-} from './folders.interfaces';
+} from "./folders.interfaces";
 
 export interface FoldersState {
     folders: Folder[];
@@ -68,10 +68,7 @@ export const _folderReducer = createReducer<FoldersState, FolderActions>(
             error: getHumanReadableApiError(props),
         }),
     ),
-    on(
-        getFoldersAttempt,
-        (state: FoldersState): FoldersState => ({ ...state, loading: true }),
-    ),
+    on(getFoldersAttempt, (state: FoldersState): FoldersState => ({ ...state, loading: true })),
 
     on(
         toggleCreateFolderVisible,
@@ -110,9 +107,7 @@ export const _folderReducer = createReducer<FoldersState, FolderActions>(
     on(
         deleteFoldersSuccess,
         (state: FoldersState, props: DeleteFolderSuccessResponse): FoldersState => {
-            const folders = state.folders.filter(
-                (folder: Folder) => folder.id !== props.folderId,
-            );
+            const folders = state.folders.filter((folder: Folder) => folder.id !== props.folderId);
             return {
                 ...state,
                 folders,

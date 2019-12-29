@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpService } from '../http/http.service';
-import { AuthFailureResponse, AuthRequest, AuthSuccessResponse } from './auth.interfaces';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { HttpService } from "../http/http.service";
+import { AuthFailureResponse, AuthRequest, AuthSuccessResponse } from "./auth.interfaces";
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: "root",
 })
 export class AuthService extends HttpService {
-    private readonly TOKEN_KEY = 'token';
+    private readonly TOKEN_KEY = "token";
 
     constructor(private http: HttpClient) {
         super();

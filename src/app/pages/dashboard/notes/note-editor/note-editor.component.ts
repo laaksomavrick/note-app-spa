@@ -4,18 +4,15 @@ import {
     AfterViewInit,
     Component,
     OnInit,
-} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { debounceTime, take } from 'rxjs/operators';
-import { AppStore } from '../../../../app.store';
-import {
-    setSelectedNote,
-    updateNoteAttempt,
-} from '../../../../store/notes/notes.actions';
-import { Note, UpdateNoteAttemptProps } from '../../../../store/notes/notes.interfaces';
+} from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { debounceTime, take } from "rxjs/operators";
+import { AppStore } from "../../../../app.store";
+import { setSelectedNote, updateNoteAttempt } from "../../../../store/notes/notes.actions";
+import { Note, UpdateNoteAttemptProps } from "../../../../store/notes/notes.interfaces";
 
 interface NoteForm {
     name?: string;
@@ -23,9 +20,9 @@ interface NoteForm {
 }
 
 @Component({
-    selector: 'app-note-editor',
-    templateUrl: './note-editor.component.html',
-    styleUrls: ['./note-editor.component.css'],
+    selector: "app-note-editor",
+    templateUrl: "./note-editor.component.html",
+    styleUrls: ["./note-editor.component.css"],
 })
 export class NoteEditorComponent implements OnInit {
     private readonly NOTE_EDITOR_DEBOUNCE = 750;
@@ -35,18 +32,15 @@ export class NoteEditorComponent implements OnInit {
     );
 
     public noteForm = new FormGroup({
-        name: new FormControl(''),
-        content: new FormControl(''),
+        name: new FormControl(""),
+        content: new FormControl(""),
     });
 
-    constructor(
-        private readonly route: ActivatedRoute,
-        private readonly store: Store<AppStore>,
-    ) {}
+    constructor(private readonly route: ActivatedRoute, private readonly store: Store<AppStore>) {}
 
     public ngOnInit(): void {
         this.route.paramMap.subscribe((params: ParamMap) => {
-            const maybeNoteId = params.get('noteId');
+            const maybeNoteId = params.get("noteId");
             if (maybeNoteId) {
                 const noteId = parseInt(maybeNoteId, 10);
                 this.store.dispatch(setSelectedNote({ noteId }));
@@ -55,10 +49,10 @@ export class NoteEditorComponent implements OnInit {
 
         this.selectedNote$.subscribe((selectedNote: Note | undefined): void => {
             if (selectedNote) {
-                this.noteForm.controls['name'].setValue(selectedNote.name, {
+                this.noteForm.controls["name"].setValue(selectedNote.name, {
                     emitEvent: false,
                 });
-                this.noteForm.controls['content'].setValue(selectedNote.content, {
+                this.noteForm.controls["content"].setValue(selectedNote.content, {
                     emitEvent: false,
                 });
             }

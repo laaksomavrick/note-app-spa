@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { AppStore } from '../../../../app.store';
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { take } from "rxjs/operators";
+import { AppStore } from "../../../../app.store";
 import {
     createFoldersAttempt,
     toggleCreateFolderVisible,
-} from '../../../../store/folders/folders.actions';
+} from "../../../../store/folders/folders.actions";
 
 @Component({
-    selector: 'app-create-folder',
-    templateUrl: './create-folder.component.html',
-    styleUrls: ['./create-folder.component.css'],
+    selector: "app-create-folder",
+    templateUrl: "./create-folder.component.html",
+    styleUrls: ["./create-folder.component.css"],
 })
-export class CreateFolderComponent implements OnInit {
+export class CreateFolderComponent {
     public visible$: Observable<boolean> = this.store.select(
         ({ foldersState }: AppStore) => foldersState.createFolderVisible,
     );
@@ -23,8 +23,6 @@ export class CreateFolderComponent implements OnInit {
     );
 
     constructor(private readonly store: Store<AppStore>) {}
-
-    public ngOnInit(): void {}
 
     private handleCreateFolder = async (name: string): Promise<void> => {
         const currentlyProcessing = await this.loading$.pipe(take(1)).toPromise();

@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import { getHumanReadableApiError } from '../../http/http.helpers';
-import { ApiErrorResponse } from '../../http/http.interfaces';
+import { createReducer, on } from "@ngrx/store";
+import { getHumanReadableApiError } from "../../http/http.helpers";
+import { ApiErrorResponse } from "../../http/http.interfaces";
 import {
     createNoteAttempt,
     createNoteFailure,
@@ -17,7 +17,7 @@ import {
     updateNoteAttempt,
     updateNoteFailure,
     updateNoteSuccess,
-} from './notes.actions';
+} from "./notes.actions";
 import {
     CreateNoteAttemptProps,
     CreateNoteSuccessResponse,
@@ -28,7 +28,7 @@ import {
     SetSelectedNoteProps,
     UpdateNoteAttemptProps,
     UpdateNoteSuccessResponse,
-} from './notes.interfaces';
+} from "./notes.interfaces";
 
 export interface NotesState {
     notes: Note[];

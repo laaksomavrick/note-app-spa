@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NavigationComponent } from './navigation.component';
+import { NavigationComponent } from "./navigation.component";
 
-describe('NoteRoutingComponent', () => {
+describe("NoteRoutingComponent", () => {
     let component: NavigationComponent;
     let fixture: ComponentFixture<NavigationComponent>;
 
@@ -18,7 +18,7 @@ describe('NoteRoutingComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it("should create", () => {
         expect(component).toBeTruthy();
     });
 });

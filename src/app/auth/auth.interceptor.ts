@@ -1,12 +1,7 @@
-import {
-    HttpEvent,
-    HttpHandler,
-    HttpInterceptor,
-    HttpRequest,
-} from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { AuthService } from "./auth.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -26,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 },
             });
         } else {
-            console.warn('No token found in localStorage');
+            console.warn("No token found in localStorage");
         }
         return next.handle(request);
     }

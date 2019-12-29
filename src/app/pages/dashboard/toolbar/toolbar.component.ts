@@ -1,17 +1,14 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AppStore } from '../../../app.store';
-import { deleteFoldersAttempt } from '../../../store/folders/folders.actions';
-import {
-    deleteNoteAttempt,
-    toggleCreateNoteVisible,
-} from '../../../store/notes/notes.actions';
-import { RouterService } from '../router.service';
+import { Component, OnDestroy, OnInit, Renderer2 } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { AppStore } from "../../../app.store";
+import { deleteFoldersAttempt } from "../../../store/folders/folders.actions";
+import { deleteNoteAttempt, toggleCreateNoteVisible } from "../../../store/notes/notes.actions";
+import { RouterService } from "../router.service";
 
 enum DeleteButtonIds {
-    DeleteButton = 'deleteButton',
-    DeleteButtonAreYouSure = 'deleteButtonAreYouSure',
+    DeleteButton = "deleteButton",
+    DeleteButtonAreYouSure = "deleteButtonAreYouSure",
 }
 
 // TODO: inactive/active toggle state
@@ -21,11 +18,11 @@ enum DeleteButtonIds {
 // TODO: deletion folder/note state during attempt (ie opacity: 50% or something)
 
 @Component({
-    selector: 'app-toolbar',
-    templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.css'],
+    selector: "app-toolbar",
+    templateUrl: "./toolbar.component.html",
+    styleUrls: ["./toolbar.component.css"],
 })
-export class ToolbarComponent implements OnInit, OnDestroy {
+export class ToolbarComponent implements OnDestroy {
     public noteSaving$: Observable<boolean> = this.store.select(
         ({ notesState }: AppStore) => notesState.updateNoteLoading,
     );
@@ -39,8 +36,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private readonly routerService: RouterService,
         private readonly renderer: Renderer2,
     ) {}
-
-    public ngOnInit(): void {}
 
     public ngOnDestroy(): void {
         if (this.deleteClickAwayFn) {
@@ -58,7 +53,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     public toggleDeleteAreYouSureOn(): void {
         this.deleteAreYouSure = true;
-        this.deleteClickAwayFn = this.renderer.listen('document', 'click', (e: Event) => {
+        this.deleteClickAwayFn = this.renderer.listen("document", "click", (e: Event) => {
             if (!e.target) {
                 return;
             }

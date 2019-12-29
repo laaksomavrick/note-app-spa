@@ -1,10 +1,10 @@
-import { AuthFailureResponse, AuthSuccessResponse } from '../../auth/auth.interfaces';
-import { authAttempt, authDismissError, authFailure, authSuccess } from './auth.actions';
-import { authReducer, initialState } from './auth.reducer';
+import { AuthFailureResponse, AuthSuccessResponse } from "../../auth/auth.interfaces";
+import { authAttempt, authDismissError, authFailure, authSuccess } from "./auth.actions";
+import { authReducer, initialState } from "./auth.reducer";
 
-describe('Auth reducer', () => {
-    it('sets token, loading, and error on authSuccess', () => {
-        const token = 'foo';
+describe("Auth reducer", () => {
+    it("sets token, loading, and error on authSuccess", () => {
+        const token = "foo";
         const successResponse: AuthSuccessResponse = {
             status: 200,
             resource: {
@@ -20,8 +20,8 @@ describe('Auth reducer', () => {
         });
     });
 
-    it('sets token, loading, and error on authFailure', () => {
-        const msg = 'foo';
+    it("sets token, loading, and error on authFailure", () => {
+        const msg = "foo";
         const failureResponse: AuthFailureResponse = {
             status: 500,
             error: {
@@ -39,11 +39,8 @@ describe('Auth reducer', () => {
         });
     });
 
-    it('sets loading on authAttempt', () => {
-        const newState = authReducer(
-            initialState,
-            authAttempt({ email: 'foo', password: 'bar' }),
-        );
+    it("sets loading on authAttempt", () => {
+        const newState = authReducer(initialState, authAttempt({ email: "foo", password: "bar" }));
 
         expect(newState).toEqual({
             ...initialState,
@@ -51,7 +48,7 @@ describe('Auth reducer', () => {
         });
     });
 
-    it('sets error on authDismissError', () => {
+    it("sets error on authDismissError", () => {
         const newState = authReducer(initialState, authDismissError());
 
         expect(newState).toEqual({
