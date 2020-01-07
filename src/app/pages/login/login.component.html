@@ -17,12 +17,12 @@
 
         <!-- Loading animation -->
         <div *ngIf="(loading$ | async) as loading" class="alert-container">
-            <ngb-progressbar value="1000" type="success">Loading...</ngb-progressbar>
+            <ngb-alert type="light" [dismissible]="false">Loading...</ngb-alert>
         </div>
 
         <!-- Error alert -->
         <div *ngIf="(error$ | async) as error" class="alert-container">
-            <button type="danger" (close)="closeError()">{{ error }}</button>
+            <ngb-alert type="danger" (close)="closeError()">{{ error }}</ngb-alert>
         </div>
     </div>
 </div>

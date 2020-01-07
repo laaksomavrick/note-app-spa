@@ -8,8 +8,11 @@ import { ApiErrorResponse } from "./http.interfaces";
 // const UNAUTHORIZED = 401;
 
 export function getHumanReadableApiError(err: ApiErrorResponse): string {
-    // TODO
-    return err.error.msg;
+    if (err && err.error && err.error.msg) {
+        return err.error.msg;
+    }
+
+    return "Oops! Something went wrong";
 }
 
 // tslint:disable-next-line:no-any
