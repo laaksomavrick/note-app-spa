@@ -11,7 +11,11 @@
 
 .toolbar__note-list-header {
     width: 150px;
-    padding-left: 7px;
+    padding-left: 40px;
+}
+
+.toolbar__note-list-header-btn {
+    margin-right: 5px;
 }
 
 .toolbar__note-editor-header {

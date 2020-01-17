@@ -1,12 +1,12 @@
-<div class="toolbar">
-    <div class="toolbar__folder-list-header">
+<div class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="navbar-brand">
         devnotes
     </div>
     <div class="toolbar__note-list-header">
         <button
                 *ngIf="deleteAreYouSure === false"
                 id="deleteButton"
-                class="toolbar__button"
+                class="btn btn-light toolbar__note-list-header-btn"
                 (click)="toggleDeleteAreYouSureOn()">
             x
         </button>
@@ -14,13 +14,13 @@
         <button
                 *ngIf="deleteAreYouSure === true"
                 id="deleteButtonAreYouSure"
-                class="toolbar__button toolbar__button--destroy"
+                class="btn btn-danger toolbar__note-list-header-btn"
                 (click)="onClickDelete()"
                 (cancel)="toggleDeleteAreYouSureOff()">
            ?
         </button>
 
-        <button class="toolbar__button" (click)="onClickNew()">
+        <button type="button" class="btn btn-light" (click)="onClickNew()">
             +
         </button>
     </div>
