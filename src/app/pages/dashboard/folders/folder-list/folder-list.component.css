@@ -1,8 +1,9 @@
 .folder-list {
     height: 100%;
-    border-right: 1px var(--foreground-primary) solid;
     display: flex;
     flex-direction: column;
+    background: var(--background-primary);
+    border-right: 2px solid var(--white);
 }
 
 .folder-list__folders {
@@ -10,34 +11,49 @@
 }
 
 .folder-list__item {
-    padding: 0 10px 0 10px;
+    color: var(--foreground-primary);
+    padding: 5px 10px 5px 10px;
+}
+
+.folder-list__item:first-child {
+    margin-top: 10px;
+}
+
+.folder-list__item:hover {
+    background: var(--black-dark);
+    color: var(--white);
+    transition: 0.1s;
 }
 
 .folder-list__item--selected {
-    background: var(--foreground-primary-hover);
+    background: var(--black);
+    color: var(--white);
 }
 
 .folder-list__button {
-    border: none;
-    outline: none;
-    background: transparent;
-}
-
-.folder-list__create-folder {
-
-}
-
-.folder-list__create-folder-button {
+    color: inherit;
     border: none;
     outline: none;
     background: transparent;
     width: 100%;
-    padding: 5px;
-    border-top: 1px var(--foreground-primary) solid;
+    text-align: left;
 }
 
-.folder-list__create-folder-button:active {
-    background: var(--foreground-primary-hover);
+.folder-list__create-folder {
+    margin: 5px;
+}
+
+.folder-list__create-folder-button {
+    outline: none;
+    background: transparent;
+    width: 100%;
+    padding: 5px;
+    background: var(--teal);
+    color: var(--white);
+}
+
+.folder-list__create-folder-button:hover {
+    background: var(--teal-dark);
 }
 
 

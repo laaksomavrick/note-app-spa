@@ -2,14 +2,39 @@
     --foreground-primary: #171717;
     --foreground-primary-hover: #e8e8e8;
     --background-primary: #f7f7f7;
+
+    --teal: #1abc9c;
+    --teal-dark: #16a085;
+    --green: #2ecc71;
+    --green-dark: #27ae60;
+    --blue: #3498db;
+    --blue-dark: #2980b9;
+    --purple: #9b59b6;
+    --purple-dark: #8e44ad;
+    --black: #34495e;
+    --black-dark: #2c3e50;
+    --yellow: #f1c40f;
+    --yellow-dark: #f39c12;
+    --orange: #e67e22;
+    --orange-dark: #d35400;
+    --red: #e74c3c;
+    --red-dark: #c0392b;
+    --white: #ecf0f1;
+    --white-dark: #bdc3c7;
+    --gray: #95a5a6;
+    --gray-dark: #7f8c8d;
 }
 
 html, body {
     height: auto;
     margin: 0;
-    overflow: auto;
+    overflow: hidden;
     color: var(--foreground-primary);
     background: var(--background-primary);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 app-root {
@@ -17,28 +42,4 @@ app-root {
     height: 100%
 }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100vh;}
-
-.create-folder__button {
-    border-top: 1px var(--foreground-primary) solid;
-    border-bottom: 1px var(--foreground-primary) solid;
-    border-left: 1px transparent solid;
-    border-right: 1px transparent solid;
-    outline: none;
-    background: transparent;
-    width: 100%;
-    max-width: 149px;
-    padding-left: 15px;
-}
-
-.create-note__button {
-    border-top: 1px var(--foreground-primary) solid;
-    border-bottom: 1px var(--foreground-primary) solid;
-    border-left: 1px transparent solid;
-    border-right: 1px transparent solid;
-    outline: none;
-    background: transparent;
-    width: 100%;
-    max-width: 199px;
-    padding-left: 7px;
-}
+body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100vh;}
