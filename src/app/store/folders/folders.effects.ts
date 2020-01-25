@@ -1,8 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { exhaustMap } from "rxjs/operators";
+import { exhaustMap, tap } from "rxjs/operators";
 import { isApiErrorResponse } from "../../http/http.helpers";
+// tslint:disable-next-line:max-line-length
+import { CreateFolderModalComponent } from "../../pages/dashboard/folders/create-folder-modal/create-folder-modal.component";
 import { FoldersService } from "../../pages/dashboard/folders/folders.service";
 import {
     createFoldersAttempt,
@@ -14,6 +17,7 @@ import {
     getFoldersAttempt,
     getFoldersFailure,
     getFoldersSuccess,
+    toggleCreateFolderVisible,
 } from "./folders.actions";
 import {
     CreateFolderAttemptProps,
@@ -92,9 +96,26 @@ export class FoldersEffects {
         ),
     );
 
+    public toggleCreateFolderVisible$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(toggleCreateFolderVisible),
+                tap(() => {
+                    const open = this.modalService.hasOpenModals();
+                    if (open) {
+                        this.modalService.dismissAll();
+                    } else {
+                        this.modalService.open(CreateFolderModalComponent);
+                    }
+                }),
+            ),
+        { dispatch: false },
+    );
+
     constructor(
         private readonly actions$: Actions,
         private readonly router: Router,
         private readonly folderService: FoldersService,
+        private readonly modalService: NgbModal,
     ) {}
 }

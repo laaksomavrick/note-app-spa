@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create folder</h4>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+        <div class="form-group">
+            <label for="name">
+                Name:
+            </label>
+            <input
+                    [ngClass]="{
+                    'is-invalid': this.form.get('name').dirty
+                                  && this.form.get('name').invalid
+                    }"
+                    type="text"
+                    class="form-control"
+                    placeholder="Folder name"
+                    formControlName="name"
+                    id="name" />
+        </div>
+    </form>
+
+    <div *ngIf="(loading$ | async) === true">
+        Saving...
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onClose()">Close</button>
+    <button
+            type="button"
+            class="btn btn-primary"
+            [disabled]="this.form.invalid || (loading$ | async) === true"
+            (click)="onSave()">
+        Save
+    </button>
+</div>

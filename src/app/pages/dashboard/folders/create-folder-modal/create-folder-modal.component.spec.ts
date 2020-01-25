@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CreateFolderComponent } from "./create-folder.component";
+import { CreateFolderComponent } from "./create-folder-modal.component";
 
 describe("CreateFolderComponent", () => {
     let component: CreateFolderComponent;
