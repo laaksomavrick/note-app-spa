@@ -32,7 +32,7 @@ export class CreateFolderModalComponent {
         this.store.dispatch(toggleCreateFolderVisible());
     }
 
-    public async onSave(): Promise<void> {
+    public onSave = async (): Promise<void> => {
         const isLoading = await this.loading$.pipe(take(1)).toPromise();
 
         if (isLoading) {

@@ -1,7 +1,9 @@
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Create folder</h4>
-</div>
-<div class="modal-body">
+<app-modal
+    title="Create folder"
+    [onClose]="onClose"
+    [onSave]="onSave"
+    [saving$]="loading$">
+
     <form [formGroup]="form" (ngSubmit)="onSave()">
         <div class="form-group">
             <label for="name">
@@ -19,18 +21,5 @@
                     id="name" />
         </div>
     </form>
+</app-modal>
 
-    <div *ngIf="(loading$ | async) === true">
-        Saving...
-    </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="onClose()">Close</button>
-    <button
-            type="button"
-            class="btn btn-primary"
-            [disabled]="this.form.invalid || (loading$ | async) === true"
-            (click)="onSave()">
-        Save
-    </button>
-</div>
