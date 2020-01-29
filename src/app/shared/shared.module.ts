@@ -7,6 +7,7 @@ import { AppAutofocusDirective } from "./app-autofocus/app-autofocus.directive";
 import { AppAutoselectDirective } from "./app-autoselect/app-autofocus.directive";
 import { ListItemCreateButtonComponent } from "./list-item-create-button/list-item-create-button.component";
 import { LoadableErrorableComponent } from "./loadable-errorable-data/loadable-errorable.component";
+import { ModalComponent } from "./modal/modal.component";
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { LoadableErrorableComponent } from "./loadable-errorable-data/loadable-e
         AppAutofocusDirective,
         AppAutoselectDirective,
         ListItemCreateButtonComponent,
+        ModalComponent,
     ],
     imports: [CommonModule, FormsModule, HttpClientModule, NgbModule],
     providers: [],
@@ -23,6 +25,7 @@ import { LoadableErrorableComponent } from "./loadable-errorable-data/loadable-e
         AppAutofocusDirective,
         AppAutoselectDirective,
         ListItemCreateButtonComponent,
+        ModalComponent,
     ],
 })
 export class SharedModule {}

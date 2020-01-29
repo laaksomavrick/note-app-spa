@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { AppStore } from "../../../../app.store";
 import { toggleCreateFolderVisible } from "../../../../store/folders/folders.actions";
 import { Folder } from "../../../../store/folders/folders.interfaces";
 import { setSelectedNote } from "../../../../store/notes/notes.actions";
+import { CreateFolderModalComponent } from "../create-folder-modal/create-folder-modal.component";
 
 @Component({
     selector: "app-folder-list",

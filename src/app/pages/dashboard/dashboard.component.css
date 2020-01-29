@@ -2,11 +2,12 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    background: var(--background-primary);
+    color: var(--black);
 }
 
 .dashboard-page__toolbar {
     padding: 10px 10px 10px 10px;
-    border-bottom: 1px var(--foreground-primary) solid;
     display: flex;
 }
 

@@ -1,0 +1,26 @@
+<app-modal
+    title="Create folder"
+    [onClose]="onClose"
+    [onSave]="onSave"
+    [saving$]="loading$"
+    [savingDisabled]="this.form.invalid">
+
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+        <div class="form-group">
+            <label for="name">
+                Name:
+            </label>
+            <input
+                    [ngClass]="{
+                    'is-invalid': this.form.get('name').dirty
+                                  && this.form.get('name').invalid
+                    }"
+                    type="text"
+                    class="form-control"
+                    placeholder="Folder name"
+                    formControlName="name"
+                    id="name" />
+        </div>
+    </form>
+</app-modal>
+

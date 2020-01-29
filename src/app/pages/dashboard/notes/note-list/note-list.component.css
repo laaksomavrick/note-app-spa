@@ -1,20 +1,36 @@
 .note-list {
     height: 100%;
-    border-right: 1px var(--foreground-primary) solid;
     width: 200px;
+    background: var(--background-primary);
+    border-right: 2px solid var(--white);
 }
 
 .note-list__item {
-    padding: 0 10px 0 0;
+    color: var(--foreground-primary);
+    padding: 5px 10px 5px 10px;
+}
+
+.note-list__item:first-child {
+    margin-top: 10px;
+}
+
+.note-list__item:hover {
+    background: var(--black-dark);
+    color: var(--white);
+    transition: 0.1s;
 }
 
 .note-list__item--selected {
-    background: var(--foreground-primary-hover);
+    background: var(--black);
+    color: var(--white);
 }
 
 .note-list__button {
-    font-weight: 600;
+    font-weight: 500;
+    color: inherit;
     border: none;
     outline: none;
     background: transparent;
+    width: 100%;
+    text-align: left;
 }

@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+</div>
+
+<div class="modal-body">
+
+    <ng-content>
+    </ng-content>
+
+    <div *ngIf="(saving$ | async) === true">
+        Saving...
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onClose()">Close</button>
+    <button
+            *ngIf="onSave"
+            type="button"
+            class="btn btn-primary"
+            [disabled]="savingDisabled || (saving$ | async) === true"
+            (click)="onSave()">
+        Save
+    </button>
+</div>

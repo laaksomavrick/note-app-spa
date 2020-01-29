@@ -12,6 +12,7 @@ import {
     getFoldersAttempt,
     getFoldersFailure,
     getFoldersSuccess,
+    setSelectedFolderId,
     toggleCreateFolderVisible,
 } from "./folders.actions";
 import {
@@ -19,6 +20,7 @@ import {
     DeleteFolderSuccessResponse,
     Folder,
     GetFoldersSuccessResponse,
+    SetSelectedFolderIdProps,
 } from "./folders.interfaces";
 
 export interface FoldersState {
@@ -32,6 +34,8 @@ export interface FoldersState {
 
     deleteFolderLoading: boolean;
     deleteFolderError: string | undefined;
+
+    selectedFolderId: number | undefined;
 }
 
 export const initialState: FoldersState = {
@@ -45,6 +49,8 @@ export const initialState: FoldersState = {
 
     deleteFolderLoading: false,
     deleteFolderError: undefined,
+
+    selectedFolderId: undefined,
 };
 
 export const _folderReducer = createReducer<FoldersState, FolderActions>(
@@ -127,6 +133,14 @@ export const _folderReducer = createReducer<FoldersState, FolderActions>(
     on(
         deleteFoldersAttempt,
         (state: FoldersState): FoldersState => ({ ...state, deleteFolderLoading: true }),
+    ),
+
+    on(
+        setSelectedFolderId,
+        (state: FoldersState, props: SetSelectedFolderIdProps): FoldersState => ({
+            ...state,
+            selectedFolderId: props.folderId,
+        }),
     ),
 );
 
