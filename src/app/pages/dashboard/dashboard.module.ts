@@ -18,22 +18,22 @@ import { CreateFolderModalComponent } from "./folders/create-folder-modal/create
 import { FolderListComponent } from "./folders/folder-list/folder-list.component";
 import { FoldersService } from "./folders/folders.service";
 import { NavigationComponent } from "./navigation/navigation.component";
-import { CreateNoteComponent } from "./notes/create-note/create-note.component";
+import { CreateNoteModalComponent } from "./notes/create-note-modal/create-note-modal.component";
 import { NoteListComponent } from "./notes/note-list/note-list.component";
 import { NotesService } from "./notes/notes.service";
 import { RouterService } from "./router.service";
 import { ToolbarComponent } from "./toolbar/toolbar.component";
 
 @NgModule({
-    entryComponents: [CreateFolderModalComponent],
+    entryComponents: [CreateFolderModalComponent, CreateNoteModalComponent],
     declarations: [
         DashboardComponent,
         FolderListComponent,
         NoteListComponent,
         NavigationComponent,
-        CreateNoteComponent,
         ToolbarComponent,
         CreateFolderModalComponent,
+        CreateNoteModalComponent,
     ],
     imports: [
         CommonModule,

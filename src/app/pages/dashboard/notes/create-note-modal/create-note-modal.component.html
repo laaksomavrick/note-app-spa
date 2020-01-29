@@ -1,9 +1,9 @@
 <app-modal
-    title="Create folder"
-    [onClose]="onClose"
-    [onSave]="onSave"
-    [saving$]="loading$"
-    [savingDisabled]="this.form.invalid">
+        title="Create note"
+        [onClose]="onClose"
+        [onSave]="onSave"
+        [saving$]="loading$"
+        [savingDisabled]="this.form.invalid">
 
     <form [formGroup]="form" (ngSubmit)="onSave()">
         <div class="form-group">
@@ -17,7 +17,7 @@
                     }"
                     type="text"
                     class="form-control"
-                    placeholder="Folder name"
+                    placeholder="Note name"
                     formControlName="name"
                     id="name" />
         </div>

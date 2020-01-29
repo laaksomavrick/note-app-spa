@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { AppStore } from "../../../app.store";
+import { setSelectedFolderId } from "../../../store/folders/folders.actions";
 import { Folder } from "../../../store/folders/folders.interfaces";
 import { getNotesAttempt } from "../../../store/notes/notes.actions";
 import { Note } from "../../../store/notes/notes.interfaces";
@@ -37,8 +38,6 @@ export class NavigationComponent implements OnInit {
         ({ foldersState }: AppStore) => foldersState.loading,
     );
 
-    public selectedFolderId?: number;
-
     constructor(private readonly route: ActivatedRoute, private readonly store: Store<AppStore>) {}
 
     public ngOnInit(): void {
@@ -48,7 +47,7 @@ export class NavigationComponent implements OnInit {
             const noteId = maybeNoteId ? parseInt(maybeNoteId, 10) : undefined;
             if (maybeFolderId) {
                 const folderId = parseInt(maybeFolderId, 10);
-                this.selectedFolderId = folderId;
+                this.store.dispatch(setSelectedFolderId({ folderId }));
                 this.store.dispatch(getNotesAttempt({ folderId, noteId }));
             }
         });

@@ -7,6 +7,7 @@ import {
     DeleteFolderSuccessResponse,
     GetFolderAttemptProps,
     GetFoldersSuccessResponse,
+    SetSelectedFolderIdProps,
 } from "./folders.interfaces";
 
 export const getFoldersSuccess = createAction(
@@ -50,6 +51,11 @@ export const deleteFoldersAttempt = createAction(
     props<DeleteFolderAttemptProps>(),
 );
 
+export const setSelectedFolderId = createAction(
+    "[Folders] Set selected folder id",
+    props<SetSelectedFolderIdProps>(),
+);
+
 export type FolderActions =
     | ReturnType<typeof getFoldersSuccess>
     | ReturnType<typeof getFoldersFailure>
@@ -60,4 +66,5 @@ export type FolderActions =
     | ReturnType<typeof createFoldersAttempt>
     | ReturnType<typeof deleteFoldersSuccess>
     | ReturnType<typeof deleteFoldersFailure>
-    | ReturnType<typeof deleteFoldersAttempt>;
+    | ReturnType<typeof deleteFoldersAttempt>
+    | ReturnType<typeof setSelectedFolderId>;

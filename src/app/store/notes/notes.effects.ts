@@ -1,14 +1,10 @@
 import { Injectable } from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { exhaustMap, switchMap } from "rxjs/operators";
+import { exhaustMap, switchMap, tap } from "rxjs/operators";
 import { isApiErrorResponse } from "../../http/http.helpers";
+import { CreateNoteModalComponent } from "../../pages/dashboard/notes/create-note-modal/create-note-modal.component";
 import { NotesService } from "../../pages/dashboard/notes/notes.service";
-import {
-    deleteFoldersAttempt,
-    deleteFoldersFailure,
-    deleteFoldersSuccess,
-} from "../folders/folders.actions";
-import { DeleteFolderAttemptProps } from "../folders/folders.interfaces";
 import {
     createNoteAttempt,
     createNoteFailure,
@@ -19,10 +15,12 @@ import {
     getNotesAttempt,
     getNotesFailure,
     getNotesSuccess,
+    toggleCreateNoteVisible,
     updateNoteAttempt,
     updateNoteFailure,
     updateNoteSuccess,
 } from "./notes.actions";
+// tslint:disable-next-line:max-line-length
 import {
     CreateNoteAttemptProps,
     DeleteNoteAttemptProps,
@@ -107,5 +105,25 @@ export class NotesEffects {
         ),
     );
 
-    constructor(private readonly actions$: Actions, private readonly notesService: NotesService) {}
+    public toggleCreateNoteVisible$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(toggleCreateNoteVisible),
+                tap(() => {
+                    const open = this.modalService.hasOpenModals();
+                    if (open) {
+                        this.modalService.dismissAll();
+                    } else {
+                        this.modalService.open(CreateNoteModalComponent);
+                    }
+                }),
+            ),
+        { dispatch: false },
+    );
+
+    constructor(
+        private readonly actions$: Actions,
+        private readonly notesService: NotesService,
+        private readonly modalService: NgbModal,
+    ) {}
 }

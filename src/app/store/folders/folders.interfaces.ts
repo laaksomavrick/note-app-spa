@@ -34,3 +34,7 @@ export interface CreateFolderSuccessResponse extends ApiResponse {
         folder: Folder;
     };
 }
+
+export interface SetSelectedFolderIdProps {
+    folderId?: number;
+}

@@ -17,8 +17,6 @@ export class NoteListComponent implements OnInit {
 
     @Input() public loading$: Observable<boolean>;
 
-    @Input() public selectedFolderId?: number;
-
     public selectedNote$: Observable<Note | undefined> = this.store.select(
         ({ notesState }: AppStore) =>
             notesState.selectedNote ? notesState.selectedNote : undefined,

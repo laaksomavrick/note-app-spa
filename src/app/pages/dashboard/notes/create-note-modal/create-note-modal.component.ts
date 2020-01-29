@@ -1,22 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { Component } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { take } from "rxjs/operators";
 import { AppStore } from "../../../../app.store";
-import {
-    createFoldersAttempt,
-    toggleCreateFolderVisible,
-} from "../../../../store/folders/folders.actions";
+import { createNoteAttempt, toggleCreateNoteVisible } from "../../../../store/notes/notes.actions";
 
 @Component({
-    selector: "app-create-folder-modal",
-    templateUrl: "./create-folder-modal.component.html",
-    styleUrls: ["./create-folder-modal.component.css"],
+    selector: "app-create-note-modal",
+    templateUrl: "./create-note-modal.component.html",
+    styleUrls: ["./create-note-modal.component.css"],
 })
-export class CreateFolderModalComponent {
+export class CreateNoteModalComponent {
     public loading$: Observable<boolean> = this.store.select(
-        ({ foldersState }: AppStore) => foldersState.createFolderLoading,
+        ({ notesState }: AppStore) => notesState.createNoteLoading,
+    );
+
+    public selectedFolderId$: Observable<number | undefined> = this.store.select(
+        ({ foldersState }: AppStore) => foldersState.selectedFolderId,
     );
 
     public form = this.formBuilder.group({
@@ -29,13 +30,19 @@ export class CreateFolderModalComponent {
     ) {}
 
     public onClose = (): void => {
-        this.store.dispatch(toggleCreateFolderVisible());
+        this.store.dispatch(toggleCreateNoteVisible());
     }
 
     public onSave = async (): Promise<void> => {
         const isLoading = await this.loading$.pipe(take(1)).toPromise();
+        const folderId = await this.selectedFolderId$.pipe(take(1)).toPromise();
 
         if (isLoading) {
+            return;
+        }
+
+        if (folderId === undefined) {
+            console.warn("selected folder id not set");
             return;
         }
 
@@ -51,7 +58,8 @@ export class CreateFolderModalComponent {
             return;
         }
 
-        this.store.dispatch(createFoldersAttempt({ name }));
+        // TODO: navigate to note on creation
+        this.store.dispatch(createNoteAttempt({ name, folderId, content: "" }));
 
         this.loading$.subscribe((loading: boolean) => {
             if (!loading) {
