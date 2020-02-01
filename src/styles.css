@@ -43,3 +43,9 @@ app-root {
 }
 
 body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100vh;}
+
+/* TODO quill hack */
+/* gets overwritten in component, and the third party lib isn't respecting padding */
+.ql-container {
+    height: calc(100% - 105px) !important;
+}

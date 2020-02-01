@@ -12,13 +12,12 @@ import { appRoutes } from "./app.routes";
 import { AppActions, appStore, AppStore } from "./app.store";
 import { AuthGuard } from "./auth/auth.guard";
 import { DashboardModule } from "./pages/dashboard/dashboard.module";
-import { NoteEditorComponent } from "./pages/dashboard/notes/note-editor/note-editor.component";
 import { LoginModule } from "./pages/login/login.module";
 import { SharedModule } from "./shared/shared.module";
 import { AuthEffects } from "./store/auth/auth.effects";
 
 @NgModule({
-    declarations: [AppComponent, NoteEditorComponent],
+    declarations: [AppComponent],
     imports: [
         LoginModule,
         DashboardModule,
