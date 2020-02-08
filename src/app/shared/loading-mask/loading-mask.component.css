@@ -1,0 +1,14 @@
+.loading-mask {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    background: var(--background-primary);
+    color: var(--foreground-primary);
+    transition: opacity .5s;
+}

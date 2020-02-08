@@ -26,7 +26,7 @@
     </div>
     <div class="toolbar__note-editor-header">
         <div *ngIf="(noteSaving$ | async) === true" class="toolbar__saving">
-            saving note...
+            <app-spinner spinnerType="text-light"></app-spinner>
         </div>
     </div>
 </div>
