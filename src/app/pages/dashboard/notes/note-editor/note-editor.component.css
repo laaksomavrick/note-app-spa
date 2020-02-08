@@ -1,5 +1,5 @@
 .note-editor {
-    padding: 0 20px 0 20px;
+    padding: 0 20px 10px 20px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -13,13 +13,9 @@
     outline: none;
     background: transparent;
     box-shadow: none;
-    margin: 10px 0 0 0;
+    margin: 10px 0 10px 0;
     padding: 2px;
     width: 100%;
-}
-
-.note-editor__title:hover {
-    border: 2px var(--white) solid;
 }
 
 .note-editor__body {
@@ -39,3 +35,8 @@
 .note-editor__body:hover {
     border: 2px var(--white) solid;
 }
+
+.note-editor__quill {
+    height: 100%;
+}
+

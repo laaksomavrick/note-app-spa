@@ -6,6 +6,9 @@ import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
+
+import { HIGHLIGHT_OPTIONS, HighlightModule } from "ngx-highlightjs";
+import { QuillModule } from "ngx-quill";
 import { AppActions, appStore, AppStore } from "../../app.store";
 import { AuthGuard } from "../../auth/auth.guard";
 import { AuthInterceptor } from "../../auth/auth.interceptor";
@@ -19,6 +22,7 @@ import { FolderListComponent } from "./folders/folder-list/folder-list.component
 import { FoldersService } from "./folders/folders.service";
 import { NavigationComponent } from "./navigation/navigation.component";
 import { CreateNoteModalComponent } from "./notes/create-note-modal/create-note-modal.component";
+import { NoteEditorComponent } from "./notes/note-editor/note-editor.component";
 import { NoteListComponent } from "./notes/note-list/note-list.component";
 import { NotesService } from "./notes/notes.service";
 import { RouterService } from "./router.service";
@@ -34,6 +38,7 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
         ToolbarComponent,
         CreateFolderModalComponent,
         CreateNoteModalComponent,
+        NoteEditorComponent,
     ],
     imports: [
         CommonModule,
@@ -45,6 +50,8 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
         RouterModule,
         NgbModule,
         ReactiveFormsModule,
+        HighlightModule,
+        QuillModule.forRoot({}),
     ],
     providers: [
         AuthGuard,
