@@ -15,13 +15,13 @@
 }
 
 .note-list__item:hover {
-    background: var(--black-dark);
+    background: var(--primary);
     color: var(--white);
     transition: 0.1s;
 }
 
 .note-list__item--selected {
-    background: var(--black);
+    background: var(--primary);
     color: var(--white);
 }
 
