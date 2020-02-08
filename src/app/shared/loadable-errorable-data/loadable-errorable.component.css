@@ -1,0 +1,11 @@
+.loadable {
+    height: 100%;
+    width: 100%;
+}
+
+.loadable__spinner {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

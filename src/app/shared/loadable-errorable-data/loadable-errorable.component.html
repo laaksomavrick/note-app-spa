@@ -1,7 +1,7 @@
-<div class="{{ containerClassName }}">
+<div class="{{ containerClassName }} loadable">
     <!-- loading -->
-    <div *ngIf="(loading$ | async) === true; else maybeData">
-       loading..
+    <div *ngIf="(loading$ | async) === true; else maybeData" class="loadable__spinner">
+        <app-spinner></app-spinner>
     </div>
 
     <ng-template #maybeData>

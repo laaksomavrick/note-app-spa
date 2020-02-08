@@ -3,6 +3,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { EffectsModule } from "@ngrx/effects";
@@ -31,6 +32,7 @@ import { AuthEffects } from "./store/auth/auth.effects";
         EffectsModule.forRoot([AuthEffects]),
         BrowserModule,
         ReactiveFormsModule,
+        BrowserAnimationsModule,
     ],
     providers: [AuthGuard],
     bootstrap: [AppComponent],
