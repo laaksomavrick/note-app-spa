@@ -15,8 +15,7 @@ import { setSelectedNote, updateNoteAttempt } from "../../../../store/notes/note
 import { Note, UpdateNoteAttemptProps } from "../../../../store/notes/notes.interfaces";
 
 interface NoteForm {
-    name?: string;
-    content?: string;
+    content: string;
 }
 
 @Component({
@@ -32,7 +31,6 @@ export class NoteEditorComponent implements OnInit {
     );
 
     public noteForm = new FormGroup({
-        name: new FormControl(""),
         content: new FormControl(""),
     });
 
@@ -49,9 +47,6 @@ export class NoteEditorComponent implements OnInit {
 
         this.selectedNote$.subscribe((selectedNote: Note | undefined): void => {
             if (selectedNote) {
-                this.noteForm.controls["name"].setValue(selectedNote.name, {
-                    emitEvent: false,
-                });
                 this.noteForm.controls["content"].setValue(selectedNote.content, {
                     emitEvent: false,
                 });
@@ -61,7 +56,7 @@ export class NoteEditorComponent implements OnInit {
         this.noteForm.valueChanges
             .pipe(debounceTime(this.NOTE_EDITOR_DEBOUNCE))
             .subscribe(async (noteForm: NoteForm) => {
-                const { name, content } = noteForm;
+                const { content } = noteForm;
                 const selectedNote = await this.selectedNote$.pipe(take(1)).toPromise();
 
                 if (selectedNote) {
@@ -69,7 +64,6 @@ export class NoteEditorComponent implements OnInit {
                     const updatedNote: UpdateNoteAttemptProps = {
                         id,
                         folderId,
-                        name,
                         content,
                     };
 

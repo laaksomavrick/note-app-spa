@@ -4,8 +4,7 @@ export interface Note {
     id: number;
     userId: number;
     folderId: number;
-    name?: string;
-    content?: string;
+    content: string;
     createdAt: string;
     updatedAt: string;
 }
@@ -27,8 +26,7 @@ export interface SetSelectedNoteProps {
 
 // tslint:disable-next-line:no-empty-interface
 export interface UpdateNoteAttemptProps {
-    name?: string;
-    content?: string;
+    content: string;
     folderId: number;
     id: number;
 }
@@ -40,8 +38,7 @@ export interface UpdateNoteSuccessResponse extends ApiResponse {
 }
 
 export interface CreateNoteAttemptProps {
-    name: string;
-    content?: string;
+    content: string;
     folderId: number;
 }
 

@@ -12,13 +12,13 @@
             </label>
             <input
                     [ngClass]="{
-                    'is-invalid': this.form.get('name').dirty
-                                  && this.form.get('name').invalid
+                    'is-invalid': this.form.get('content').dirty
+                                  && this.form.get('content').invalid
                     }"
                     type="text"
                     class="form-control"
                     placeholder="Note name"
-                    formControlName="name"
+                    formControlName="content"
                     id="name" />
         </div>
     </form>

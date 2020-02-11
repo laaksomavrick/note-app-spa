@@ -1,0 +1,9 @@
+.note-list-item {
+    font-weight: 500;
+    color: inherit;
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+}

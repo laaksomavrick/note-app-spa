@@ -1,8 +1,4 @@
 <div class="note-editor" *ngIf="selectedNote$ | async;" [formGroup]="noteForm">
-   <input
-        class="note-editor__title"
-        formControlName="name"/>
-
    <quill-editor class="note-editor__quill" formControlName="content"></quill-editor>
 </div>
 
