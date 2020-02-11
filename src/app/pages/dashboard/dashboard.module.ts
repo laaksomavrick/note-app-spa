@@ -23,6 +23,7 @@ import { FoldersService } from "./folders/folders.service";
 import { NavigationComponent } from "./navigation/navigation.component";
 import { CreateNoteModalComponent } from "./notes/create-note-modal/create-note-modal.component";
 import { NoteEditorComponent } from "./notes/note-editor/note-editor.component";
+import { NoteListItemComponent } from "./notes/note-list-item/note-list-item.component";
 import { NoteListComponent } from "./notes/note-list/note-list.component";
 import { NotesService } from "./notes/notes.service";
 import { RouterService } from "./router.service";
@@ -39,6 +40,7 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
         CreateFolderModalComponent,
         CreateNoteModalComponent,
         NoteEditorComponent,
+        NoteListItemComponent,
     ],
     imports: [
         CommonModule,

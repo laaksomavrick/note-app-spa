@@ -21,7 +21,7 @@ export class CreateNoteModalComponent {
     );
 
     public form = this.formBuilder.group({
-        name: ["", [Validators.required, Validators.minLength(1)]],
+        content: ["", [Validators.required, Validators.minLength(1)]],
     });
 
     constructor(
@@ -46,20 +46,20 @@ export class CreateNoteModalComponent {
             return;
         }
 
-        const nameControl = this.form.get("name");
+        const contentControl = this.form.get("content");
 
-        if (!nameControl) {
+        if (!contentControl) {
             return;
         }
 
-        const name = nameControl.value;
+        const content = contentControl.value;
 
-        if (!name) {
+        if (!content) {
             return;
         }
 
         // TODO: navigate to note on creation
-        this.store.dispatch(createNoteAttempt({ name, folderId, content: "" }));
+        this.store.dispatch(createNoteAttempt({ folderId, content }));
 
         this.loading$.subscribe((loading: boolean) => {
             if (!loading) {

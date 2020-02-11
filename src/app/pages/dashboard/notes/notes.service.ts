@@ -29,8 +29,8 @@ export class NotesService extends HttpService {
     public updateNote(
         props: UpdateNoteAttemptProps,
     ): Promise<UpdateNoteSuccessResponse | ApiErrorResponse> {
-        const { name, content, folderId } = props;
-        const updateNoteRequest = { note: { name, content, folderId } };
+        const { content, folderId } = props;
+        const updateNoteRequest = { note: { content, folderId } };
         return this.http
             .patch<UpdateNoteSuccessResponse | ApiErrorResponse>(
                 `${this.url}/notes/${props.id}`,
@@ -43,8 +43,8 @@ export class NotesService extends HttpService {
     public createNote(
         props: CreateNoteAttemptProps,
     ): Promise<CreateNoteSuccessResponse | ApiErrorResponse> {
-        const { name, content, folderId } = props;
-        const createNoteBody = { note: { name, content, folderId } };
+        const { content, folderId } = props;
+        const createNoteBody = { note: { content, folderId } };
         return this.http
             .post<CreateNoteSuccessResponse | ApiErrorResponse>(
                 `${this.url}/notes`,
