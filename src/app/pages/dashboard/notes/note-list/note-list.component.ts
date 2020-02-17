@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { AppStore } from "../../../../app.store";
+import { toggleCreateNoteVisible } from "../../../../store/notes/notes.actions";
 import { Note } from "../../../../store/notes/notes.interfaces";
 
 @Component({
@@ -42,5 +43,9 @@ export class NoteListComponent implements OnInit {
         const noteId = note.id;
         const folderId = note.folderId;
         await this.router.navigate(["folder", folderId, "note", noteId]);
+    }
+
+    public onClickNewNote(): void {
+        this.store.dispatch(toggleCreateNoteVisible());
     }
 }

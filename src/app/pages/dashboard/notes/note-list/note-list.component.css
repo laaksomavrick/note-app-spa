@@ -1,8 +1,14 @@
 .note-list {
     height: 100%;
     width: 200px;
+    display: flex;
+    flex-direction: column;
     background: var(--background-primary);
     border-right: 2px solid var(--white);
+}
+
+.note-list__notes {
+    flex: 1;
 }
 
 .note-list__item {
@@ -23,4 +29,12 @@
 .note-list__item--selected {
     background: var(--primary);
     color: var(--white);
+}
+
+.note-list__create-note {
+    margin: 5px;
+}
+
+.note-list__create-note-button {
+    width: 100%;
 }
