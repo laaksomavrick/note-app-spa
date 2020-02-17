@@ -1,3 +1,3 @@
-<button class="button">
+<button class="button" [ngClass]="{ 'button--disabled': disabled, 'button--primary': type === 'primary', 'button--secondary': type ==='secondary'}" [disabled]="disabled">
     <ng-content></ng-content>
 </button>

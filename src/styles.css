@@ -10,6 +10,7 @@
     --note-list-min-width: 200px;
 
     --teal-light: rgba(26, 188, 156, 0.1);
+    --teal-light-hover: rgba(26, 188, 156, 0.2);
     --teal: #1abc9c;
     --teal-dark: #16a085;
 
@@ -56,4 +57,13 @@ body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 /* gets overwritten in component, and the third party lib isn't respecting padding */
 .ql-container {
     height: calc(100% - 105px) !important;
+}
+
+.modal-content {
+    border: none;
+}
+
+.form-control:focus {
+    border-color: var(--teal-light-hover);
+    box-shadow: 0 0 0 0.2rem var(--teal-light);
 }

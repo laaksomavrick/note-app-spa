@@ -1,5 +1,4 @@
 .button {
-    background: var(--background-secondary);
     align-items: center;
     border-radius:  6px;
     cursor: pointer;
@@ -10,6 +9,29 @@
     width: 100%;
 }
 
-.button:hover {
+.button--secondary {
+    background: var(--background-secondary);
+    color: var(--foreground-primary);
+}
+
+.button--secondary:hover {
     background: var(--background-secondary-hover);
 }
+
+.button--primary {
+    background: var(--teal-light);
+    color: var(--teal);
+}
+
+.button--primary:hover {
+    background: var(--teal-light-hover);
+}
+
+.button--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.button--disabled:hover {
+}
+
