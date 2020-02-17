@@ -1,15 +1,15 @@
 <div class="folder-list">
     <app-loadable-errorable [loading$]="loading$" [error$]="error$" class="folder-list__folders">
-        <div *ngFor="let folder of folders$ | async" class="folder-list__item" [ngClass]="{'folder-list__item--selected': folder.id === selectedFolderId }"
+        <div *ngFor="let folder of folders$ | async"
         >
-            <button class="folder-list__button" (click)="onClickFolder(folder)">
+            <app-list-item (click)="onClickFolder(folder)" [selected]="folder.id === selectedFolderId">
                 {{ folder.name }}
-            </button>
+            </app-list-item>
         </div>
     </app-loadable-errorable>
     <div class="folder-list__create-folder">
-        <button (click)="onClickNewFolder()" class="btn btn-primary folder-list__create-folder-button">
+        <app-button (click)="onClickNewFolder()" class="folder-list__create-folder-button">
             New Folder
-        </button>
+        </app-button>
     </div>
 </div>

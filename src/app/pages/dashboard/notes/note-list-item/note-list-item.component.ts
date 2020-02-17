@@ -11,6 +11,8 @@ const MAX_LENGTH = 16;
 export class NoteListItemComponent {
     @Input() private readonly note: Note | undefined = undefined;
 
+    @Input() private readonly selected: boolean = false;
+
     @Output() private readonly clickNote = new EventEmitter<Note>();
 
     public getNoteName(): string {

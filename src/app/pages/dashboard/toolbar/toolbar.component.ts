@@ -44,6 +44,7 @@ export class ToolbarComponent implements OnDestroy {
     }
 
     public onClickNew(): void {
+        console.log("onCLickNew");
         const maybeFolderId = this.routerService.getFolderIdFromRoute();
 
         if (maybeFolderId) {

@@ -1,12 +1,12 @@
 <div class="note-list">
     <app-loadable-errorable [loading$]="loading$" [error$]="error$" class="note-list__notes">
-        <div *ngFor="let note of notes$ | async" class="note-list__item" [ngClass]="{'note-list__item--selected': note.id === selectedNoteId }">
-            <app-note-list-item (clickNote)="onClickNote(note)" [note]="note"></app-note-list-item>
+        <div *ngFor="let note of notes$ | async">
+            <app-note-list-item (clickNote)="onClickNote(note)" [note]="note" [selected]="note.id === selectedNoteId"></app-note-list-item>
         </div>
     </app-loadable-errorable>
     <div class="note-list__create-note">
-        <button (click)="onClickNewNote()" class="btn btn-primary note-list__create-note-button">
+        <app-button (click)="onClickNewNote()" class="note-list__create-note-button">
             New Note
-        </button>
+        </app-button>
     </div>
 </div>

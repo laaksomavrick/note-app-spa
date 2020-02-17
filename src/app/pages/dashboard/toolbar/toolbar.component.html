@@ -1,28 +1,11 @@
-<div class="navbar navbar-expand-lg navbar-dark bg-primary toolbar">
-    <div class="toolbar__brand navbar-brand">
-        devnotes
+<div class="toolbar">
+    <div class="toolbar__brand-container">
+        <app-brand></app-brand>
     </div>
-    <div class="toolbar__note-list-header">
-        <button
-                *ngIf="deleteAreYouSure === false"
-                id="deleteButton"
-                class="btn btn-light toolbar__note-list-header-btn"
-                (click)="toggleDeleteAreYouSureOn()">
-            x
-        </button>
-
-        <button
-                *ngIf="deleteAreYouSure === true"
-                id="deleteButtonAreYouSure"
-                class="btn btn-danger toolbar__note-list-header-btn"
-                (click)="onClickDelete()"
-                (cancel)="toggleDeleteAreYouSureOff()">
-           ?
-        </button>
-
-        <button type="button" class="btn btn-light" (click)="onClickNew()">
-            +
-        </button>
+    <div class="toolbar__note-list-header-container">
+        <div class="toolbar__note-list-header">
+            <app-button>Sort</app-button>
+        </div>
     </div>
     <div class="toolbar__note-editor-header">
         <div *ngIf="(noteSaving$ | async) === true" class="toolbar__saving">

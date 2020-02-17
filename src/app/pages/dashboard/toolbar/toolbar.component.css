@@ -1,41 +1,25 @@
 .toolbar {
-    padding: 10px 0 10px 0;
     display: flex;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    color: var(--white);
+    align-items: center;
+    color: var(--foreground-primary);
+    height: 50px;
+    background-color: var(--background-primary);
+    border-bottom: 1px solid var(--background-secondary);
 }
 
-.toolbar__brand {
-    margin-left: 17px;
+.toolbar__brand-container {
+    width: var(--list-min-width);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.toolbar__folder-list-header {
-    padding-left: 17px;
-    width: 150px;
+.toolbar__note-list-header-container {
+    width: var(--note-list-min-width);
+    display: flex;
+    align-items: center;
 }
 
 .toolbar__note-list-header {
-    width: 150px;
-    padding-left: 45px;
-}
 
-.toolbar__note-list-header-btn {
-    margin-right: 5px;
-}
-
-.toolbar__note-editor-header {
-    margin-left: auto;
-    margin-right: 10px;
-}
-
-.toolbar__button {
-    border: 1px var(--foreground-primary) solid;
-    outline: none;
-    background: transparent;
-    border-radius: 2px;
-    margin-right: 7px;
-}
-
-.toolbar__button--destroy {
-    background: red;
 }

@@ -1,0 +1,28 @@
+.list-item-container {
+   display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0px 6px 0px 6px;
+}
+
+.list-item {
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    padding: 6px 12px 6px 12px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    flex: 1;
+    height: 40px;
+}
+
+.list-item:hover {
+    color: var(--teal);
+    background: var(--teal-light);
+    border-radius: 16px;
+}
+
+.list-item--selected {
+    color: var(--teal);
+}

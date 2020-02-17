@@ -1,40 +1,23 @@
 .note-list {
     height: 100%;
-    width: 200px;
+    width: var(--note-list-min-width);
     display: flex;
     flex-direction: column;
     background: var(--background-primary);
-    border-right: 2px solid var(--white);
+    border-right: 1px solid var(--background-secondary);
 }
 
 .note-list__notes {
     flex: 1;
 }
 
-.note-list__item {
-    color: var(--foreground-primary);
-    padding: 5px 10px 5px 10px;
-}
-
-.note-list__item:first-child {
-    margin-top: 10px;
-}
-
-.note-list__item:hover {
-    background: var(--primary);
-    color: var(--white);
-    transition: 0.1s;
-}
-
-.note-list__item--selected {
-    background: var(--primary);
-    color: var(--white);
-}
 
 .note-list__create-note {
     margin: 5px;
+    display: flex;
 }
 
 .note-list__create-note-button {
     width: 100%;
+    flex: 1;
 }
