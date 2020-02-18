@@ -2,6 +2,10 @@ import { createReducer, on } from "@ngrx/store";
 import { getHumanReadableApiError } from "../../http/http.helpers";
 import { ApiErrorResponse } from "../../http/http.interfaces";
 import {
+    NOTE_ORDER_BY_DEFAULT,
+    NoteOrderByParams,
+} from "../../pages/dashboard/notes/notes.service";
+import {
     createNoteAttempt,
     createNoteFailure,
     createNoteSuccess,
@@ -12,6 +16,7 @@ import {
     getNotesFailure,
     getNotesSuccess,
     NoteActions,
+    setNoteOrderBy,
     setSelectedNote,
     toggleCreateNoteVisible,
     updateNoteAttempt,
@@ -25,13 +30,26 @@ import {
     DeleteNoteSuccessResponse,
     GetNotesSuccessResponse,
     Note,
+    SetNoteOrderByProps,
     SetSelectedNoteProps,
     UpdateNoteAttemptProps,
     UpdateNoteSuccessResponse,
 } from "./notes.interfaces";
 
+const notesSortFn = (notes: Note[], noteOrderBy: NoteOrderByParams): Note[] =>
+    notes.sort((a: Note, b: Note): number => {
+        if (noteOrderBy === NoteOrderByParams.UpdatedAt) {
+            return a.updatedAt > b.updatedAt ? -1 : 1;
+        } else if (noteOrderBy === NoteOrderByParams.CreatedAt) {
+            return a.createdAt > b.createdAt ? -1 : 1;
+        } else {
+            return 1;
+        }
+    });
+
 export interface NotesState {
     notes: Note[];
+    noteOrderBy: NoteOrderByParams;
     selectedNote?: Note;
     loading: boolean;
     error?: string;
@@ -49,6 +67,7 @@ export interface NotesState {
 
 export const initialState: NotesState = {
     notes: [],
+    noteOrderBy: NOTE_ORDER_BY_DEFAULT,
     selectedNote: undefined,
     loading: false,
     error: undefined,
@@ -100,13 +119,14 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
     on(
         updateNoteSuccess,
         (state: NotesState, props: UpdateNoteSuccessResponse): NotesState => {
-            const notes = state.notes.map((note: Note) => {
+            let notes = state.notes.map((note: Note) => {
                 if (note.id === props.resource.note.id) {
                     return props.resource.note;
                 } else {
                     return note;
                 }
             });
+            notes = notesSortFn(notes, state.noteOrderBy);
             return {
                 ...state,
                 updateNoteError: undefined,
@@ -141,7 +161,8 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
     on(
         createNoteSuccess,
         (state: NotesState, props: CreateNoteSuccessResponse): NotesState => {
-            const notes = [...state.notes, props.resource.note];
+            let notes = [...state.notes, props.resource.note];
+            notes = notesSortFn(notes, state.noteOrderBy);
             return {
                 ...state,
                 createNoteError: undefined,
@@ -193,6 +214,14 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
             ...state,
             deleteNoteError: undefined,
             deleteNoteLoading: true,
+        }),
+    ),
+
+    on(
+        setNoteOrderBy,
+        (state: NotesState, props: SetNoteOrderByProps): NotesState => ({
+            ...state,
+            noteOrderBy: props.orderBy,
         }),
     ),
 );

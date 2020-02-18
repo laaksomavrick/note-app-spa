@@ -1,0 +1,12 @@
+.note-sort-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.note-sort-toggle > * {
+    margin-right: 10px;
+}
+
+.note-sort-toggle__current-value {
+    font-weight: 500;
+}

@@ -16,6 +16,10 @@ export class NoteListItemComponent {
 
     @Output() private readonly clickNote = new EventEmitter<Note>();
 
+    // Title
+    // Last edited | Some of the body
+    // Tags
+
     public getNoteName(): string {
         const note = this.note;
 
@@ -23,14 +27,10 @@ export class NoteListItemComponent {
             return "";
         }
 
-        let title = note.content.substring(0, MAX_LENGTH);
-        title = removeMd(title);
+        const substringTitle = note.content.substring(0, MAX_LENGTH);
+        const sanitizedSubstringTitle = removeMd(substringTitle);
 
-        if (note.content.length <= MAX_LENGTH) {
-            return title;
-        } else {
-            return `${title}...`;
-        }
+        return sanitizedSubstringTitle;
     }
 
     public onClickNote(): void {

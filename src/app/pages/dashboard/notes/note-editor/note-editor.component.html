@@ -2,7 +2,10 @@
     <div class="note-editor__controls">
         <app-button (click)="onClickView()" [selected]="selectedControl === editorControls.Viewer">View</app-button>
         <app-button (click)="onClickEdit()" [selected]="selectedControl === editorControls.Editor">Edit</app-button>
-        <app-button class="note-editor__controls-delete">Delete</app-button>
+        <div class="note-editor__controls-right-container">
+            <app-button>Add Tag</app-button>
+            <app-button>Delete</app-button>
+        </div>
     </div>
 
     <div class="note-editor__editor-container">
@@ -12,9 +15,7 @@
         </div>
 
         <div class="note-editor__viewer" *ngIf="selectedControl === editorControls.Viewer">
-            <markdown lang="typescript">
-                {{ this.getNoteContent() }}
-            </markdown>
+            <markdown [data]="noteMarkdownContent"></markdown>
         </div>
 
     </div>

@@ -1,95 +1,50 @@
-import { Component, OnDestroy, Renderer2 } from "@angular/core";
+import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
+import { take } from "rxjs/operators";
 import { AppStore } from "../../../app.store";
-import { deleteFoldersAttempt } from "../../../store/folders/folders.actions";
-import { deleteNoteAttempt, toggleCreateNoteVisible } from "../../../store/notes/notes.actions";
-import { RouterService } from "../router.service";
-
-enum DeleteButtonIds {
-    DeleteButton = "deleteButton",
-    DeleteButtonAreYouSure = "deleteButtonAreYouSure",
-}
-
-// TODO: inactive/active toggle state
-// e.g., if only 1 folder exists, can't delete it
-// if nothing selected, can't delete nothing
-
-// TODO: deletion folder/note state during attempt (ie opacity: 50% or something)
+import { getNotesAttempt, setNoteOrderBy } from "../../../store/notes/notes.actions";
+import { NoteOrderByParams } from "../notes/notes.service";
 
 @Component({
     selector: "app-toolbar",
     templateUrl: "./toolbar.component.html",
     styleUrls: ["./toolbar.component.css"],
 })
-export class ToolbarComponent implements OnDestroy {
+export class ToolbarComponent {
     public noteSaving$: Observable<boolean> = this.store.select(
         ({ notesState }: AppStore) => notesState.updateNoteLoading,
     );
 
-    public deleteAreYouSure = false;
+    public currentNoteOrderBy$: Observable<NoteOrderByParams> = this.store.select(
+        ({ notesState }: AppStore) => notesState.noteOrderBy,
+    );
 
-    private deleteClickAwayFn?: () => void;
+    public selectedFolderId$: Observable<number | undefined> = this.store.select(
+        ({ foldersState }: AppStore) => foldersState.selectedFolderId,
+    );
 
-    constructor(
-        private readonly store: Store<AppStore>,
-        private readonly routerService: RouterService,
-        private readonly renderer: Renderer2,
-    ) {}
+    constructor(private readonly store: Store<AppStore>) {}
 
-    public ngOnDestroy(): void {
-        if (this.deleteClickAwayFn) {
-            this.deleteClickAwayFn();
+    public async onSortClick(newOrder: NoteOrderByParams): Promise<void> {
+        const folderId = await this.selectedFolderId$.pipe(take(1)).toPromise();
+
+        if (!folderId) {
+            console.warn("No folder id found for onSortClick");
+            return;
         }
+        this.store.dispatch(setNoteOrderBy({ orderBy: newOrder }));
+        this.store.dispatch(getNotesAttempt({ folderId, orderBy: newOrder }));
     }
 
-    public onClickNew(): void {
-        console.log("onCLickNew");
-        const maybeFolderId = this.routerService.getFolderIdFromRoute();
-
-        if (maybeFolderId) {
-            this.store.dispatch(toggleCreateNoteVisible());
-        }
-    }
-
-    public toggleDeleteAreYouSureOn(): void {
-        this.deleteAreYouSure = true;
-        this.deleteClickAwayFn = this.renderer.listen("document", "click", (e: Event) => {
-            if (!e.target) {
-                return;
-            }
-
-            // TODO hack
-            // tslint:disable-next-line:no-any
-            const id = (e.target as any).id;
-
-            if (
-                id !== DeleteButtonIds.DeleteButton &&
-                id !== DeleteButtonIds.DeleteButtonAreYouSure
-            ) {
-                this.toggleDeleteAreYouSureOff();
-            }
-        });
-    }
-
-    public toggleDeleteAreYouSureOff(): void {
-        if (this.deleteClickAwayFn) {
-            this.deleteClickAwayFn();
-        }
-
-        this.deleteAreYouSure = false;
-    }
-
-    public onClickDelete(): void {
-        const maybeFolderId = this.routerService.getFolderIdFromRoute();
-        const maybeNoteId = this.routerService.getNoteIdFromRoute();
-
-        if (maybeNoteId) {
-            this.store.dispatch(deleteNoteAttempt({ noteId: maybeNoteId }));
-        } else if (maybeFolderId) {
-            this.store.dispatch(deleteFoldersAttempt({ folderId: maybeFolderId }));
-        }
-
-        this.toggleDeleteAreYouSureOff();
-    }
+    // public onClickDelete(): void {
+    //     const maybeFolderId = this.routerService.getFolderIdFromRoute();
+    //     const maybeNoteId = this.routerService.getNoteIdFromRoute();
+    //
+    //     if (maybeNoteId) {
+    //         this.store.dispatch(deleteNoteAttempt({ noteId: maybeNoteId }));
+    //     } else if (maybeFolderId) {
+    //         this.store.dispatch(deleteFoldersAttempt({ folderId: maybeFolderId }));
+    //     }
+    // }
 }

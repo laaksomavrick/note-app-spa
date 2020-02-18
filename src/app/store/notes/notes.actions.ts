@@ -7,6 +7,7 @@ import {
     DeleteNoteSuccessResponse,
     GetNotesAttemptProps,
     GetNotesSuccessResponse,
+    SetNoteOrderByProps,
     SetSelectedNoteProps,
     UpdateNoteAttemptProps,
     UpdateNoteSuccessResponse,
@@ -68,6 +69,11 @@ export const deleteNoteAttempt = createAction(
     props<DeleteNoteAttemptProps>(),
 );
 
+export const setNoteOrderBy = createAction(
+    "[Notes] Set note order by",
+    props<SetNoteOrderByProps>(),
+);
+
 export type NoteActions =
     | ReturnType<typeof getNotesSuccess>
     | ReturnType<typeof getNotesFailure>
@@ -82,4 +88,5 @@ export type NoteActions =
     | ReturnType<typeof createNoteAttempt>
     | ReturnType<typeof deleteNoteSuccess>
     | ReturnType<typeof deleteNoteFailure>
-    | ReturnType<typeof deleteNoteAttempt>;
+    | ReturnType<typeof deleteNoteAttempt>
+    | ReturnType<typeof setNoteOrderBy>;

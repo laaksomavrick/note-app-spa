@@ -11,17 +11,28 @@ import {
     UpdateNoteSuccessResponse,
 } from "../../../store/notes/notes.interfaces";
 
+// TODO: move somewhere more appropriate
+export enum NoteOrderByParams {
+    CreatedAt = "createdAt",
+    UpdatedAt = "updatedAt",
+}
+
+export const NOTE_ORDER_BY_DEFAULT = NoteOrderByParams.UpdatedAt;
+
 @Injectable()
 export class NotesService extends HttpService {
     constructor(private http: HttpClient) {
         super();
     }
 
-    public getNotes(folderId: number): Promise<GetNotesSuccessResponse | ApiErrorResponse> {
+    public getNotes(
+        folderId: number,
+        orderBy = NOTE_ORDER_BY_DEFAULT,
+    ): Promise<GetNotesSuccessResponse | ApiErrorResponse> {
         return this.http
             .get<GetNotesSuccessResponse | ApiErrorResponse>(`${this.url}/notes`, {
                 ...this.httpOptions,
-                params: { folderId: `${folderId}` },
+                params: { folderId: `${folderId}`, orderBy },
             })
             .toPromise();
     }

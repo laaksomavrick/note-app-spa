@@ -24,6 +24,7 @@ import { CreateNoteModalComponent } from "./notes/create-note-modal/create-note-
 import { NoteEditorComponent } from "./notes/note-editor/note-editor.component";
 import { NoteListItemComponent } from "./notes/note-list-item/note-list-item.component";
 import { NoteListComponent } from "./notes/note-list/note-list.component";
+import { NoteSortToggleComponent } from "./notes/note-sort-toggle/note-sort-toggle.component";
 import { NotesService } from "./notes/notes.service";
 import { RouterService } from "./router.service";
 import { ToolbarComponent } from "./toolbar/toolbar.component";
@@ -40,6 +41,7 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
         CreateNoteModalComponent,
         NoteEditorComponent,
         NoteListItemComponent,
+        NoteSortToggleComponent,
     ],
     imports: [
         CommonModule,

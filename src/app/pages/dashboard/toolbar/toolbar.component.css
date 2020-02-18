@@ -20,6 +20,8 @@
     align-items: center;
 }
 
-.toolbar__note-list-header {
-
+.toolbar__note-editor-header {
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
 }

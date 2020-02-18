@@ -33,6 +33,8 @@ export class NoteEditorComponent implements OnInit {
         content: new FormControl(""),
     });
 
+    public noteMarkdownContent: string = "";
+
     public editorControls = EditorSelection;
 
     public selectedControl = EditorSelection.Viewer;
@@ -53,6 +55,8 @@ export class NoteEditorComponent implements OnInit {
                 this.noteForm.controls["content"].setValue(selectedNote.content, {
                     emitEvent: false,
                 });
+
+                this.setNoteMarkdownContent();
             }
         });
 
@@ -83,13 +87,13 @@ export class NoteEditorComponent implements OnInit {
         this.selectedControl = this.editorControls.Editor;
     }
 
-    public getNoteContent(): string | undefined {
+    public setNoteMarkdownContent(): void {
         const content = this.noteForm.get("content");
 
         if (!content) {
-            return undefined;
+            return;
         }
 
-        return content.value;
+        this.noteMarkdownContent = content.value;
     }
 }

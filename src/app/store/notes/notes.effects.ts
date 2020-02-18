@@ -35,7 +35,10 @@ export class NotesEffects {
             ofType(getNotesAttempt.type),
             switchMap(async (props: GetNotesAttemptProps) => {
                 try {
-                    const response = await this.notesService.getNotes(props.folderId);
+                    const response = await this.notesService.getNotes(
+                        props.folderId,
+                        props.orderBy,
+                    );
                     if (isApiErrorResponse(response)) {
                         return getNotesFailure(response);
                     }

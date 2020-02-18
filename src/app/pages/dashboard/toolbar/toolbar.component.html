@@ -4,12 +4,12 @@
     </div>
     <div class="toolbar__note-list-header-container">
         <div class="toolbar__note-list-header">
-            <app-button>Sort</app-button>
+            <app-note-sort-toggle [currentNoteOrderBy]="currentNoteOrderBy$ | async" (sortClick)="onSortClick($event)"></app-note-sort-toggle>
         </div>
     </div>
     <div class="toolbar__note-editor-header">
         <div *ngIf="(noteSaving$ | async) === true" class="toolbar__saving">
-            <app-spinner spinnerType="text-light"></app-spinner>
+            <app-spinner></app-spinner>
         </div>
     </div>
 </div>

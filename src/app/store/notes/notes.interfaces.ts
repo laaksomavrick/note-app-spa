@@ -1,4 +1,5 @@
 import { ApiResponse } from "../../http/http.interfaces";
+import { NoteOrderByParams } from "../../pages/dashboard/notes/notes.service";
 
 export interface Note {
     id: number;
@@ -18,6 +19,7 @@ export interface GetNotesSuccessResponse extends ApiResponse {
 export interface GetNotesAttemptProps {
     folderId: number;
     noteId?: number;
+    orderBy?: NoteOrderByParams;
 }
 
 export interface SetSelectedNoteProps {
@@ -54,4 +56,8 @@ export interface DeleteNoteSuccessResponse {
 
 export interface DeleteNoteAttemptProps {
     noteId: number;
+}
+
+export interface SetNoteOrderByProps {
+    orderBy: NoteOrderByParams;
 }
