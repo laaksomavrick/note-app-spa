@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import removeMd from "remove-markdown";
 import { Note } from "../../../../store/notes/notes.interfaces";
 
 const MAX_LENGTH = 32;
@@ -22,7 +23,8 @@ export class NoteListItemComponent {
             return "";
         }
 
-        const title = note.content.substring(0, MAX_LENGTH);
+        let title = note.content.substring(0, MAX_LENGTH);
+        title = removeMd(title);
 
         if (note.content.length <= MAX_LENGTH) {
             return title;
