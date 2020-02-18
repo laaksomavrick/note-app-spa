@@ -1,4 +1,24 @@
-<div class="note-editor" *ngIf="selectedNote$ | async;" [formGroup]="noteForm">
-   <quill-editor class="note-editor__quill" formControlName="content"></quill-editor>
+<div class="note-editor" *ngIf="selectedNote$ | async;">
+    <div class="note-editor__controls">
+        <app-button (click)="onClickView()" [selected]="selectedControl === editorControls.Viewer">View</app-button>
+        <app-button (click)="onClickEdit()" [selected]="selectedControl === editorControls.Editor">Edit</app-button>
+        <app-button class="note-editor__controls-delete">Delete</app-button>
+    </div>
+
+    <div class="note-editor__editor-container">
+
+        <div class="note-editor__form" [formGroup]="noteForm" *ngIf="selectedControl === editorControls.Editor">
+            <textarea class="note-editor__edit" formControlName="content"></textarea>
+        </div>
+
+        <div class="note-editor__viewer" *ngIf="selectedControl === editorControls.Viewer">
+            <markdown lang="typescript">
+                {{ this.getNoteContent() }}
+            </markdown>
+        </div>
+
+    </div>
+
+
 </div>
 

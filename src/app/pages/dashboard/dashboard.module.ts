@@ -6,9 +6,8 @@ import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
+import { MarkdownModule } from "ngx-markdown";
 
-import { HIGHLIGHT_OPTIONS, HighlightModule } from "ngx-highlightjs";
-import { QuillModule } from "ngx-quill";
 import { AppActions, appStore, AppStore } from "../../app.store";
 import { AuthGuard } from "../../auth/auth.guard";
 import { AuthInterceptor } from "../../auth/auth.interceptor";
@@ -52,8 +51,7 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
         RouterModule,
         NgbModule,
         ReactiveFormsModule,
-        HighlightModule,
-        QuillModule.forRoot({}),
+        MarkdownModule.forChild(),
     ],
     providers: [
         AuthGuard,

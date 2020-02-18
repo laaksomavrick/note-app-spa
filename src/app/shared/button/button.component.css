@@ -9,6 +9,10 @@
     width: 100%;
 }
 
+.button--selected {
+    filter: brightness(90%);
+}
+
 .button--secondary {
     background: var(--background-secondary);
     color: var(--foreground-primary);

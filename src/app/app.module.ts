@@ -8,6 +8,7 @@ import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
+import { MarkdownModule } from "ngx-markdown";
 import { AppComponent } from "./app.component";
 import { appRoutes } from "./app.routes";
 import { AppActions, appStore, AppStore } from "./app.store";
@@ -33,6 +34,7 @@ import { AuthEffects } from "./store/auth/auth.effects";
         BrowserModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        MarkdownModule.forRoot(),
     ],
     providers: [AuthGuard],
     bootstrap: [AppComponent],

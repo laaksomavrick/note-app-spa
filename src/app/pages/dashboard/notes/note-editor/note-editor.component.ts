@@ -1,10 +1,4 @@
-import {
-    AfterContentInit,
-    AfterViewChecked,
-    AfterViewInit,
-    Component,
-    OnInit,
-} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Store } from "@ngrx/store";
@@ -16,6 +10,11 @@ import { Note, UpdateNoteAttemptProps } from "../../../../store/notes/notes.inte
 
 interface NoteForm {
     content: string;
+}
+
+enum EditorSelection {
+    Viewer,
+    Editor,
 }
 
 @Component({
@@ -33,6 +32,10 @@ export class NoteEditorComponent implements OnInit {
     public noteForm = new FormGroup({
         content: new FormControl(""),
     });
+
+    public editorControls = EditorSelection;
+
+    public selectedControl = EditorSelection.Viewer;
 
     constructor(private readonly route: ActivatedRoute, private readonly store: Store<AppStore>) {}
 
@@ -70,5 +73,23 @@ export class NoteEditorComponent implements OnInit {
                     this.store.dispatch(updateNoteAttempt(updatedNote));
                 }
             });
+    }
+
+    public onClickView(): void {
+        this.selectedControl = this.editorControls.Viewer;
+    }
+
+    public onClickEdit(): void {
+        this.selectedControl = this.editorControls.Editor;
+    }
+
+    public getNoteContent(): string | undefined {
+        const content = this.noteForm.get("content");
+
+        if (!content) {
+            return undefined;
+        }
+
+        return content.value;
     }
 }

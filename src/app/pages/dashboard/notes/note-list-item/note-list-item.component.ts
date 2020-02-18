@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Note } from "../../../../store/notes/notes.interfaces";
 
-const MAX_LENGTH = 16;
+const MAX_LENGTH = 32;
 
 @Component({
     selector: "app-note-list-item",

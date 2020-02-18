@@ -8,5 +8,7 @@ import { Component, Input } from "@angular/core";
 export class ButtonComponent {
     @Input() private readonly disabled = false;
 
+    @Input() private readonly selected = false;
+
     @Input() private readonly type = "secondary";
 }
