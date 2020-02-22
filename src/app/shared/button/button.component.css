@@ -31,6 +31,15 @@
     background: var(--teal-light-hover);
 }
 
+.button--danger {
+    background: var(--red-light);
+    color: var(--red);
+}
+
+.button--danger:hover {
+    background: var(--red-light-hover);
+}
+
 .button--disabled {
     opacity: 0.5;
     pointer-events: none;

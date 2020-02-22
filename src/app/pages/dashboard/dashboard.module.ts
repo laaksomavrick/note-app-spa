@@ -21,6 +21,7 @@ import { FolderListComponent } from "./folders/folder-list/folder-list.component
 import { FoldersService } from "./folders/folders.service";
 import { NavigationComponent } from "./navigation/navigation.component";
 import { CreateNoteModalComponent } from "./notes/create-note-modal/create-note-modal.component";
+import { DeleteNoteModalComponent } from "./notes/delete-note-modal/delete-note-modal.component";
 import { NoteEditorComponent } from "./notes/note-editor/note-editor.component";
 import { NoteListItemComponent } from "./notes/note-list-item/note-list-item.component";
 import { NoteListComponent } from "./notes/note-list/note-list.component";
@@ -30,7 +31,11 @@ import { RouterService } from "./router.service";
 import { ToolbarComponent } from "./toolbar/toolbar.component";
 
 @NgModule({
-    entryComponents: [CreateFolderModalComponent, CreateNoteModalComponent],
+    entryComponents: [
+        CreateFolderModalComponent,
+        CreateNoteModalComponent,
+        DeleteNoteModalComponent,
+    ],
     declarations: [
         DashboardComponent,
         FolderListComponent,
@@ -42,6 +47,7 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
         NoteEditorComponent,
         NoteListItemComponent,
         NoteSortToggleComponent,
+        DeleteNoteModalComponent,
     ],
     imports: [
         CommonModule,

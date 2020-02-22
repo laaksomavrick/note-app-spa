@@ -22,6 +22,9 @@ export class ModalComponent {
     @Input()
     public onSave?: () => Promise<void>;
 
+    @Input()
+    public onDelete?: () => Promise<void>;
+
     constructor() {
         this.title = "";
         this.saving$ = undefined;

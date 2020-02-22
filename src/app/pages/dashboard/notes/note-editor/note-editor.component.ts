@@ -5,7 +5,11 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { debounceTime, take } from "rxjs/operators";
 import { AppStore } from "../../../../app.store";
-import { setSelectedNote, updateNoteAttempt } from "../../../../store/notes/notes.actions";
+import {
+    setSelectedNote,
+    toggleDeleteNoteVisible,
+    updateNoteAttempt,
+} from "../../../../store/notes/notes.actions";
 import { Note, UpdateNoteAttemptProps } from "../../../../store/notes/notes.interfaces";
 
 interface NoteForm {
@@ -85,6 +89,10 @@ export class NoteEditorComponent implements OnInit {
 
     public onClickEdit(): void {
         this.selectedControl = this.editorControls.Editor;
+    }
+
+    public onClickDelete(): void {
+        this.store.dispatch(toggleDeleteNoteVisible());
     }
 
     public setNoteMarkdownContent(): void {

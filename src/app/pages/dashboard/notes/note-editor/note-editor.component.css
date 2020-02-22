@@ -40,6 +40,10 @@
     font-size: 15px;
 }
 
+.note-editor__viewer {
+    border: 3px solid transparent;
+}
+
 .note-editor__form {
     height: 100%;
 }

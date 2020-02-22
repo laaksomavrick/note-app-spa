@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { exhaustMap, switchMap, tap } from "rxjs/operators";
 import { isApiErrorResponse } from "../../http/http.helpers";
 import { CreateNoteModalComponent } from "../../pages/dashboard/notes/create-note-modal/create-note-modal.component";
+import { DeleteNoteModalComponent } from "../../pages/dashboard/notes/delete-note-modal/delete-note-modal.component";
 import { NotesService } from "../../pages/dashboard/notes/notes.service";
 import {
     createNoteAttempt,
@@ -16,6 +17,7 @@ import {
     getNotesFailure,
     getNotesSuccess,
     toggleCreateNoteVisible,
+    toggleDeleteNoteVisible,
     updateNoteAttempt,
     updateNoteFailure,
     updateNoteSuccess,
@@ -118,6 +120,22 @@ export class NotesEffects {
                         this.modalService.dismissAll();
                     } else {
                         this.modalService.open(CreateNoteModalComponent);
+                    }
+                }),
+            ),
+        { dispatch: false },
+    );
+
+    public toggleDeleteNoteVisible$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(toggleDeleteNoteVisible),
+                tap(() => {
+                    const open = this.modalService.hasOpenModals();
+                    if (open) {
+                        this.modalService.dismissAll();
+                    } else {
+                        this.modalService.open(DeleteNoteModalComponent);
                     }
                 }),
             ),

@@ -19,6 +19,7 @@ import {
     setNoteOrderBy,
     setSelectedNote,
     toggleCreateNoteVisible,
+    toggleDeleteNoteVisible,
     updateNoteAttempt,
     updateNoteFailure,
     updateNoteSuccess,
@@ -61,6 +62,7 @@ export interface NotesState {
     createNoteLoading: boolean;
     createNoteError?: string;
 
+    deleteNoteVisible: boolean;
     deleteNoteLoading: boolean;
     deleteNoteError?: string;
 }
@@ -79,6 +81,7 @@ export const initialState: NotesState = {
     createNoteLoading: false,
     createNoteError: undefined,
 
+    deleteNoteVisible: false,
     deleteNoteLoading: false,
     deleteNoteError: undefined,
 };
@@ -185,6 +188,14 @@ const _noteReducer = createReducer<NotesState, NoteActions>(
         (state: NotesState, props: CreateNoteAttemptProps): NotesState => ({
             ...state,
             createNoteLoading: true,
+        }),
+    ),
+
+    on(
+        toggleDeleteNoteVisible,
+        (state: NotesState): NotesState => ({
+            ...state,
+            deleteNoteVisible: !state.deleteNoteVisible,
         }),
     ),
 

@@ -43,6 +43,8 @@ export const updateNoteAttempt = createAction(
 
 export const toggleCreateNoteVisible = createAction("[Notes] Toogle create note visible");
 
+export const toggleDeleteNoteVisible = createAction("[Notes] Toogle delete note visible");
+
 export const createNoteSuccess = createAction(
     "[Notes] Create note success",
     props<CreateNoteSuccessResponse>(),
@@ -83,6 +85,7 @@ export type NoteActions =
     | ReturnType<typeof updateNoteFailure>
     | ReturnType<typeof updateNoteAttempt>
     | ReturnType<typeof toggleCreateNoteVisible>
+    | ReturnType<typeof toggleDeleteNoteVisible>
     | ReturnType<typeof createNoteSuccess>
     | ReturnType<typeof createNoteFailure>
     | ReturnType<typeof createNoteAttempt>

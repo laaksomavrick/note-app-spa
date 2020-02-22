@@ -4,7 +4,7 @@
         <app-button (click)="onClickEdit()" [selected]="selectedControl === editorControls.Editor">Edit</app-button>
         <div class="note-editor__controls-right-container">
             <app-button>Add Tag</app-button>
-            <app-button>Delete</app-button>
+            <app-button (click)="onClickDelete()">Delete</app-button>
         </div>
     </div>
 

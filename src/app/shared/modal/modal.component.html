@@ -8,7 +8,7 @@
     </ng-content>
 
     <div *ngIf="(saving$ | async) === true">
-        Saving...
+        Processing...
     </div>
 </div>
 
@@ -20,5 +20,12 @@
             [disabled]="savingDisabled || (saving$ | async) === true"
             (click)="onSave()">
         Save
+    </app-button>
+    <app-button
+            *ngIf="onDelete"
+            [type]="'danger'"
+            [disabled]="savingDisabled || (saving$ | async) === true"
+            (click)="onDelete()">
+        Delete
     </app-button>
 </div>
