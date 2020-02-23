@@ -15,7 +15,7 @@
         </div>
 
         <div class="note-editor__viewer" *ngIf="selectedControl === editorControls.Viewer">
-            <markdown [data]="noteMarkdownContent"></markdown>
+            <markdown [data]="noteForm.get('content').value"></markdown>
         </div>
 
     </div>

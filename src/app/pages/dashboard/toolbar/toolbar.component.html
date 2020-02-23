@@ -7,7 +7,7 @@
             <app-note-sort-toggle [currentNoteOrderBy]="currentNoteOrderBy$ | async" (sortClick)="onSortClick($event)"></app-note-sort-toggle>
         </div>
     </div>
-    <div class="toolbar__note-editor-header">
+    <div class="toolbar__right-container">
         <div *ngIf="(noteSaving$ | async) === true" class="toolbar__saving">
             <app-spinner></app-spinner>
         </div>

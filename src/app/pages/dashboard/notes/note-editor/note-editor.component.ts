@@ -59,8 +59,6 @@ export class NoteEditorComponent implements OnInit {
                 this.noteForm.controls["content"].setValue(selectedNote.content, {
                     emitEvent: false,
                 });
-
-                this.setNoteMarkdownContent();
             }
         });
 
@@ -93,15 +91,5 @@ export class NoteEditorComponent implements OnInit {
 
     public onClickDelete(): void {
         this.store.dispatch(toggleDeleteNoteVisible());
-    }
-
-    public setNoteMarkdownContent(): void {
-        const content = this.noteForm.get("content");
-
-        if (!content) {
-            return;
-        }
-
-        this.noteMarkdownContent = content.value;
     }
 }
