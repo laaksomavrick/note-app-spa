@@ -8,6 +8,7 @@
         </div>
     </div>
     <div class="toolbar__right-container">
+        <app-search-input class="toolbar__search"></app-search-input>
         <div *ngIf="(noteSaving$ | async) === true" class="toolbar__saving">
             <app-spinner></app-spinner>
         </div>

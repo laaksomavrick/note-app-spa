@@ -22,9 +22,14 @@
 
 .toolbar__right-container {
     margin-left: auto;
+    display: flex;
+    align-items: center;
 }
 
 .toolbar__saving {
     width: 40px;
     height: 40px;
+}
+
+.toolbar__search {
 }

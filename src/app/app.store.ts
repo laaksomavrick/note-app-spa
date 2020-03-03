@@ -7,15 +7,22 @@ import { FolderActions } from "./store/folders/folders.actions";
 import { folderReducer, FoldersState } from "./store/folders/folders.reducer";
 import { NoteActions } from "./store/notes/notes.actions";
 import { noteReducer, NotesState } from "./store/notes/notes.reducer";
+import { SearchActions } from "./store/search/search.actions";
+import { searchReducer, SearchState } from "./store/search/search.reducer";
 
 export interface AppStore {
     authState: AuthState;
     foldersState: FoldersState;
     notesState: NotesState;
     dashboardState: DashboardState;
+    searchState: SearchState;
 }
 
-export type AppActions = AuthActions & FolderActions & NoteActions & DashboardActions;
+export type AppActions = AuthActions &
+    FolderActions &
+    NoteActions &
+    DashboardActions &
+    SearchActions;
 
 export const appStore: ActionReducerMap<
     {
@@ -23,6 +30,7 @@ export const appStore: ActionReducerMap<
         foldersState: ReturnType<typeof folderReducer>;
         notesState: ReturnType<typeof noteReducer>;
         dashboardState: ReturnType<typeof dashboardReducer>;
+        searchState: ReturnType<typeof searchReducer>;
     },
     AppActions
 > = {
@@ -30,4 +38,5 @@ export const appStore: ActionReducerMap<
     foldersState: folderReducer,
     notesState: noteReducer,
     dashboardState: dashboardReducer,
+    searchState: searchReducer,
 };

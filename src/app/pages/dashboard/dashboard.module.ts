@@ -15,6 +15,7 @@ import { SharedModule } from "../../shared/shared.module";
 import { DashboardEffects } from "../../store/dashboard/dashboard.effects";
 import { FoldersEffects } from "../../store/folders/folders.effects";
 import { NotesEffects } from "../../store/notes/notes.effects";
+import { SearchEffects } from "../../store/search/search.effects";
 import { DashboardComponent } from "./dashboard.component";
 import { CreateFolderModalComponent } from "./folders/create-folder-modal/create-folder-modal.component";
 import { FolderListComponent } from "./folders/folder-list/folder-list.component";
@@ -28,6 +29,8 @@ import { NoteListComponent } from "./notes/note-list/note-list.component";
 import { NoteSortToggleComponent } from "./notes/note-sort-toggle/note-sort-toggle.component";
 import { NotesService } from "./notes/notes.service";
 import { RouterService } from "./router.service";
+import { SearchInputComponent } from "./toolbar/search-input/search-input.component";
+import { SearchService } from "./toolbar/search.service";
 import { ToolbarComponent } from "./toolbar/toolbar.component";
 
 @NgModule({
@@ -48,13 +51,14 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
         NoteListItemComponent,
         NoteSortToggleComponent,
         DeleteNoteModalComponent,
+        SearchInputComponent,
     ],
     imports: [
         CommonModule,
         FormsModule,
         HttpClientModule,
         StoreModule.forRoot<AppStore, AppActions>(appStore),
-        EffectsModule.forFeature([FoldersEffects, NotesEffects, DashboardEffects]),
+        EffectsModule.forFeature([FoldersEffects, NotesEffects, DashboardEffects, SearchEffects]),
         SharedModule,
         RouterModule,
         NgbModule,
@@ -66,6 +70,7 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
         FoldersService,
         NotesService,
         RouterService,
+        SearchService,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     ],
     bootstrap: [DashboardComponent],
